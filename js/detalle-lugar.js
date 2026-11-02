@@ -170,36 +170,29 @@
     }
 
     requestAnimationFrame(() => {
-      const maps = window.RutAppGoogleMaps;
+      const maps = window.RutAppMaps;
       if (!maps) {
-        mapCanvas.replaceWith(make("p", "place-detail__map-state", "No está disponible el cargador de Google Maps."));
-        setMessage("No se pudo iniciar el mapa de Google.", "error");
+        mapCanvas.replaceWith(make("p", "place-detail__map-state", "No está disponible el cargador de mapas."));
+        setMessage("No se pudo iniciar el mapa.", "error");
         return;
       }
 
       maps.load()
-        .then((googleMaps) => {
+        .then((L) => {
           if (!mapCanvas.isConnected) return;
-          const position = { lat: place.coordinates.lat, lng: place.coordinates.lon };
-          const placeMap = maps.createMap(googleMaps, mapCanvas, {
+          const position = [place.coordinates.lat, place.coordinates.lon];
+          const placeMap = maps.createMap(L, mapCanvas, {
             center: position,
             zoom: place.coordinates.zoom || 15,
-            scrollwheel: false,
-            fullscreenControl: false
+            scrollWheelZoom: false
           });
-          const marker = new googleMaps.Marker({
-            map: placeMap,
-            position,
-            title: place.name
-          });
-          const info = new googleMaps.InfoWindow({
-            content: make("span", "", place.name)
-          });
-          marker.addListener("click", () => info.open({ map: placeMap, anchor: marker }));
-          info.open({ map: placeMap, anchor: marker });
+          L.marker(position, { title: place.name })
+            .addTo(placeMap)
+            .bindPopup(make("span", "", place.name))
+            .openPopup();
         })
         .catch((error) => {
-          console.error("No se pudo cargar Google Maps para el lugar.", error);
+          console.error("No se pudo cargar el mapa del lugar.", error);
           mapCanvas.replaceWith(make("p", "place-detail__map-state", error.message));
           setMessage(error.message, "error");
         });

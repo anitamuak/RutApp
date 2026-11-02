@@ -3,7 +3,6 @@
   const tripId = new URLSearchParams(window.location.search).get("id");
   const busColors = ["#0879d1", "#eb8c22", "#7d58c2", "#16875b", "#d34b60"];
   let tripMap = null;
-  let mapsApi = null;
   const layersByStep = new Map();
 
   function make(tag, className, text) {
@@ -80,33 +79,23 @@
   async function addTripMap(trip) {
     const mapCanvas = document.querySelector("#trip-map-canvas");
     try {
-      mapsApi = await window.RutAppGoogleMaps.load();
+      const L = await window.RutAppMaps.load();
       if (!mapCanvas.isConnected) return;
-      tripMap = window.RutAppGoogleMaps.createMap(mapsApi, mapCanvas, {
-        center: { lat: trip.origin.coordinates[0], lng: trip.origin.coordinates[1] },
-        zoom: 12,
-        fullscreenControl: false
+      tripMap = window.RutAppMaps.createMap(L, mapCanvas, {
+        center: trip.origin.coordinates,
+        zoom: 12
       });
 
-      const bounds = new mapsApi.LatLngBounds();
+      const bounds = L.latLngBounds([]);
       const addInfoMarker = (coordinates, title, color, index) => {
-        const position = { lat: coordinates[0], lng: coordinates[1] };
-        const marker = new mapsApi.Marker({
-          map: tripMap,
-          position,
-          title,
-          icon: {
-            path: mapsApi.SymbolPath.CIRCLE,
-            scale: 7,
-            fillColor: color,
-            fillOpacity: 1,
-            strokeColor: "#ffffff",
-            strokeWeight: 2
-          }
-        });
-        const info = new mapsApi.InfoWindow({ content: make("span", "", title) });
-        marker.addListener("click", () => info.open({ map: tripMap, anchor: marker }));
-        bounds.extend(position);
+        const marker = L.circleMarker(coordinates, {
+          radius: 7,
+          fillColor: color,
+          fillOpacity: 1,
+          color: "#ffffff",
+          weight: 2
+        }).addTo(tripMap).bindPopup(make("span", "", title));
+        bounds.extend(coordinates);
         if (Number.isInteger(index)) layersByStep.set(index, { layer: marker });
         return marker;
       };
@@ -123,13 +112,11 @@
         if (step.type === "bus" && Array.isArray(step.geometry) && step.geometry.length > 1) {
           const color = busColors[busIndex % busColors.length];
           busIndex += 1;
-          const line = new mapsApi.Polyline({
-            map: tripMap,
-            path: step.geometry.map(([lat, lng]) => ({ lat, lng })),
-            strokeColor: color,
-            strokeOpacity: 0.9,
-            strokeWeight: 6
-          });
+          const line = L.polyline(step.geometry, {
+            color,
+            opacity: 0.9,
+            weight: 6
+          }).addTo(tripMap);
           const board = addInfoMarker(
             step.board.coordinates,
             `Abordaje: ${step.board.name}`,
@@ -141,35 +128,27 @@
             color
           );
           layersByStep.set(index, { layer: line, popup: board });
-          step.geometry.forEach(([lat, lng]) => bounds.extend({ lat, lng }));
+          step.geometry.forEach((point) => bounds.extend(point));
         } else if (step.type === "walk" &&
             coordinatesAreValid(step.from) && coordinatesAreValid(step.to)) {
-          const line = new mapsApi.Polyline({
-            map: tripMap,
-            path: [
-              { lat: step.from[0], lng: step.from[1] },
-              { lat: step.to[0], lng: step.to[1] }
-            ],
-            strokeColor: "#16875b",
-            strokeOpacity: 0.9,
-            strokeWeight: 4,
-            icons: [{
-              icon: { path: "M 0,-1 0,1", strokeOpacity: 1, scale: 3 },
-              offset: "0",
-              repeat: "12px"
-            }]
-          });
+          const line = L.polyline([step.from, step.to], {
+            color: "#16875b",
+            opacity: 0.9,
+            weight: 4,
+            dashArray: "2 10",
+            lineCap: "round"
+          }).addTo(tripMap);
           layersByStep.set(index, { layer: line });
-          bounds.extend({ lat: step.from[0], lng: step.from[1] });
-          bounds.extend({ lat: step.to[0], lng: step.to[1] });
+          bounds.extend(step.from);
+          bounds.extend(step.to);
         } else if (step.type === "destination") {
           layersByStep.set(index, { layer: destinationMarker });
         }
       });
 
-      if (!bounds.isEmpty()) tripMap.fitBounds(bounds, 28);
+      if (bounds.isValid()) tripMap.fitBounds(bounds, { padding: [28, 28] });
     } catch (error) {
-      console.error("No se pudo cargar Google Maps para el itinerario.", error);
+      console.error("No se pudo cargar el mapa del itinerario.", error);
       showMapUnavailable(mapCanvas, error.message);
     }
   }
@@ -180,18 +159,13 @@
     const stepLayer = layersByStep.get(index);
     if (!tripMap || !stepLayer) return;
     const layer = stepLayer.layer;
-    if (typeof layer.getPath === "function") {
-      const bounds = new mapsApi.LatLngBounds();
-      layer.getPath().forEach((point) => bounds.extend(point));
-      if (!bounds.isEmpty()) tripMap.fitBounds(bounds, 40);
-    } else if (typeof layer.getPosition === "function") {
-      tripMap.setCenter(layer.getPosition());
-      tripMap.setZoom(16);
+    if (typeof layer.getBounds === "function") {
+      const bounds = layer.getBounds();
+      if (bounds.isValid()) tripMap.fitBounds(bounds, { padding: [40, 40] });
+    } else if (typeof layer.getLatLng === "function") {
+      tripMap.setView(layer.getLatLng(), 16);
     }
-    const popup = stepLayer.popup || layer;
-    if (typeof popup.open === "function") {
-      popup.open({ map: tripMap, anchor: popup });
-    }
+    (stepLayer.popup || layer).openPopup();
   }
 
   function getSelectedTripId() {

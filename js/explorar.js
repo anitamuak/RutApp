@@ -16,7 +16,6 @@
   let visiblePlaces = [];
   let mapVisible = false;
   let exploreMap = null;
-  let infoWindow = null;
   let mapMarkers = [];
   let mapRenderId = 0;
 
@@ -99,12 +98,12 @@
   }
 
   function clearMapMarkers() {
-    mapMarkers.forEach((marker) => marker.setMap(null));
+    mapMarkers.forEach((marker) => marker.remove());
     mapMarkers = [];
-    if (infoWindow) infoWindow.close();
+    if (exploreMap) exploreMap.closePopup();
   }
 
-  function createMapInfo(place, maps) {
+  function createMapInfo(place) {
     const content = document.createElement("article");
     content.className = "catalog-map-info";
     if (place.image) {
@@ -143,46 +142,38 @@
       return;
     }
 
-    setMapStatus("Cargando Google Maps…");
+    setMapStatus("Cargando mapa…");
     try {
-      const maps = await window.RutAppGoogleMaps.load();
+      const L = await window.RutAppMaps.load();
       if (renderId !== mapRenderId || !mapVisible) return;
       if (!exploreMap) {
-        exploreMap = window.RutAppGoogleMaps.createMap(maps, mapCanvas, {
-          center: { lat: 11.2320944, lng: -74.1950916 },
-          zoom: 12,
-          fullscreenControl: false
-        });
-        infoWindow = new maps.InfoWindow();
+        exploreMap = window.RutAppMaps.createMap(L, mapCanvas, { zoom: 12 });
       }
+      exploreMap.invalidateSize();
 
-      const bounds = new maps.LatLngBounds();
+      const bounds = L.latLngBounds([]);
       mappedPlaces.forEach((place) => {
-        const position = { lat: place.coordinates.lat, lng: place.coordinates.lon };
-        const marker = new maps.Marker({
-          map: exploreMap,
-          position,
-          title: place.name
-        });
-        marker.addListener("click", () => {
-          infoWindow.setContent(createMapInfo(place, maps));
-          infoWindow.open({ map: exploreMap, anchor: marker });
-        });
+        const position = [place.coordinates.lat, place.coordinates.lon];
+        const marker = L.marker(position, { title: place.name })
+          .addTo(exploreMap)
+          .bindPopup(createMapInfo(place));
         mapMarkers.push(marker);
         bounds.extend(position);
       });
 
       if (mappedPlaces.length === 1) {
         const place = mappedPlaces[0];
-        exploreMap.setCenter({ lat: place.coordinates.lat, lng: place.coordinates.lon });
-        exploreMap.setZoom(Math.min(Math.max(place.coordinates.zoom || 15, 13), 17));
+        exploreMap.setView(
+          [place.coordinates.lat, place.coordinates.lon],
+          Math.min(Math.max(place.coordinates.zoom || 15, 13), 17)
+        );
       } else {
-        exploreMap.fitBounds(bounds, 40);
+        exploreMap.fitBounds(bounds, { padding: [40, 40] });
       }
       setMapStatus(`${mappedPlaces.length} lugar${mappedPlaces.length === 1 ? "" : "es"} con coordenadas del catálogo. La ficha indica la precisión de cada punto.`);
     } catch (error) {
       if (renderId !== mapRenderId) return;
-      console.error("No se pudo cargar Google Maps para explorar lugares.", error);
+      console.error("No se pudo cargar el mapa para explorar lugares.", error);
       setMapStatus(error.message, "error");
     }
   }

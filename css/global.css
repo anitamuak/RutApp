@@ -343,3 +343,8 @@ input:focus-visible {
     transition: background-color 160ms ease, color 160ms ease, border-color 160ms ease;
   }
 }
+
+/* Mapas (Leaflet + OpenStreetMap): las teselas se oscurecen en el tema oscuro. */
+:root[data-theme="dark"] .leaflet-tile-pane {
+  filter: invert(1) hue-rotate(180deg) brightness(0.95) contrast(0.9);
+}

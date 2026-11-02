@@ -234,32 +234,31 @@
       : "Pulsa en el mapa para seleccionar el destino.";
 
     if (!mapDialog.open) mapDialog.showModal();
-    mapSelection.textContent = "Cargando Google Maps…";
+    mapSelection.textContent = "Cargando mapa…";
     if (selectionMarker) {
-      selectionMarker.setMap(null);
+      selectionMarker.remove();
       selectionMarker = null;
     }
 
     try {
-      const maps = await window.RutAppGoogleMaps.load();
+      const L = await window.RutAppMaps.load();
       if (activeMapMode !== mode || !mapDialog.open) return;
       if (!selectionMap) {
-        selectionMap = window.RutAppGoogleMaps.createMap(
-          maps,
+        selectionMap = window.RutAppMaps.createMap(
+          L,
           document.querySelector("#selection-map"),
-          { zoom: 12, fullscreenControl: false }
+          { zoom: 12 }
         );
-        selectionMap.addListener("click", (event) => {
-          if (!event.latLng) return;
-          const latitude = event.latLng.lat();
-          const longitude = event.latLng.lng();
+        selectionMap.on("click", (event) => {
+          if (!event.latlng) return;
+          const { lat: latitude, lng: longitude } = event.latlng;
           pendingMapPoint = {
             latitude,
             longitude,
             precision: "punto seleccionado por el usuario"
           };
-          if (selectionMarker) selectionMarker.setPosition(event.latLng);
-          else selectionMarker = new maps.Marker({ map: selectionMap, position: event.latLng });
+          if (selectionMarker) selectionMarker.setLatLng(event.latlng);
+          else selectionMarker = L.marker(event.latlng).addTo(selectionMap);
           mapSelection.textContent = `Punto seleccionado en el mapa (${latitude.toFixed(5)}, ${longitude.toFixed(5)}).`;
           mapConfirm.disabled = false;
         });
@@ -268,13 +267,12 @@
       const existingPoint = mode === "origin" ? state.origin : state.destination;
       const coordinates = existingPoint?.coordinates;
       if (Number.isFinite(coordinates?.latitude) && Number.isFinite(coordinates?.longitude)) {
-        selectionMap.setCenter({ lat: coordinates.latitude, lng: coordinates.longitude });
-        selectionMap.setZoom(15);
+        selectionMap.setView([coordinates.latitude, coordinates.longitude], 15);
       }
-      window.google.maps.event.trigger(selectionMap, "resize");
+      selectionMap.invalidateSize();
       mapSelection.textContent = "Aún no has seleccionado un punto.";
     } catch (error) {
-      console.error("No se pudo cargar Google Maps para seleccionar un punto.", error);
+      console.error("No se pudo cargar el mapa para seleccionar un punto.", error);
       mapSelection.textContent = error.message;
       setMessage(error.message, "error");
     }

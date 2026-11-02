@@ -11,6 +11,7 @@ Aplicacion web en HTML, CSS y JavaScript nativos. Abre `index.html` para la bien
 - `pages/buscar-ruta.html`, `css/buscar-ruta.css` y `js/buscar-ruta.js`: selección del origen y destino, validación y búsqueda de recorridos.
 - `pages/detalle-ruta.html`, `css/detalle-ruta.css` y `js/detalle-ruta.js`: detalle del itinerario seleccionado con pasos y mapa.
 - `pages/mas.html` y `css/mas.css`: accesos a las pantallas disponibles.
+- `js/maps.js`: cargador de Leaflet y creación de mapas compartida por las pantallas con mapa.
 - `css/global.css` y `js/global.js`: variables, estilos base y utilidades compartidas.
 - `components/header.*` y `components/navbar.*`: cabecera y barra inferior como Web Components nativos.
 - `data/lugares.json`: catalogo compartido. Las rutas de imagen son locales a `assets/images`.
@@ -35,4 +36,4 @@ La interfaz permite seleccionar el origen por GPS o mapa y el destino desde el c
 
 `data/rutas.json` está vacío mientras no se disponga de geometrías, paradas, dirección de circulación y una fuente verificable para rutas reales de Santa Marta. Por ello, en la versión actual una búsqueda válida informa que no hay recorridos verificados y no inventa líneas ni alternativas. Los tiempos del motor son aproximaciones; la caminata se representa como conexión geográfica esquemática, no como navegación peatonal por calles. Las pruebas del motor usan fixtures sintéticos exclusivamente y no son datos de servicio.
 
-La selección y visualización de mapas requiere conexión a Leaflet desde un CDN y a las teselas de OpenStreetMap, con atribución visible. Los horarios y tarifas turísticas que no estén confirmados en el catálogo deben consultarse con su fuente responsable.
+Los mapas usan Leaflet 1.9.4 (cargado desde unpkg por `js/maps.js`) y teselas de OpenStreetMap, con atribución visible. No requieren clave de API, pero sí conexión a internet. En el tema oscuro las teselas se oscurecen con un filtro CSS en `css/global.css`. Los horarios y tarifas turísticas que no estén confirmados en el catálogo deben consultarse con su fuente responsable.
