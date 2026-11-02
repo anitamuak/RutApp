@@ -494,8 +494,26 @@
       first.trip.transfers - second.trip.transfers ||
       first.trip.walkingDistanceMeters - second.trip.walkingDistanceMeters
     );
+    // Conserva solo el recorrido más rápido por secuencia de rutas y descarta
+    // los transbordos que añaden rutas sin mejorar un viaje que ya existe.
+    const bestBySequence = [];
+    for (const candidate of candidates) {
+      const sequence = candidate.trip.routeIds.join(",");
+      if (!bestBySequence.some((kept) => kept.trip.routeIds.join(",") === sequence)) {
+        bestBySequence.push(candidate);
+      }
+    }
+    const useful = bestBySequence.filter((candidate) => {
+      const ids = new Set(candidate.trip.routeIds);
+      return !bestBySequence.some((other) =>
+        other !== candidate &&
+        other.trip.routeIds.length < ids.size &&
+        other.trip.routeIds.every((id) => ids.has(id)) &&
+        other.cost <= candidate.cost
+      );
+    });
     return {
-      alternatives: candidates.slice(0, options.maxAlternatives).map(({ trip }) => trip),
+      alternatives: useful.slice(0, options.maxAlternatives).map(({ trip }) => trip),
       rejected,
       options
     };
