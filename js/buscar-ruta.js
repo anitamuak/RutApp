@@ -13,13 +13,20 @@
   const searchButton = document.querySelector("#search-submit");
   const locateButton = document.querySelector("#use-location");
   const demoToggle = document.querySelector("#use-demo-routes");
-  const demoPointsButton = document.querySelector("#use-demo-points");
+  const demoExampleList = document.querySelector("#demo-example-list");
   const demoNotice = document.querySelector("#demo-notice");
   const mapDialog = document.querySelector("#map-dialog");
   const mapSelection = document.querySelector("#map-selection");
   const mapConfirm = document.querySelector("#confirm-map");
   const mapHint = document.querySelector("#map-hint");
   const clearDestination = document.querySelector("#clear-destination");
+  const demoExamples = [
+    { id: "direct", label: "Recorrido directo" },
+    { id: "connection", label: "Recorrido con conexión" },
+    { id: "unimagRodadero", label: "Universidad–Rodadero" },
+    { id: "parqueTaganga", label: "Parque de los Novios–Playa de Taganga" },
+    { id: "oceanBuenavista", label: "Ocean Mall → Buenavista" }
+  ];
   const state = { origin: null, destination: null };
   let places = [];
   let routeCatalog = null;
@@ -385,7 +392,7 @@
     badge.textContent = trip.transfers === 0 ? "Directa" : `${trip.transfers} transbordo${trip.transfers === 1 ? "" : "s"}`;
     if (trip.dataMode === "demo") {
       badge.classList.add("route-option__badge--demo");
-      badge.textContent = "Demostración";
+      badge.textContent = "Aproximada";
     }
     if (getSelectedTripId() === trip.id) {
       badge.classList.add("route-option__badge--selected");
@@ -411,10 +418,18 @@
 
     const stats = document.createElement("div");
     stats.className = "route-option__stats";
+    const walkingMinutes = trip.itinerary
+      .filter((step) => step.type === "walk")
+      .reduce((total, step) => total + (step.durationMinutes || 0), 0);
     [
       [`${trip.estimatedMinutes} min`, "Tiempo aprox."],
       [formatDistance(trip.totalDistanceMeters), "Distancia total aprox."],
-      [formatDistance(trip.walkingDistanceMeters), "Caminando aprox."],
+      [
+        formatDistance(trip.walkingDistanceMeters),
+        trip.dataMode === "demo"
+          ? `A pie · ${Math.ceil(walkingMinutes)} min aprox.`
+          : "Caminando aprox."
+      ],
       [formatDistance(trip.busDistanceMeters), "En bus"]
     ].forEach(([value, label]) => {
       const stat = document.createElement("div");
@@ -443,7 +458,7 @@
 
     const note = document.createElement("p");
     note.className = "route-option__notice";
-    note.textContent = trip.estimateNote;
+    note.textContent = [trip.estimateNote, ...(trip.reviewWarnings || [])].join(" ");
     card.append(heading, summary);
     if (posters.childElementCount > 0) card.append(posters);
     card.append(stats, stops, details, note);
@@ -453,16 +468,66 @@
   function renderAlternatives(alternatives, dataMode = "verified") {
     results.dataset.state = "results";
     resultsTitle.textContent = dataMode === "demo"
-      ? "Datos de demostración · alternativas calculadas"
+      ? "Alternativas calculadas"
       : "Rutas disponibles";
     resultsDescription.textContent = `${alternatives.length} alternativa${alternatives.length === 1 ? "" : "s"} · ${state.origin.label} → ${state.destination.label}`;
     demoNotice.hidden = dataMode !== "demo";
     demoNotice.textContent = dataMode === "demo"
-      ? demoRouteCatalog?.notice || "Resultados sintéticos; no representan rutas reales de Santa Marta."
+      ? demoRouteCatalog?.notice || "Recorrido aproximado. No representa una línea de transporte verificada."
       : "";
     resultsList.replaceChildren(...alternatives.map((trip) =>
       renderAlternative(trip, state.origin.label, state.destination.label)
     ));
+  }
+
+  function renderDemoExamples() {
+    if (!demoRouteCatalog) return;
+    const routeIds = new Set(demoRouteCatalog.routes.map((route) => route.id));
+    const availableExamples = demoExamples.filter((example) => {
+      const data = demoRouteCatalog.examples[example.id];
+      return data &&
+        Array.isArray(data.routeIds) &&
+        data.routeIds.length > 0 &&
+        data.routeIds.every((routeId) => routeIds.has(routeId)) &&
+        isValidDemoEndpoint(data.origin) &&
+        isValidDemoEndpoint(data.destination);
+    });
+    demoExampleList.replaceChildren(...availableExamples.map((example) => {
+      const button = document.createElement("button");
+      button.type = "button";
+      button.className = "route-search__minor route-demo-control__sample";
+      button.dataset.demoExample = example.id;
+      button.textContent = example.label;
+      return button;
+    }));
+  }
+
+  function isValidDemoEndpoint(endpoint) {
+    return endpoint &&
+      typeof endpoint.label === "string" &&
+      Number.isFinite(endpoint.latitude) &&
+      Math.abs(endpoint.latitude) <= 90 &&
+      Number.isFinite(endpoint.longitude) &&
+      Math.abs(endpoint.longitude) <= 180;
+  }
+
+  function updateDemoMode() {
+    demoExampleList.hidden = !demoToggle.checked;
+    demoNotice.hidden = !demoToggle.checked;
+    demoNotice.textContent = demoToggle.checked && demoRouteCatalog
+      ? demoRouteCatalog.notice
+      : "";
+    resultsList.replaceChildren();
+    results.dataset.state = "idle";
+    resultsTitle.textContent = demoToggle.checked
+      ? "Recorrido de ejemplo"
+      : "¿A dónde quieres ir?";
+    resultsDescription.textContent = demoToggle.checked
+      ? "Carga los puntos de ejemplo o elige otros en el mapa para buscar alternativas."
+      : "Selecciona tu origen y destino para encontrar opciones de ruta.";
+    setMessage(demoToggle.checked
+      ? "Recorrido de ejemplo activado; no representa transporte real."
+      : "Recorrido de ejemplo desactivado; se utilizará el catálogo local de rutas verificadas.");
   }
 
   function isValidStoredSelection(selection) {
@@ -492,7 +557,7 @@
       state.origin = search.origin;
       state.destination = search.destination;
       demoToggle.checked = search.dataMode === "demo";
-      demoPointsButton.hidden = !demoToggle.checked;
+      demoExampleList.hidden = !demoToggle.checked;
       originDisplay.value = state.origin.label;
       updateDestinationValue(state.destination.label, state.destination);
       renderAlternatives(search.alternatives, search.dataMode);
@@ -534,12 +599,14 @@
     searchButton.setAttribute("aria-busy", "true");
     results.dataset.state = "loading";
     resultsTitle.textContent = "Buscando opciones…";
-    resultsDescription.textContent = "Comparando recorridos y conexiones verificadas.";
     resultsList.replaceChildren();
     const useDemo = demoToggle.checked;
+    resultsDescription.textContent = useDemo
+      ? "Calculando el recorrido aproximado."
+      : "Comparando recorridos y conexiones verificadas.";
     demoNotice.hidden = !useDemo;
     demoNotice.textContent = useDemo
-      ? demoRouteCatalog?.notice || "Resultados sintéticos; no representan rutas reales de Santa Marta."
+      ? demoRouteCatalog?.notice || "Recorrido aproximado. No representa una línea de transporte verificada."
       : "";
     try {
       sessionStorage.removeItem("rutapp.lastRouteSearch");
@@ -560,9 +627,9 @@
     }
     if (useDemo && demoRouteError) {
       results.dataset.state = "empty";
-      resultsTitle.textContent = "No se pudieron cargar los datos de demostración";
+      resultsTitle.textContent = "No se pudieron cargar los datos del recorrido";
       resultsDescription.textContent = "Comprueba el archivo local data/rutas-demo.json.";
-      setMessage("El motor no se ejecutó porque faltan los datos de demostración.", "error");
+      setMessage("El motor no se ejecutó porque faltan los datos del recorrido.", "error");
       return;
     }
 
@@ -576,7 +643,8 @@
       {
         label: state.destination.label,
         coordinates: destinationCoordinate
-      }
+      },
+      { dataMode: useDemo ? "demo" : "verified" }
     );
 
     if (result.error) {
@@ -590,8 +658,8 @@
       const verifiedRoutes = activeRoutes.filter((route) => route.verificationStatus === "verified").length;
       const pendingRoutes = activeRoutes.length - verifiedRoutes;
       if (useDemo) {
-        resultsTitle.textContent = "No hay conexión en estos datos de demostración";
-        resultsDescription.textContent = "Los puntos de ejemplo no quedan conectados por los recorridos sintéticos.";
+        resultsTitle.textContent = "No hay conexión para estos puntos";
+        resultsDescription.textContent = "Los puntos seleccionados no quedan conectados por los recorridos disponibles.";
       } else if (verifiedRoutes === 0 && (pendingRoutes > 0 || routeCatalogData?.signs?.length > 0)) {
         resultsTitle.textContent = "Hay carteles identificados, pero faltan datos geográficos";
         const signCount = routeCatalogData?.signs?.length || 0;
@@ -624,27 +692,60 @@
     renderAlternatives(alternatives, useDemo ? "demo" : "verified");
   }
 
-  function useDemoPoints() {
-    if (!demoRouteCatalog) {
-      setMessage("Los puntos de ejemplo aún no están disponibles.", "error");
+  async function useDemoPoints(exampleId) {
+    const example = demoExamples.find((item) => item.id === exampleId);
+    if (!example) return;
+    demoToggle.checked = true;
+    updateDemoMode();
+    setInputError(originError, "");
+    setInputError(destinationError, "");
+    showInitialResults();
+    demoExampleList.querySelectorAll("button").forEach((button) => {
+      button.disabled = true;
+    });
+    setMessage("Cargando el recorrido de ejemplo…");
+    await demoRoutePromise;
+    demoExampleList.querySelectorAll("button").forEach((button) => {
+      button.disabled = false;
+    });
+    if (demoRouteError || !demoRouteCatalog) {
+      setMessage("No se pudieron cargar los datos del recorrido. Comprueba data/rutas-demo.json.", "error");
       return;
     }
-    const { origin, destination } = demoRouteCatalog.examples;
+    const exampleData = demoRouteCatalog.examples[example.id];
+    const availableRouteIds = new Set(demoRouteCatalog.routes.map((route) => route.id));
+    if (!exampleData ||
+        !Array.isArray(exampleData.routeIds) ||
+        !exampleData.routeIds.every((routeId) => availableRouteIds.has(routeId)) ||
+        !isValidDemoEndpoint(exampleData.origin) ||
+        !isValidDemoEndpoint(exampleData.destination)) {
+      setMessage("El recorrido seleccionado no está disponible en data/rutas-demo.json.", "error");
+      return;
+    }
     state.origin = {
       type: "demo",
-      label: "Origen de demostración",
-      coordinates: { ...origin, precision: "dato sintético de demostración" }
+      label: exampleData.origin.label,
+      coordinates: {
+        latitude: exampleData.origin.latitude,
+        longitude: exampleData.origin.longitude,
+        precision: "coordenadas de ejemplo"
+      }
     };
     state.destination = {
       type: "demo",
-      label: "Destino de demostración",
-      coordinates: { ...destination, precision: "dato sintético de demostración" }
+      label: exampleData.destination.label,
+      coordinates: {
+        latitude: exampleData.destination.latitude,
+        longitude: exampleData.destination.longitude,
+        precision: "coordenadas de ejemplo"
+      }
     };
     originDisplay.value = state.origin.label;
     updateDestinationValue(state.destination.label, state.destination);
     setInputError(originError, "");
     setInputError(destinationError, "");
-    setMessage("Puntos sintéticos cargados. No representan direcciones ni paradas reales.");
+    persistOrigin();
+    setMessage(`«${example.label}» cargado. Pulsa «Buscar ruta» para ver las alternativas.`);
   }
 
   function initializeDestinationFromUrl() {
@@ -684,25 +785,11 @@
   mapConfirm.addEventListener("click", confirmMapPoint);
   locateButton.addEventListener("click", requestLocation);
   document.querySelector("#swap-fields").addEventListener("click", swapPlaces);
-  demoToggle.addEventListener("change", () => {
-    demoPointsButton.hidden = !demoToggle.checked;
-    demoNotice.hidden = !demoToggle.checked;
-    demoNotice.textContent = demoToggle.checked && demoRouteCatalog
-      ? demoRouteCatalog.notice
-      : "";
-    resultsList.replaceChildren();
-    results.dataset.state = "idle";
-    resultsTitle.textContent = demoToggle.checked
-      ? "Prueba el motor con datos sintéticos"
-      : "¿A dónde quieres ir?";
-    resultsDescription.textContent = demoToggle.checked
-      ? "Carga los puntos de ejemplo o elige puntos en el mapa para calcular alternativas de demostración."
-      : "Selecciona tu origen y destino para encontrar opciones de ruta.";
-    setMessage(demoToggle.checked
-      ? "Modo de demostración activado. Ninguna línea se presentará como transporte real."
-      : "Modo de demostración desactivado; se utilizará el catálogo local de rutas verificadas.");
+  demoToggle.addEventListener("change", updateDemoMode);
+  demoExampleList.addEventListener("click", (event) => {
+    const button = event.target.closest("button[data-demo-example]");
+    if (button) useDemoPoints(button.dataset.demoExample);
   });
-  demoPointsButton.addEventListener("click", useDemoPoints);
   document.querySelector("#clear-destination").addEventListener("click", () => {
     updateDestinationValue("");
     destinationInput.focus();
@@ -737,10 +824,11 @@
   const demoRoutePromise = RutApp.loadDemoRoutes()
     .then((data) => {
       demoRouteCatalog = data;
+      renderDemoExamples();
     })
     .catch((error) => {
       demoRouteError = error;
-      console.error("No se pudieron cargar los datos sintéticos de demostración.", error);
+      console.error("No se pudieron cargar los datos del recorrido de ejemplo.", error);
     });
   window.addEventListener("storage", (event) => {
     if (event.key === "rutapp.routeOrigin" && !event.newValue) {

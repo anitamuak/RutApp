@@ -98,7 +98,32 @@
       throw new Error(`No se pudo cargar el archivo de datos de demostración (${response.status}).`);
     }
     const data = await response.json();
-    if (data.dataMode !== "demo" || !Array.isArray(data.routes) || !data.examples) {
+    const examples = data.examples;
+    const validEndpoint = (endpoint) => endpoint &&
+      typeof endpoint.label === "string" &&
+      Number.isFinite(endpoint.latitude) &&
+      Math.abs(endpoint.latitude) <= 90 &&
+      Number.isFinite(endpoint.longitude) &&
+      Math.abs(endpoint.longitude) <= 180;
+    const validExamples = examples &&
+      typeof examples === "object" &&
+      !Array.isArray(examples) &&
+      Object.keys(examples).length > 0 &&
+      Object.values(examples).every((example) =>
+        Array.isArray(example.routeIds) &&
+        example.routeIds.length > 0 &&
+        example.routeIds.every((routeId) => typeof routeId === "string") &&
+        validEndpoint(example.origin) &&
+        validEndpoint(example.destination)
+      );
+    if (data.dataMode !== "demo" ||
+        !Array.isArray(data.routes) ||
+        !validExamples ||
+        Object.values(examples).some((example) =>
+          example.routeIds.some((routeId) =>
+            !data.routes.some((route) => route.id === routeId)
+          )
+        )) {
       throw new Error("El archivo de demostración no tiene el formato esperado.");
     }
     return data;

@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#f3f8fd">
+    <script src="../js/theme.js"></script>
+    <title>RutApp | Piloto OSRM Ocean Mall–Buenavista</title>
+    <link rel="stylesheet" href="../css/global.css">
+    <link rel="stylesheet" href="../css/piloto-ocean-buenavista.css">
+    <script src="../js/maps.js" defer></script>
+    <script src="../js/piloto-ocean-buenavista.js" defer></script>
+  </head>
+  <body>
+    <main class="app-page routing-pilot">
+      <a class="routing-pilot__back" href="buscar-ruta.html">← Volver a Buscar ruta</a>
+      <header class="routing-pilot__heading">
+        <p class="routing-pilot__eyebrow">Prueba piloto · OSRM · Perfil driving</p>
+        <h1>CC Ocean Mall → CC Buenavista</h1>
+        <p id="pilot-status" role="status" aria-live="polite">Cargando el resultado local…</p>
+      </header>
+
+      <p class="routing-pilot__notice">
+        Piloto de trazado vial calculado. No representa una línea de bus ni paradas verificadas.
+      </p>
+
+      <section class="routing-pilot__metrics" id="pilot-metrics" aria-label="Datos del trazado" hidden>
+        <div><strong id="pilot-distance">—</strong><span>Distancia calculada</span></div>
+        <div><strong id="pilot-points">—</strong><span>Puntos del trazado</span></div>
+        <div><strong id="pilot-duration">—</strong><span>Duración de conducción del motor OSRM</span></div>
+      </section>
+
+      <p class="routing-pilot__driving-note" id="pilot-driving-note" hidden>
+        Estimación del motor para conducción; no es tiempo de bus ni garantiza tráfico en tiempo real.
+      </p>
+
+      <section class="routing-pilot__snaps" id="pilot-snaps" aria-label="Ajustes de extremos" hidden>
+        <h2>Ajustes de extremos por OSRM</h2>
+        <p id="pilot-origin-snap"></p>
+        <p id="pilot-destination-snap"></p>
+        <p>Se muestran por separado el punto solicitado y el punto vial ajustado.</p>
+      </section>
+
+      <section class="routing-pilot__map-section" aria-labelledby="pilot-map-title">
+        <h2 id="pilot-map-title">Geometría vial calculada</h2>
+        <div class="routing-pilot__map" id="pilot-map" role="application" aria-label="Mapa del trazado vial piloto"></div>
+        <div class="routing-pilot__legend">
+          <span><i class="routing-pilot__line"></i> Trazado de conducción OSRM</span>
+          <span><i class="routing-pilot__origin"></i> Origen solicitado</span>
+          <span><i class="routing-pilot__destination"></i> Destino solicitado</span>
+          <span><i class="routing-pilot__snapped"></i> Punto ajustado a vía</span>
+        </div>
+      </section>
+
+      <p class="routing-pilot__attribution">
+        Enrutamiento:
+        <a href="https://project-osrm.org/" target="_blank" rel="noopener noreferrer">OSRM</a>
+        · Datos disponibles bajo
+        <a href="https://opendatacommons.org/licenses/odbl/" target="_blank" rel="noopener noreferrer">ODbL</a>.
+        Mapa:
+        <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener noreferrer">© OpenStreetMap contributors</a>.
+      </p>
+      <p class="routing-pilot__generated" id="pilot-generated"></p>
+      <p class="routing-pilot__error" id="pilot-error" role="alert" hidden></p>
+    </main>
+  </body>
+</html>

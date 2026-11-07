@@ -1,0 +1,213 @@
+.routing-pilot {
+  width: min(100%, 980px);
+  padding-top: 20px;
+}
+
+.routing-pilot__back {
+  color: var(--color-blue-deep);
+  font-size: 13px;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.routing-pilot__heading {
+  margin: 20px 0 14px;
+}
+
+.routing-pilot__eyebrow {
+  margin: 0 0 8px;
+  color: var(--color-muted);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.routing-pilot__heading h1 {
+  margin: 0;
+  color: var(--color-blue-dark);
+  font-size: clamp(23px, 5vw, 32px);
+  line-height: 1.2;
+  overflow-wrap: anywhere;
+}
+
+.routing-pilot__heading > p:last-child {
+  margin: 9px 0 0;
+  color: var(--color-muted);
+  font-size: 13px;
+}
+
+.routing-pilot__notice {
+  margin: 0 0 14px;
+  padding: 11px 13px;
+  border: 1px solid #e8d18e;
+  border-radius: 13px;
+  background: #fff7df;
+  color: #654800;
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1.45;
+}
+
+.routing-pilot__metrics {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 9px;
+  margin-bottom: 8px;
+}
+
+.routing-pilot__metrics > div {
+  display: grid;
+  min-width: 0;
+  gap: 5px;
+  padding: 12px 9px;
+  border: 1px solid var(--color-border);
+  border-radius: 14px;
+  background: var(--color-surface);
+  text-align: center;
+}
+
+.routing-pilot__metrics strong {
+  color: var(--color-blue-dark);
+  font-size: 16px;
+}
+
+.routing-pilot__metrics span {
+  color: var(--color-muted);
+  font-size: 11px;
+  line-height: 1.35;
+}
+
+.routing-pilot__driving-note,
+.routing-pilot__snaps,
+.routing-pilot__attribution,
+.routing-pilot__generated {
+  color: var(--color-muted);
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.routing-pilot__driving-note {
+  margin: 8px 0 16px;
+}
+
+.routing-pilot__snaps {
+  margin: 14px 0;
+  padding: 12px 14px;
+  border: 1px solid var(--color-border);
+  border-radius: 14px;
+  background: var(--color-surface);
+  overflow-wrap: anywhere;
+}
+
+.routing-pilot__snaps h2,
+.routing-pilot__map-section h2 {
+  margin: 0 0 8px;
+  color: var(--color-blue-dark);
+  font-size: 17px;
+}
+
+.routing-pilot__snaps p {
+  margin: 5px 0;
+}
+
+.routing-pilot__map {
+  height: min(62vh, 560px);
+  min-height: 300px;
+  overflow: hidden;
+  border: 1px solid var(--color-border);
+  border-radius: 18px;
+  background: var(--color-surface-soft);
+}
+
+.routing-pilot__legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 16px;
+  margin-top: 10px;
+  color: var(--color-muted);
+  font-size: 11px;
+}
+
+.routing-pilot__legend span {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.routing-pilot__legend i {
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  border: 2px solid #fff;
+  border-radius: 50%;
+  background: #0879d1;
+  box-shadow: 0 0 0 1px var(--color-border);
+}
+
+.routing-pilot__legend .routing-pilot__line {
+  width: 21px;
+  height: 4px;
+  border: 0;
+  border-radius: 2px;
+  background: #5222df;
+  box-shadow: none;
+}
+
+.routing-pilot__legend .routing-pilot__origin {
+  background: #16875b;
+}
+
+.routing-pilot__legend .routing-pilot__destination {
+  background: #e45465;
+}
+
+.routing-pilot__legend .routing-pilot__snapped {
+  background: #f0a52b;
+}
+
+.routing-pilot__attribution {
+  margin: 12px 0 0;
+}
+
+.routing-pilot__generated {
+  margin: 5px 0 0;
+}
+
+.routing-pilot__attribution a {
+  color: var(--color-blue-deep);
+  font-weight: 700;
+}
+
+.routing-pilot__error {
+  padding: 12px;
+  border-radius: 12px;
+  background: #ffeaec;
+  color: var(--color-error);
+  overflow-wrap: anywhere;
+}
+
+.routing-pilot [hidden] {
+  display: none !important;
+}
+
+@media (max-width: 480px) {
+  .routing-pilot {
+    padding-inline: 12px;
+  }
+
+  .routing-pilot__metrics {
+    gap: 5px;
+  }
+
+  .routing-pilot__metrics > div {
+    padding-inline: 5px;
+  }
+
+  .routing-pilot__metrics span {
+    font-size: 10px;
+  }
+
+  .routing-pilot__map {
+    height: 55vh;
+    min-height: 280px;
+  }
+}

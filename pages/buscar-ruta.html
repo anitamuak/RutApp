@@ -90,13 +90,12 @@
           <label class="route-demo-control__label" for="use-demo-routes">
             <input id="use-demo-routes" type="checkbox">
             <span>
-              <strong id="demo-control-title">Probar con datos de demostración</strong>
-              <small>Son recorridos sintéticos; no corresponden a buses reales de Santa Marta.</small>
+              <strong id="demo-control-title">Usar recorrido de ejemplo</strong>
+              <small>Datos aproximados; no representan servicios reales de transporte.</small>
             </span>
           </label>
-          <button type="button" class="route-search__minor route-demo-control__sample" id="use-demo-points" hidden>
-            Usar puntos de ejemplo
-          </button>
+          <div class="route-demo-control__examples" id="demo-example-list" role="group" aria-label="Recorridos de ejemplo" hidden></div>
+          <small class="route-demo-control__hint">Carga el recorrido sin utilizar tu ubicación.</small>
         </section>
 
         <button type="submit" class="route-search__submit" id="search-submit">

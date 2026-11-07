@@ -4,6 +4,7 @@
   if (root) root.RutAppRoutePlanner = planner;
 })(typeof globalThis === "object" ? globalThis : this, () => {
   const DEFAULT_OPTIONS = Object.freeze({
+    dataMode: "verified",
     maxTransfers: 2,
     maxAccessWalkMeters: 1200,
     maxTransferWalkMeters: 350,
@@ -123,7 +124,12 @@
         continue;
       }
       seenIds.add(route.id);
-      if (route.verificationStatus !== "verified") {
+      if (options.dataMode === "demo") {
+        if (route.dataMode !== "demo" || route.verificationStatus !== "pending") {
+          reject("La búsqueda de demostración solo acepta recorridos demo pendientes de verificación.");
+          continue;
+        }
+      } else if (route.verificationStatus !== "verified") {
         reject("El recorrido no está verificado como transporte real.");
         continue;
       }
@@ -213,7 +219,7 @@
     return distanceMeters / 1000 / options.walkingSpeedKmh * 60;
   }
 
-  function rideEdges(node) {
+  function rideEdges(node, options) {
     const route = node.route;
     const stopIndex = route.nodes.findIndex((candidate) => candidate.id === node.id);
     const edges = [];
@@ -228,7 +234,9 @@
         route,
         distanceMeters,
         durationMinutes: distanceMeters / 1000 / route.estimatedSpeedKmh * 60,
-        geometry: sliceGeometry(route.geometry, route.cumulative, node.stop.chainageMeters, destination.stop.chainageMeters)
+        geometry: options.dataMode === "demo" && route.preserveSourceGeometry === true
+          ? route.geometry
+          : sliceGeometry(route.geometry, route.cumulative, node.stop.chainageMeters, destination.stop.chainageMeters)
       });
     }
     return edges;
@@ -244,6 +252,12 @@
           last.distanceMeters += edge.distanceMeters;
           last.durationMinutes += edge.durationMinutes;
           last.geometry = last.geometry.concat(edge.geometry.slice(1));
+          last.reviewWarnings = [
+            ...new Set([
+              ...last.reviewWarnings,
+              ...(edge.route.reviewWarnings || [])
+            ])
+          ];
         } else {
           segments.push({
             type: "bus",
@@ -251,6 +265,10 @@
             routeName: edge.route.name,
             poster: edge.route.poster || null,
             direction: edge.route.direction,
+            source: edge.route.source,
+            attribution: edge.route.attribution || null,
+            generatedAt: edge.route.generatedAt || null,
+            reviewWarnings: edge.route.reviewWarnings || [],
             from: edge.from.stop,
             to: edge.to.stop,
             distanceMeters: edge.distanceMeters,
@@ -293,12 +311,21 @@
       });
     }
 
-    for (const segment of segments) {
+    for (let index = 0; index < segments.length; index += 1) {
+      const segment = segments[index];
       if (segment.type === "walk") {
+        const nextBusSegment = segments[index + 1];
+        const isZeroDistanceDemoTransfer = options.dataMode === "demo" &&
+          segment.distanceMeters <= 0.1 &&
+          nextBusSegment?.type === "bus";
         itinerary.push({
           type: "walk",
-          title: "Camina al siguiente punto de abordaje",
-          description: `${segment.from.name} → ${segment.to.name}`,
+          title: isZeroDistanceDemoTransfer
+            ? `Cambia de bus en ${segment.to.name}`
+            : "Camina al siguiente punto de abordaje",
+          description: isZeroDistanceDemoTransfer
+            ? `Continúa en ${nextBusSegment.routeName}`
+            : `${segment.from.name} → ${segment.to.name}`,
           distanceMeters: segment.distanceMeters * options.walkingDistanceCorrection,
           durationMinutes: timeForWalk(segment.distanceMeters * options.walkingDistanceCorrection, options),
           from: segment.from.coordinates,
@@ -315,6 +342,10 @@
           routeName: segment.routeName,
           poster: segment.poster,
           direction: segment.direction,
+          source: segment.source,
+          attribution: segment.attribution,
+          generatedAt: segment.generatedAt,
+          reviewWarnings: segment.reviewWarnings,
           distanceMeters: segment.distanceMeters,
           durationMinutes: segment.durationMinutes,
           board: segment.from,
@@ -372,9 +403,41 @@
       estimated: true,
       estimateNote: "Tiempo aproximado con velocidades configurables; no incluye tráfico, frecuencias ni información en tiempo real.",
       walkingNote: "Distancia peatonal estimada en línea geográfica con factor de corrección; no es una ruta de calles verificada.",
+      reviewWarnings: [...new Set(busSegments.flatMap((segment) => segment.reviewWarnings))],
       segments,
       itinerary
     };
+  }
+
+  function hasCompleteDemoJourney(trip, routes) {
+    const journeyGroups = new Map();
+    routes.forEach((route) => {
+      if (typeof route.demoJourneyId !== "string" ||
+          !Number.isInteger(route.demoJourneyLeg) ||
+          !Number.isInteger(route.demoJourneyLegCount)) return;
+      const group = journeyGroups.get(route.demoJourneyId) || [];
+      group.push(route);
+      journeyGroups.set(route.demoJourneyId, group);
+    });
+
+    for (const group of journeyGroups.values()) {
+      const usesGroup = trip.routeIds.some((routeId) =>
+        group.some((route) => route.id === routeId)
+      );
+      if (!usesGroup) continue;
+      const requiredLegCount = group[0].demoJourneyLegCount;
+      const orderedIds = group
+        .sort((first, second) => first.demoJourneyLeg - second.demoJourneyLeg)
+        .map((route) => route.id);
+      if (requiredLegCount !== orderedIds.length ||
+          group.some((route, index) =>
+            route.demoJourneyLegCount !== requiredLegCount ||
+            route.demoJourneyLeg !== index + 1
+          )) return false;
+      if (trip.routeIds.length !== orderedIds.length ||
+          trip.routeIds.some((routeId, index) => routeId !== orderedIds[index])) return false;
+    }
+    return true;
   }
 
   function search(routes, origin, destination, customOptions = {}) {
@@ -437,7 +500,7 @@
         }
       }
 
-      for (const edge of rideEdges(current.node)) {
+      for (const edge of rideEdges(current.node, options)) {
         const continuingRoute = current.onBusRoute === edge.route.id;
         if (current.routeIds.includes(edge.route.id) && !continuingRoute) continue;
         const routeIds = continuingRoute || current.routeIds.includes(edge.route.id)
@@ -489,7 +552,10 @@
       }
     }
 
-    candidates.sort((first, second) =>
+    const eligibleCandidates = options.dataMode === "demo"
+      ? candidates.filter(({ trip }) => hasCompleteDemoJourney(trip, prepared.routes))
+      : candidates;
+    eligibleCandidates.sort((first, second) =>
       first.cost - second.cost ||
       first.trip.transfers - second.trip.transfers ||
       first.trip.walkingDistanceMeters - second.trip.walkingDistanceMeters
@@ -497,7 +563,7 @@
     // Conserva solo el recorrido más rápido por secuencia de rutas y descarta
     // los transbordos que añaden rutas sin mejorar un viaje que ya existe.
     const bestBySequence = [];
-    for (const candidate of candidates) {
+    for (const candidate of eligibleCandidates) {
       const sequence = candidate.trip.routeIds.join(",");
       if (!bestBySequence.some((kept) => kept.trip.routeIds.join(",") === sequence)) {
         bestBySequence.push(candidate);

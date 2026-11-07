@@ -358,11 +358,30 @@
   line-height: 1.4;
 }
 
-.route-demo-control__sample {
+.route-demo-control__examples {
+  display: grid;
+  justify-items: start;
+  gap: 7px;
   margin-top: 9px;
 }
 
-.route-demo-control__sample[hidden],
+.route-demo-control__sample {
+  max-width: 100%;
+  white-space: normal;
+  text-align: center;
+  line-height: 1.35;
+}
+
+.route-demo-control__hint {
+  display: block;
+  margin-top: 7px;
+  color: var(--color-muted);
+  font-size: 11px;
+  line-height: 1.4;
+  overflow-wrap: anywhere;
+}
+
+.route-demo-control__examples[hidden],
 .route-results__notice[hidden] {
   display: none;
 }

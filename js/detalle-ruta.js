@@ -106,6 +106,17 @@
         `Destino: ${trip.destination.label}`,
         "#e45465"
       );
+      const keepAllDemoGeometry = trip.dataMode === "demo" &&
+        trip.routeIds.some((routeId) =>
+          [
+            "demo-unimag-rodadero",
+            "demo-unimag-rodadero-a",
+            "demo-unimag-rodadero-b",
+            "demo-parque-taganga",
+            "demo-ocean-buenavista-osrm",
+            "demo-ocean-buenavista-libertador"
+          ].includes(routeId)
+        );
 
       let busIndex = 0;
       trip.itinerary.forEach((step, index) => {
@@ -115,16 +126,17 @@
           const line = L.polyline(step.geometry, {
             color,
             opacity: 0.9,
-            weight: 6
+            weight: 6,
+            smoothFactor: keepAllDemoGeometry ? 0 : 1
           }).addTo(tripMap);
           const board = addInfoMarker(
             step.board.coordinates,
-            `Abordaje: ${step.board.name}`,
+            `Abordaje (${step.routeName}): ${step.board.name}`,
             color
           );
           addInfoMarker(
             step.alight.coordinates,
-            `Descenso: ${step.alight.name}`,
+            `Descenso (${step.routeName}): ${step.alight.name}`,
             color
           );
           layersByStep.set(index, { layer: line, popup: board });
@@ -145,6 +157,34 @@
           layersByStep.set(index, { layer: destinationMarker });
         }
       });
+
+      if (trip.dataMode === "demo" &&
+          trip.routeIds.includes("demo-unimag-rodadero-a") &&
+          trip.routeIds.includes("demo-unimag-rodadero-b")) {
+        const lineA = trip.itinerary.find((step) =>
+          step.type === "bus" && step.routeId === "demo-unimag-rodadero-a"
+        );
+        const transferMarker = lineA && L.circleMarker(lineA.alight.coordinates, {
+          radius: 10,
+          fillColor: "#7441a6",
+          fillOpacity: 1,
+          color: "#ffffff",
+          weight: 3
+        }).addTo(tripMap).bindPopup(make(
+          "span",
+          "",
+          "Transbordo · Universidad–La 30 → Rodadero · La paz · conexión de demostración"
+        ));
+        const transferStepIndex = trip.itinerary.findIndex((step) =>
+          step.type === "walk" && step.title.startsWith("Cambia de bus en Conexión Rodadero")
+        );
+        if (transferMarker) {
+          bounds.extend(lineA.alight.coordinates);
+          if (transferStepIndex >= 0) {
+            layersByStep.set(transferStepIndex, { layer: transferMarker });
+          }
+        }
+      }
 
       if (bounds.isValid()) tripMap.fitBounds(bounds, { padding: [28, 28] });
     } catch (error) {
@@ -219,10 +259,6 @@
     });
     routeCard.append(metrics);
 
-    if (trip.dataMode === "demo") {
-      root.append(make("p", "trip-demo-notice", "Datos de demostración: esta alternativa es sintética y no representa una ruta, parada ni servicio real de Santa Marta."));
-    }
-
     const selectButton = make("button", "trip-select-button");
     const selectionStatus = make("p", "trip-selection-status");
     selectionStatus.setAttribute("role", "status");
@@ -286,8 +322,83 @@
     walkLegend.innerHTML = '<i class="trip-map__legend-walk"></i> Caminata estimada';
     legend.append(walkLegend);
 
+    const walkMinutes = trip.itinerary
+      .filter((step) => step.type === "walk")
+      .reduce((total, step) => total + (step.durationMinutes || 0), 0);
+    const mapSummary = make("section", "trip-map-summary");
+    mapSummary.setAttribute("aria-label", "Resumen aproximado del recorrido");
+    mapSummary.append(make("strong", "", `${formatMinutes(trip.estimatedMinutes)} · ${formatDistance(trip.totalDistanceMeters)} total`));
+    mapSummary.append(make(
+      "span",
+      "",
+      `${formatDistance(trip.walkingDistanceMeters)} a pie · ${Math.ceil(walkMinutes)} min`
+    ));
+    mapSummary.append(make("span", "", `${formatDistance(trip.busDistanceMeters)} en bus`));
+    map.append(mapSummary);
+
     root.append(pageHeader, heading, routeCard, selectButton, selectionStatus, itineraryTitle, itinerary, mapTitle, map, legend);
     root.append(make("p", "trip-note", `${trip.estimateNote} ${trip.walkingNote} Los segmentos de bus siguen la geometría registrada; las caminatas se dibujan como conectores esquemáticos y no como calles peatonales.`));
+    if (trip.dataMode === "demo" &&
+        trip.routeIds.includes("demo-unimag-rodadero-a") &&
+        trip.routeIds.includes("demo-unimag-rodadero-b")) {
+      root.append(make(
+        "p",
+        "trip-note",
+        "Universidad–La 30, Rodadero · La paz y la conexión son candidatas de demostración pendientes de verificación. Los trazados OSRM usan perfil driving, no representan servicios ni tiempos de bus. La conexión y el punto de paso son aproximados; la referencia Calle 6 con Carrera 4 no está comprobada."
+      ));
+    }
+    if (trip.dataMode === "demo" && trip.routeIds.includes("demo-unimag-rodadero")) {
+      root.append(make(
+        "p",
+        "trip-note",
+        "Alternativa directa de demostración pendiente de verificación. El trazado de conducción OSRM no representa un servicio ni un tiempo de bus verificado."
+      ));
+    }
+    (trip.reviewWarnings || []).forEach((warning) => {
+      root.append(make("p", "trip-note", warning));
+    });
+    if (trip.dataMode === "demo" && trip.routeIds.includes("demo-parque-taganga")) {
+      root.append(make(
+        "p",
+        "trip-note",
+        "Recorrido aproximado con datos simulados. La caminata inicial conecta el Parque de los Novios con Calle 20 con Carrera 5, sin representar navegación peatonal verificada. La referencia «Kra 11 Taganga», el punto de abordaje y el servicio no están verificados."
+      ));
+    }
+    if (trip.dataMode === "demo" && trip.routeIds.some((routeId) =>
+      ["demo-ocean-buenavista-osrm", "demo-ocean-buenavista-libertador"].includes(routeId)
+    )) {
+      root.append(make(
+        "p",
+        "trip-note",
+        "Recorrido aproximado de demostración. No representa un servicio de transporte verificado."
+      ));
+    }
+    const hasSpecificDemoNotice = trip.routeIds.some((routeId) =>
+      [
+        "demo-unimag-rodadero",
+        "demo-unimag-rodadero-a",
+        "demo-unimag-rodadero-b",
+        "demo-parque-taganga",
+        "demo-ocean-buenavista-osrm",
+        "demo-ocean-buenavista-libertador"
+      ].includes(routeId)
+    );
+    if (trip.dataMode === "demo" && !hasSpecificDemoNotice) {
+      root.append(make(
+        "p",
+        "trip-note",
+        "Este itinerario de demostración está pendiente de verificación y no representa un servicio real de transporte."
+      ));
+    }
+    trip.itinerary.filter((step) =>
+      step.type === "bus" && step.attribution && step.generatedAt
+    ).forEach((busStep) => {
+      root.append(make(
+        "p",
+        "trip-note",
+        `${busStep.source} ${busStep.attribution} Geometría de conducción calculada; los accesos a pie son conectores esquemáticos y la estimación del viaje la calcula el planificador demo.`
+      ));
+    });
     addTripMap(trip);
   }
 

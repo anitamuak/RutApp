@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#f3f8fd">
+    <script src="../js/theme.js"></script>
+    <title>RutApp | Comparación de candidatas Universidad–Rodadero</title>
+    <link rel="stylesheet" href="../css/global.css">
+    <link rel="stylesheet" href="../css/comparacion-candidatas-unimag.css">
+    <script src="../js/maps.js" defer></script>
+    <script src="../js/comparacion-candidatas-unimag.js" defer></script>
+  </head>
+  <body>
+    <main class="candidate-comparison app-page">
+      <a class="candidate-comparison__back" href="buscar-ruta.html">← Volver a Buscar ruta</a>
+      <header class="candidate-comparison__heading">
+        <p class="candidate-comparison__eyebrow">Inspección local · respuestas guardadas</p>
+        <h1>Comparación de trazados candidatos</h1>
+        <p id="comparison-status" role="status" aria-live="polite">Cargando datos locales…</p>
+      </header>
+
+      <p class="candidate-comparison__notice">
+        Las candidatas OSRM guardadas aquí son una comparación histórica y no realizan
+        consultas al abrir esta página. El trazado histórico Universidad–Troncal–Gaira no forma
+        parte del ejemplo demo activo, ahora ubicado en Rodadero. El viaje directo Universidad–Rodadero
+        se conserva como alternativa independiente; los trazados manuales son referencia histórica.
+      </p>
+
+      <div class="candidate-comparison__legend" aria-label="Leyenda del mapa">
+        <span><i class="candidate-comparison__line candidate-comparison__line--manual"></i> Geometría manual anterior (referencia)</span>
+        <span><i class="candidate-comparison__line candidate-comparison__line--candidate"></i> Candidata OSRM guardada</span>
+        <span><i class="candidate-comparison__line candidate-comparison__line--flagged"></i> Tramo señalado para revisar</span>
+        <span><i class="candidate-comparison__line candidate-comparison__line--connector"></i> Punto solicitado ↔ ajustado</span>
+        <span><i class="candidate-comparison__point candidate-comparison__point--requested"></i> Número S: solicitado</span>
+        <span><i class="candidate-comparison__point candidate-comparison__point--snapped"></i> Número A: ajustado</span>
+      </div>
+
+      <section id="comparison-cases" class="candidate-comparison__cases" aria-label="Comparaciones"></section>
+
+      <p class="candidate-comparison__attribution">
+        Enrutamiento:
+        <a href="https://project-osrm.org/" target="_blank" rel="noopener noreferrer">OSRM</a>
+        · Datos disponibles bajo
+        <a href="https://opendatacommons.org/licenses/odbl/" target="_blank" rel="noopener noreferrer">ODbL</a>.
+        Mapa:
+        <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener noreferrer">© OpenStreetMap contributors</a>.
+      </p>
+      <p id="comparison-error" class="candidate-comparison__error" role="alert" hidden></p>
+    </main>
+  </body>
+</html>

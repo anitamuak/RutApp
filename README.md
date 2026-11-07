@@ -16,6 +16,7 @@ Aplicacion web en HTML, CSS y JavaScript nativos. Abre `index.html` para la bien
 - `components/header.*` y `components/navbar.*`: cabecera y barra inferior como Web Components nativos.
 - `data/lugares.json`: catalogo compartido. Las rutas de imagen son locales a `assets/images`.
 - `data/rutas.json`: recorridos de transporte. Solo se calculan rutas con geometría, paradas ordenadas y estado de verificación explícito.
+- `data/rutas-demo.json`: ejemplos optativos separados de los recorridos verificados, incluidos Universidad–Rodadero, Parque–Taganga, Ocean Mall–Buenavista y Universidad–La 30 → Rodadero · La paz.
 - `js/route-planner.js`: motor de conexiones entre paradas, con recorridos dirigidos, caminatas de acceso/transbordo/salida y un máximo configurable de transbordos.
 
 Los Web Components se definen en scripts clasicos con `defer` y renderizan su contenido al conectarse al documento. Cada pagina carga las hojas de estilo compartidas y las hojas especificas que necesita; no se necesita un sistema de compilacion.
@@ -34,6 +35,6 @@ El tema claro/oscuro se controla desde **Más** y se guarda en `localStorage` co
 
 La interfaz permite seleccionar el origen por GPS o mapa y el destino desde el catálogo o el mapa. El destino escrito se considera pendiente hasta que se selecciona una sugerencia reconocida. Los itinerarios calculados se conservan en `sessionStorage` para abrir su ficha en la misma pestaña.
 
-`data/rutas.json` está vacío mientras no se disponga de geometrías, paradas, dirección de circulación y una fuente verificable para rutas reales de Santa Marta. Por ello, en la versión actual una búsqueda válida informa que no hay recorridos verificados y no inventa líneas ni alternativas. Los tiempos del motor son aproximaciones; la caminata se representa como conexión geográfica esquemática, no como navegación peatonal por calles. Las pruebas del motor usan fixtures sintéticos exclusivamente y no son datos de servicio.
+`data/rutas.json` está vacío mientras no se disponga de geometrías, paradas, dirección de circulación y una fuente verificable para rutas reales de Santa Marta. Por ello, una búsqueda normal informa que no hay recorridos verificados y no inventa líneas ni alternativas. La casilla **Usar recorrido de ejemplo** activa por separado los candidatos de `data/rutas-demo.json`; siguen pendientes de verificación y no representan servicios reales. Sus geometrías de demostración se guardan en el catálogo, por lo que la aplicación no consulta OSRM durante el uso normal. Los tiempos son ilustrativos, no tiempos de bus; las caminatas se representan esquemáticamente, no como navegación peatonal por calles. La suite combina fixtures sintéticos con comprobaciones del catálogo demo; ninguno de esos datos es información de servicio.
 
 Los mapas usan Leaflet 1.9.4 (cargado desde unpkg por `js/maps.js`) y teselas de OpenStreetMap, con atribución visible. No requieren clave de API, pero sí conexión a internet. En el tema oscuro las teselas se oscurecen con un filtro CSS en `css/global.css`. Los horarios y tarifas turísticas que no estén confirmados en el catálogo deben consultarse con su fuente responsable.
