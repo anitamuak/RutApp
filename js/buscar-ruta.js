@@ -21,8 +21,6 @@
   const mapHint = document.querySelector("#map-hint");
   const clearDestination = document.querySelector("#clear-destination");
   const demoExamples = [
-    { id: "direct", label: "Recorrido directo" },
-    { id: "connection", label: "Recorrido con conexión" },
     { id: "unimagRodadero", label: "Universidad–Rodadero" },
     { id: "parqueTaganga", label: "Parque de los Novios–Playa de Taganga" },
     { id: "oceanBuenavista", label: "Ocean Mall → Buenavista" }

@@ -3,32 +3,6 @@
   "dataMode": "demo",
   "notice": "Recorridos aproximados con datos simulados. No representan servicios de transporte verificados.",
   "examples": {
-    "direct": {
-      "routeIds": ["demo-direct"],
-      "origin": {
-        "label": "Punto de prueba A1",
-        "latitude": 11.23,
-        "longitude": -74.2
-      },
-      "destination": {
-        "label": "Punto de prueba A3",
-        "latitude": 11.236,
-        "longitude": -74.193
-      }
-    },
-    "connection": {
-      "routeIds": ["demo-connection-a", "demo-connection-b"],
-      "origin": {
-        "label": "Punto de prueba A1",
-        "latitude": 11.23,
-        "longitude": -74.2
-      },
-      "destination": {
-        "label": "Punto de prueba B3",
-        "latitude": 11.236,
-        "longitude": -74.193
-      }
-    },
     "unimagRodadero": {
       "routeIds": ["demo-unimag-rodadero"],
       "origin": {
@@ -77,67 +51,6 @@
     }
   },
   "routes": [
-    {
-      "id": "demo-direct",
-      "name": "Línea de prueba directa",
-      "poster": null,
-      "direction": "Sentido sintético de prueba",
-      "dataMode": "demo",
-      "verificationStatus": "pending",
-      "source": "fixture://synthetic-demo-only",
-      "estimatedSpeedKmh": 18,
-      "geometry": [
-        [11.23, -74.2],
-        [11.232, -74.1975],
-        [11.234, -74.195],
-        [11.236, -74.193]
-      ],
-      "stops": [
-        { "id": "demo-direct-1", "name": "Punto de prueba A1", "sequence": 1, "latitude": 11.23, "longitude": -74.2 },
-        { "id": "demo-direct-2", "name": "Punto de prueba A2", "sequence": 2, "latitude": 11.234, "longitude": -74.195 },
-        { "id": "demo-direct-3", "name": "Punto de prueba A3", "sequence": 3, "latitude": 11.236, "longitude": -74.193 }
-      ]
-    },
-    {
-      "id": "demo-connection-a",
-      "name": "Línea de prueba de conexión A",
-      "poster": null,
-      "direction": "Sentido sintético de prueba",
-      "dataMode": "demo",
-      "verificationStatus": "pending",
-      "source": "fixture://synthetic-demo-only",
-      "estimatedSpeedKmh": 18,
-      "geometry": [
-        [11.23, -74.2],
-        [11.2315, -74.1985],
-        [11.233, -74.197]
-      ],
-      "stops": [
-        { "id": "demo-a-1", "name": "Punto de prueba A1", "sequence": 1, "latitude": 11.23, "longitude": -74.2 },
-        { "id": "demo-a-2", "name": "Punto de prueba A2", "sequence": 2, "latitude": 11.2315, "longitude": -74.1985 },
-        { "id": "demo-a-3", "name": "Punto de prueba de conexión A", "sequence": 3, "latitude": 11.233, "longitude": -74.197 }
-      ]
-    },
-    {
-      "id": "demo-connection-b",
-      "name": "Línea de prueba de conexión B",
-      "poster": null,
-      "direction": "Sentido sintético de prueba",
-      "dataMode": "demo",
-      "verificationStatus": "pending",
-      "source": "fixture://synthetic-demo-only",
-      "estimatedSpeedKmh": 18,
-      "geometry": [
-        [11.2332, -74.1968],
-        [11.2345, -74.1949],
-        [11.236, -74.193]
-      ],
-      "stops": [
-        { "id": "demo-b-1", "name": "Punto de prueba de conexión B", "sequence": 1, "latitude": 11.2332, "longitude": -74.1968 },
-        { "id": "demo-b-2", "name": "Punto de prueba B2", "sequence": 2, "latitude": 11.2345, "longitude": -74.1949 },
-        { "id": "demo-b-3", "name": "Punto de prueba B3", "sequence": 3, "latitude": 11.236, "longitude": -74.193 }
-      ]
-    },
     {
       "id": "demo-unimag-rodadero",
       "name": "Universidad–Rodadero",
