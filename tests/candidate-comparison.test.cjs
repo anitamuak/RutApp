@@ -17,8 +17,14 @@ test("la comparación local conserva las dos candidatas y marca los desvíos", (
   assert.notDeepEqual(direct.manual, integratedDirect.geometry);
   assert.notDeepEqual(lineA.manual, integratedLineA.geometry);
   assert.notDeepEqual(integratedDirect.geometry, direct.candidate.geometryLeaflet);
-  assert.equal(integratedDirect.geometry.length, 198);
-  assert.equal(integratedDirect.routing.distanceMeters, 8810.5);
+  assert.equal(integratedDirect.geometry.length, 310);
+  assert.equal(integratedDirect.routing.distanceMeters, 10795.8);
+  assert.deepEqual(integratedDirect.previewPoints.map((point) => point.name), [
+    "Universidad del Magdalena",
+    "Centro Histórico",
+    "Bahía de Santa Marta",
+    "Playa El Rodadero"
+  ]);
   assert.notDeepEqual(integratedLineA.geometry, lineA.candidate.geometryLeaflet);
   assert.equal(integratedLineA.geometry.length, 259);
   assert.equal(integratedLineA.routing.distanceMeters, 8014);

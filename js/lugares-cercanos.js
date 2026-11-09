@@ -12,6 +12,8 @@
 
   const EARTH_RADIUS_METERS = 6371000;
   const DEFAULT_RADIUS_METERS = 500;
+  const FAVORITES_STORAGE_KEY = "rutapp.favorites";
+  const favoriteSyncCleanups = new WeakMap();
 
   function validCoordinate(point) {
     return Array.isArray(point) && point.length === 2 &&
@@ -78,6 +80,7 @@
     const mapSection = map?.getContainer?.()?.closest(".trip-map");
     if (!mapSection) return [];
 
+    favoriteSyncCleanups.get(map)?.();
     mapSection.parentElement.querySelector(".trip-nearby")?.remove();
     const section = makeElement("section", undefined, "trip-nearby");
     section.setAttribute("aria-label", "Lugares turísticos cerca del recorrido");
@@ -102,22 +105,21 @@
       if (!Array.isArray(catalog)) throw new Error("El catálogo de lugares es inválido.");
       const nearby = findPlacesNearPaths(catalog, busPaths);
 
-      
       // Recuperar lugares turísticos guardados en Favoritos (HU10).
       let favoriteIds = new Set();
 
       try {
         const saved = JSON.parse(
-          localStorage.getItem("rutapp.favorites") || "[]"
+          localStorage.getItem(FAVORITES_STORAGE_KEY) || "[]"
         );
 
-        if (Array.isArray(saved)) {
-          favoriteIds = new Set(saved);
+        if (!Array.isArray(saved) || saved.some((id) => typeof id !== "string")) {
+          throw new Error("El formato de favoritos guardado no es válido.");
         }
+        favoriteIds = new Set(saved);
       } catch (error) {
         console.warn("No se pudieron leer los favoritos.", error);
       }
-
 
       if (nearby.length === 0) {
         status.textContent = "No encontramos lugares del catálogo a 500 m o menos de este recorrido.";
@@ -126,61 +128,62 @@
 
       status.textContent = `${nearby.length} lugar(es) del catálogo a 500 m o menos del trazado del bus. Los marcadores muestran su ubicación aproximada; la distancia no es caminando.`;
       const list = makeElement("ul", undefined, "trip-nearby__list");
+      const favoriteMarkers = [];
+      const makeMarkerIcon = (favorite) => L.divIcon({
+        className: "trip-nearby-marker-wrapper",
+        html: `<span class="trip-nearby-marker is-route-waypoint${favorite ? " is-favorite" : ""}"></span>`,
+        iconSize: [28, 36],
+        iconAnchor: [14, 36],
+        popupAnchor: [0, -30]
+      });
+      let nearestMarker = null;
       nearby.forEach(({ place, distance }) => {
         const point = [place.latitud, place.longitud];
-const isFavorite = favoriteIds.has(place.id);
+        const isFavorite = favoriteIds.has(place.id);
+        const imageSrc =
+          typeof place.imagen === "string" && place.imagen
+            ? (place.imagen.startsWith("../") ? place.imagen : `../${place.imagen}`)
+            : null;
 
-const imageSrc =
-  typeof place.imagen === "string" && place.imagen
-    ? (place.imagen.startsWith("../") ? place.imagen : `../${place.imagen}`)
-    : null;
+        const marker = L.marker(point, {
+          icon: makeMarkerIcon(isFavorite)
+        }).addTo(map);
 
-const marker = L.marker(point, {
-  icon: L.divIcon({
-    className: "trip-nearby-marker-wrapper",
-    html: `<span class="trip-nearby-marker${isFavorite ? " is-favorite" : ""}"></span>`,
-    iconSize: [28, 36],
-    iconAnchor: [14, 36],
-    popupAnchor: [0, -30]
-  })
-}).addTo(map);
+        const popup = makeElement("article", undefined, "trip-nearby-popup");
 
-const popup = makeElement("article", undefined, "trip-nearby-popup");
+        if (imageSrc) {
+          const image = makeElement("img", undefined, "trip-nearby-popup__image");
+          image.src = imageSrc;
+          image.alt = place.nombre || "Lugar turístico";
+          image.loading = "lazy";
+          image.addEventListener("error", () => image.remove());
+          popup.append(image);
+        }
 
-if (imageSrc) {
-  const image = makeElement("img", undefined, "trip-nearby-popup__image");
-  image.src = imageSrc;
-  image.alt = place.nombre || "Lugar turístico";
-  image.loading = "lazy";
-  image.addEventListener("error", () => image.remove());
-  popup.append(image);
-}
+        const body = makeElement("div", undefined, "trip-nearby-popup__body");
 
-const body = makeElement("div", undefined, "trip-nearby-popup__body");
+        body.append(
+          makeElement(
+            "strong",
+            place.nombre || "Lugar de interés",
+            "trip-nearby-popup__title"
+          )
+        );
 
-body.append(
-  makeElement(
-    "strong",
-    place.nombre || "Lugar de interés",
-    "trip-nearby-popup__title"
-  )
-);
+        const popupMeta = makeElement(
+          "p",
+          `${isFavorite ? "♥ Favorito guardado · " : ""}A ${Math.round(distance)} m aprox. del trazado del bus.`,
+          "trip-nearby-popup__meta"
+        );
+        body.append(popupMeta);
 
-body.append(
-  makeElement(
-    "p",
-    `${isFavorite ? "♥ Favorito guardado · " : ""}A ${Math.round(distance)} m aprox. del trazado del bus.`,
-    "trip-nearby-popup__meta"
-  )
-);
+        const detailLink = makeElement("a", "Ver ficha", "trip-nearby-popup__link");
+        detailLink.href = `detalle-lugar.html?id=${encodeURIComponent(place.id)}`;
 
-const detailLink = makeElement("a", "Ver ficha", "trip-nearby-popup__link");
-detailLink.href = `detalle-lugar.html?id=${encodeURIComponent(place.id)}`;
-
-body.append(detailLink);
-popup.append(body);
-
-marker.bindPopup(popup);
+        body.append(detailLink);
+        popup.append(body);
+        marker.bindPopup(popup);
+        if (!nearestMarker) nearestMarker = marker;
 
         const item = makeElement("li", undefined, "trip-nearby__item");
         const focusButton = makeElement(
@@ -195,9 +198,77 @@ marker.bindPopup(popup);
 
         item.append(focusButton);
         list.append(item);
+        favoriteMarkers.push({
+          id: place.id,
+          name: place.nombre,
+          marker,
+          popupMeta,
+          focusButton,
+          distance,
+          isFavorite
+        });
       });
 
       section.append(list);
+      nearestMarker?.openPopup();
+
+      const updateFavoriteMarkers = (nextFavorites) => {
+        favoriteMarkers.forEach((entry) => {
+          const nextIsFavorite = nextFavorites.has(entry.id);
+          if (nextIsFavorite === entry.isFavorite) return;
+
+          entry.isFavorite = nextIsFavorite;
+          entry.marker.setIcon(makeMarkerIcon(nextIsFavorite));
+          entry.popupMeta.textContent =
+            `${nextIsFavorite ? "♥ Favorito guardado · " : ""}A ${Math.round(entry.distance)} m aprox. del trazado del bus.`;
+          entry.focusButton.textContent =
+            `${nextIsFavorite ? "♥ Favorito · " : ""}${entry.name} · ${Math.round(entry.distance)} m aprox.`;
+        });
+      };
+
+      const readFavorites = () => {
+        const saved = JSON.parse(localStorage.getItem(FAVORITES_STORAGE_KEY) || "[]");
+        if (!Array.isArray(saved) || saved.some((id) => typeof id !== "string")) {
+          throw new Error("El formato de favoritos guardado no es válido.");
+        }
+        return new Set(saved);
+      };
+      const onFavoritesChange = (event) => {
+        try {
+          const favorites = event.detail?.favorites;
+          if (!Array.isArray(favorites) || favorites.some((id) => typeof id !== "string")) {
+            throw new Error("El evento de favoritos no contiene una lista válida.");
+          }
+          updateFavoriteMarkers(new Set(favorites));
+        } catch (error) {
+          console.error("No se pudieron sincronizar los marcadores favoritos.", error);
+        }
+      };
+      const onStorageChange = (event) => {
+        if (event.key !== FAVORITES_STORAGE_KEY && event.key !== null) return;
+        try {
+          const favorites = event.key === null ? new Set() : readFavorites();
+          updateFavoriteMarkers(favorites);
+        } catch (error) {
+          console.error("No se pudieron sincronizar los marcadores favoritos.", error);
+        }
+      };
+      const onPageShow = () => {
+        try {
+          updateFavoriteMarkers(readFavorites());
+        } catch (error) {
+          console.error("No se pudieron sincronizar los marcadores favoritos.", error);
+        }
+      };
+      window.addEventListener("rutapp:favorites-change", onFavoritesChange);
+      window.addEventListener("storage", onStorageChange);
+      window.addEventListener("pageshow", onPageShow);
+      favoriteSyncCleanups.set(map, () => {
+        window.removeEventListener("rutapp:favorites-change", onFavoritesChange);
+        window.removeEventListener("storage", onStorageChange);
+        window.removeEventListener("pageshow", onPageShow);
+      });
+
       return nearby;
     } catch (error) {
       console.error("No se pudieron cargar los lugares cercanos.", error);

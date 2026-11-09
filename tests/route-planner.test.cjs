@@ -3,6 +3,7 @@ const assert = require("node:assert/strict");
 const fs = require("node:fs");
 const path = require("node:path");
 const planner = require("../js/route-planner.js");
+const nearbyPlaces = require("../js/lugares-cercanos.js");
 const routeCatalog = require("../data/rutas.json");
 const demoRouteCatalog = require("../data/rutas-demo.json");
 const routingPilot = require("../data/piloto-ocean-buenavista.json");
@@ -198,55 +199,70 @@ test("no permite viajar en contra del sentido de circulación de una ruta", () =
   assert.deepEqual(result.alternatives, []);
 });
 
-test("la directa Universidad–Rodadero usa la candidata guardada y termina en la playa", () => {
+test("Universidad–Playa El Rodadero usa la ruta por Centro y Ziruma", () => {
   demoRouteCatalog.routes.forEach((demoRoute) => {
     assert.equal(demoRoute.dataMode, "demo");
     assert.equal(demoRoute.verificationStatus, "pending");
   });
   const route = demoRouteCatalog.routes.find((item) => item.id === "demo-unimag-rodadero");
   assert.ok(route);
-  assert.equal(route.name, "Universidad–Rodadero");
+  assert.equal(route.name, "Universidad–Playa El Rodadero");
   assert.equal(route.dataMode, "demo");
   assert.equal(route.verificationStatus, "pending");
-  assert.match(route.source, /OSRM demo server.*sin puntos intermedios/);
+  assert.match(route.source, /OSRM demo server.*waypoints por el Centro y Ziruma/);
   assert.equal(route.profile, "driving");
   assert.equal(route.routing.provider, "OSRM demo server");
-  assert.equal(route.routing.pointCount, 198);
-  assert.equal(route.routing.distanceMeters, 8810.5);
-  assert.equal(route.routing.durationSeconds, 636.8);
-  assert.equal(route.routing.legs.length, 1);
-  assert.equal(route.routing.legs[0].distanceMeters, 8810.5);
-  assert.equal(route.routing.legs[0].durationSeconds, 636.8);
-  assert.equal(route.generatedAt, "2026-11-07T00:07:44.066Z");
-  assert.match(route.routing.requestUrl, /radiuses=100;100$/);
-  assert.equal(route.routing.waypoints.length, 2);
+  assert.equal(route.routing.pointCount, 310);
+  assert.equal(route.routing.distanceMeters, 10795.8);
+  assert.equal(route.routing.durationSeconds, 888.1);
+  assert.equal(route.routing.legs.length, 3);
+  assert.deepEqual(
+    route.routing.waypoints.map((waypoint) => waypoint.requestedLatitudeLongitude),
+    [
+      [11.226, -74.1858],
+      [11.244, -74.212],
+      [11.2185, -74.214],
+      [11.2026564, -74.2279078]
+    ]
+  );
   assert.deepEqual(route.geometry[0], route.routing.waypoints[0].snappedLatitudeLongitude);
-  assert.deepEqual(route.geometry.at(-1), route.routing.waypoints[1].snappedLatitudeLongitude);
-  assert.equal(route.geometry.length, 198);
+  assert.deepEqual(route.geometry.at(-1), route.routing.waypoints.at(-1).snappedLatitudeLongitude);
+  assert.equal(route.geometry.length, 310);
   assert.deepEqual(route.geometry, route.geometry.map(([latitude, longitude]) => [latitude, longitude]));
-  assert.deepEqual(route.reviewWarnings, []);
+  assert.equal(route.reviewWarnings.length, 4);
+  assert.equal(route.previewPoints.at(-1).name, "Playa El Rodadero");
+  assert.deepEqual(route.previewPoints.map((point) => point.name), [
+    "Universidad del Magdalena",
+    "Centro Histórico",
+    "Bahía de Santa Marta",
+    "Playa El Rodadero"
+  ]);
+  assert.ok(!route.previewPoints.some((point) => point.id === "cerro-ziruma"));
+  for (let index = 1; index < route.geometry.length - 1; index += 1) {
+    assert.notDeepEqual(route.geometry[index - 1], route.geometry[index + 1]);
+  }
   assert.deepEqual(demoRouteCatalog.examples.unimagRodadero.origin, {
     label: "Universidad del Magdalena",
-    latitude: 11.226246,
-    longitude: -74.187361
+    latitude: 11.226,
+    longitude: -74.1858
   });
   assert.deepEqual(demoRouteCatalog.examples.unimagRodadero.destination, {
     label: "Playa El Rodadero",
-    latitude: 11.203639,
-    longitude: -74.227686
+    latitude: 11.2026564,
+    longitude: -74.2279078
   });
-  assert.deepEqual(route.geometry.at(-1), [11.203642, -74.227526]);
+  assert.deepEqual(demoRouteCatalog.examples.unimagRodadero.routeIds, [route.id]);
   assert.equal(route.stops.length, 2);
   assert.equal(new Set(route.stops.map((stop) => stop.id)).size, 2);
   assert.deepEqual(route.stops.map((stop) => stop.sequence), [1, 2]);
-  assert.equal(route.stops[0].name, "Universidad del Magdalena · abordaje ilustrativo confirmado para el prototipo");
+  assert.equal(route.stops[0].name, "Universidad del Magdalena · abordaje de demostración");
   assert.deepEqual(
     [route.stops[0].latitude, route.stops[0].longitude],
-    [11.226444, -74.187304]
+    route.routing.waypoints[0].snappedLatitudeLongitude
   );
   assert.deepEqual(
     [route.stops[1].latitude, route.stops[1].longitude],
-    [11.203642, -74.227526]
+    route.routing.waypoints.at(-1).snappedLatitudeLongitude
   );
   assert.match(demoRouteCatalog.notice, /Recorridos aproximados/);
   assert.doesNotMatch(demoRouteCatalog.notice, /académicos|demostración/i);
@@ -282,8 +298,9 @@ test("solo el modo demo admite el fixture pendiente y produce un viaje directo c
   assert.deepEqual(trip.routeIds, ["demo-unimag-rodadero"]);
   const busStep = trip.itinerary.find((step) => step.type === "bus");
   assert.deepEqual(busStep.geometry, route.geometry);
-  assert.deepEqual(busStep.board.coordinates, [11.226444, -74.187304]);
-  assert.deepEqual(busStep.alight.coordinates, [11.203642, -74.227526]);
+  assert.deepEqual(busStep.board.coordinates, route.routing.waypoints[0].snappedLatitudeLongitude);
+  assert.deepEqual(busStep.alight.coordinates, route.routing.waypoints.at(-1).snappedLatitudeLongitude);
+  assert.deepEqual(busStep.previewPoints, route.previewPoints);
   assert.equal(busStep.generatedAt, route.generatedAt);
   assert.ok(trip.estimatedMinutes > 0);
   assert.notEqual(trip.estimatedMinutes, Math.ceil(route.routing.durationSeconds / 60));
@@ -483,6 +500,8 @@ test("Parque de los Novios–Taganga conserva acceso a pie y geometría OSRM del
   });
   assert.ok(route);
   assert.equal(route.name, "Kra 11 Taganga");
+  assert.equal(route.poster, "../assets/images/CartelTaganga.webp");
+  assert.ok(fs.existsSync(path.resolve(__dirname, "..", "pages", route.poster)));
   assert.equal(route.dataMode, "demo");
   assert.equal(route.verificationStatus, "pending");
   assert.match(route.source, /OSRM demo server.*perfil driving/);
@@ -623,18 +642,29 @@ test("Ocean Mall–Buenavista conserva dos geometrías OSRM distintas y completa
   );
   const approximateRoute = routes.find((route) => route.id === "demo-ocean-buenavista-libertador");
   assert.equal(approximateRoute.name, "Ocean Mall–Buenavista · Avenida El Libertador");
-  assert.equal(approximateRoute.geometry.length, 234);
+  assert.equal(approximateRoute.geometry.length, 125);
   assert.equal(approximateRoute.profile, "driving");
   assert.equal(approximateRoute.routing.provider, "OSRM demo server");
-  assert.equal(approximateRoute.routing.pointCount, 234);
-  assert.equal(approximateRoute.routing.distanceMeters, 7966);
-  assert.equal(approximateRoute.routing.durationSeconds, 883);
+  assert.equal(approximateRoute.routing.pointCount, 125);
+  assert.equal(approximateRoute.routing.distanceMeters, 4141.2);
+  assert.equal(approximateRoute.routing.durationSeconds, 310.6);
   assert.equal(approximateRoute.generatedAt, approximateRoute.routing.generatedAt);
   assert.match(approximateRoute.source, /OSRM demo server.*perfil driving/);
+  assert.match(approximateRoute.source, /pasos intermedios explícitos por Avenida del Río y Avenida El Libertador/);
+  assert.match(approximateRoute.source, /desvíos de ida y vuelta/);
   assert.match(approximateRoute.attribution, /OSRM.*OpenStreetMap contributors.*ODbL/);
+  assert.deepEqual(
+    approximateRoute.routing.waypoints.map((waypoint) => waypoint.name),
+    ["Avenida del Ferrocarril", "Avenida del Río", "Avenida del Libertador", "CC Buenavista"]
+  );
   assert.ok(approximateRoute.routing.waypoints.every((waypoint) =>
     waypoint.snapDistanceMeters <= 120
   ));
+  assert.equal(
+    new Set(approximateRoute.geometry.slice(0, -1).map((point) => point.join(","))).size,
+    approximateRoute.geometry.length - 1,
+    "la geometría no debe repetir puntos por los desvíos eliminados"
+  );
   assert.notDeepEqual(
     approximateRoute.geometry,
     osrmRoute.geometry,
