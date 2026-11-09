@@ -243,6 +243,8 @@
     "descripcion": "Playa cercana al corregimiento costero de Taganga. Las condiciones del mar y los servicios locales pueden cambiar; verifica avisos antes de entrar al agua.",
     "imagen": "assets/images/PlayaGrande.jpg",
     "zona": "Taganga, Santa Marta",
+    "latitud": 11.271,
+    "longitud": -74.198,
     "horarios": {
       "estado": "sin_horario_especifico_publicado",
       "detalle": "Las fuentes institucionales revisadas no publican un horario vigente específico para esta playa. El uso del agua puede estar condicionado por señalización, condiciones marítimas y disposiciones locales."
@@ -609,6 +611,8 @@
     "descripcion": "Macizo montañoso y territorio de gran importancia ecológica y cultural del Caribe colombiano. Las rutas, permisos y condiciones de visita dependen de cada sector.",
     "imagen": "assets/images/SierraNevada.jpg",
     "zona": "Macizo montañoso compartido por varios departamentos del Caribe",
+    "latitud": 10.8517,
+    "longitud": -74.1361,
     "horarios": {
       "estado": "sin_horario_especifico_publicado",
       "detalle": "No se encontró un horario oficial vigente para este acceso natural. La disponibilidad puede depender del clima, el estado del camino, la conservación y quien administra el acceso; confirma antes de ir."
@@ -652,6 +656,8 @@
     "descripcion": "Hacienda histórica y conjunto cultural en Mamatoco, asociado a la memoria de Simón Bolívar. Horarios, tarifas y disponibilidad de recorridos requieren confirmación con la administración.",
     "imagen": "assets/images/QuintaSanPedro.jpg",
     "zona": "Mamatoco, Santa Marta",
+    "latitud": 11.2282,
+    "longitud": -74.1777,
     "horarios": {
       "estado": "sin_horario_actual_confirmado",
       "detalle": "No se encontró un horario vigente en la fuente institucional consultada. Confirma días de apertura, última hora de ingreso y recorridos con la administración de la Quinta."
@@ -690,6 +696,8 @@
     "descripcion": "Sector urbano fundacional de Santa Marta, con arquitectura, plazas, espacios religiosos y museos. Cada establecimiento mantiene sus propios horarios y condiciones de visita.",
     "imagen": "assets/images/CentroHistorico.jpg",
     "zona": "Centro de Santa Marta",
+    "latitud": 11.2435,
+    "longitud": -74.2125,
     "horarios": {
       "estado": "sin_horario_unico_publicado",
       "detalle": "No hay un horario único para recorrer el sector. Museos, templos y establecimientos tienen horarios propios; la fuente consultada no fija horas de acceso al espacio urbano."
@@ -733,6 +741,8 @@
     "descripcion": "Templo histórico del centro de Santa Marta. El acceso turístico debe coordinarse con los horarios de culto y las actividades litúrgicas del día.",
     "imagen": "assets/images/Catedral.jpg",
     "zona": "Centro Histórico de Santa Marta",
+    "latitud": 11.243,
+    "longitud": -74.2115,
     "horarios": {
       "estado": "sin_horario_de_visita_publicado",
       "detalle": "No se encontró un horario vigente de visita turística en la fuente consultada. Los horarios de culto no equivalen a horario de visita; confirma con la parroquia y respeta celebraciones."
@@ -776,6 +786,8 @@
     "descripcion": "Museo de la Casa de la Aduana con colecciones y exposiciones sobre Santa Marta, el Magdalena y la Sierra Nevada, según la información institucional de INDETUR.",
     "imagen": "assets/images/MuseoDelOro.jpg",
     "zona": "Centro Histórico de Santa Marta",
+    "latitud": 11.244,
+    "longitud": -74.2133,
     "horarios": {
       "estado": "publicado_por_indetur_sin_fecha_de_actualizacion",
       "detalle": "INDETUR publica martes a sábado de 9:00 a. m. a 5:00 p. m. y domingos de 10:00 a. m. a 3:00 p. m. La página no indica cuándo se actualizó; confirma aperturas y festivos con el museo antes de ir."
@@ -819,6 +831,8 @@
     "descripcion": "Plaza histórica del centro de Santa Marta, antes Plaza de la Constitución. INDETUR relaciona el sitio con la Casa de la Aduana y la historia de Simón Bolívar.",
     "imagen": "assets/images/ParqueBolivar.jpg",
     "zona": "Centro Histórico de Santa Marta",
+    "latitud": 11.2442,
+    "longitud": -74.2129,
     "horarios": {
       "estado": "sin_horario_especifico_publicado",
       "detalle": "La fuente institucional no publica un horario de acceso para este espacio público. Eventos, obras o disposiciones locales pueden afectar su disponibilidad; los negocios cercanos tienen horarios independientes."
@@ -911,6 +925,8 @@
     "descripcion": "Marina ubicada junto a la bahía y el centro de Santa Marta. INDETUR publica su dirección y teléfono, pero no confirma que las instalaciones sean de libre acceso turístico.",
     "imagen": "assets/images/Marina.jpg",
     "zona": "Bahía de Santa Marta",
+    "latitud": 11.2405,
+    "longitud": -74.2155,
     "horarios": {
       "estado": "sin_horario_de_visita_publicado",
       "detalle": "INDETUR publica dirección y contacto de la Marina, pero no un horario de visita para el público. Consulta a la administración antes de ir."
@@ -993,6 +1009,8 @@
     "descripcion": "Plaza del centro histórico rodeada de establecimientos. INDETUR identifica allí el monumento a Francisco de Paula Santander; los horarios de los negocios no son el horario del parque.",
     "imagen": "assets/images/ParqueDeLosNovios.jpg",
     "zona": "Centro Histórico de Santa Marta",
+    "latitud": 11.2416,
+    "longitud": -74.2117,
     "horarios": {
       "estado": "sin_horario_especifico_publicado",
       "detalle": "La fuente institucional no publica un horario de acceso para este espacio público. Eventos, obras o disposiciones locales pueden afectar su disponibilidad; los negocios cercanos tienen horarios independientes."
@@ -1036,6 +1054,8 @@
     "descripcion": "Paseo costero junto a la bahía de Santa Marta. INDETUR destaca el monumento a Rodrigo de Bastidas ubicado en el Camellón.",
     "imagen": "assets/images/Camellon.jpg",
     "zona": "Centro de Santa Marta",
+    "latitud": 11.2432,
+    "longitud": -74.2142,
     "horarios": {
       "estado": "sin_horario_especifico_publicado",
       "detalle": "La fuente institucional no publica un horario de acceso para este espacio público. Eventos, obras o disposiciones locales pueden afectar su disponibilidad; los negocios cercanos tienen horarios independientes."

@@ -65,7 +65,13 @@
             step.board && typeof step.board.name === "string" && coordinatesAreValid(step.board.coordinates) &&
             step.alight && typeof step.alight.name === "string" && coordinatesAreValid(step.alight.coordinates) &&
             Array.isArray(step.geometry) && step.geometry.length > 1 &&
-            step.geometry.every(coordinatesAreValid))) &&
+            step.geometry.every(coordinatesAreValid) &&
+            (step.previewPoints === undefined ||
+              (Array.isArray(step.previewPoints) &&
+                step.previewPoints.every((point) =>
+                  point && typeof point.name === "string" &&
+                  ["origin", "tourist", "destination"].includes(point.type) &&
+                  coordinatesAreValid(point.coordinates)))))) &&
         (step.type !== "walk" ||
           (coordinatesAreValid(step.from) && coordinatesAreValid(step.to)))
       );
@@ -187,6 +193,20 @@
           );
           layersByStep.set(index, { layer: line, popup: board });
           step.geometry.forEach((point) => bounds.extend(point));
+          (step.previewPoints || [])
+            .filter((point) => point.type === "tourist")
+            .forEach((point) => {
+              L.marker(point.coordinates, {
+                icon: L.divIcon({
+                  className: "trip-nearby-marker-wrapper",
+                  html: '<span class="trip-nearby-marker is-route-waypoint"></span>',
+                  iconSize: [28, 36],
+                  iconAnchor: [14, 36],
+                  popupAnchor: [0, -30]
+                })
+              }).addTo(tripMap).bindPopup(make("span", "", point.name));
+              bounds.extend(point.coordinates);
+            });
         } else if (step.type === "walk" &&
             coordinatesAreValid(step.from) && coordinatesAreValid(step.to)) {
           const line = L.polyline([step.from, step.to], {
@@ -376,11 +396,11 @@
     heading.append(make("p", "", `${trip.origin.label} → ${trip.destination.label}`));
 
     const routeCard = make("section", "trip-route-card");
-    routeCard.append(make("h2", "", trip.routeNames.join(" → ")));
-    routeCard.append(make("p", "", `${trip.buses} bus${trip.buses === 1 ? "" : "es"} · ${trip.transfers} transbordo${trip.transfers === 1 ? "" : "s"}`));
-      const busSteps = trip.itinerary.filter((step) => step.type === "bus");
-    const postersSection = buildPosters(busSteps, trip.dataMode === "demo");
-    if (postersSection) routeCard.append(postersSection);
+      routeCard.append(make("h2", "", trip.routeNames.join(" → ")));
+      routeCard.append(make("p", "", `${trip.buses} bus${trip.buses === 1 ? "" : "es"} · ${trip.transfers} transbordo${trip.transfers === 1 ? "" : "s"}`));
+        const busSteps = trip.itinerary.filter((step) => step.type === "bus");
+      const postersSection = buildPosters(busSteps, trip.dataMode === "demo");
+      if (postersSection) routeCard.append(postersSection);
     
     // HU05: imagen de referencia del vehículo.
     // Por ahora se muestra en el recorrido Universidad–Rodadero.
