@@ -217,6 +217,97 @@
     }
   }
 
+   function openPosterDialog(src, caption) {
+    const dialog = make("dialog", "poster-dialog");
+    dialog.setAttribute("aria-label", caption);
+    const image = make("img");
+    image.src = src;
+    image.alt = caption;
+    const close = make("button", "poster-dialog__close", "Cerrar");
+    close.type = "button";
+    const closeDialog = () => {
+      if (typeof dialog.close === "function") dialog.close();
+      else dialog.remove();
+    };
+    close.addEventListener("click", closeDialog);
+    dialog.addEventListener("click", (event) => {
+      if (event.target === dialog) closeDialog();
+    });
+    dialog.addEventListener("close", () => dialog.remove());
+    dialog.append(image, make("p", "", caption), close);
+    document.body.append(dialog);
+    if (typeof dialog.showModal === "function") dialog.showModal();
+    else dialog.setAttribute("open", "");
+  }
+
+  function makePosterPlaceholder(caption) {
+    const slot = make("div", "trip-poster trip-poster--empty");
+    slot.setAttribute("role", "img");
+    slot.setAttribute("aria-label", `Cartel de ${caption}: imagen pendiente`);
+    const frame = make("span", "trip-poster__frame");
+    frame.append(
+      make("strong", "", "Cartel del bus"),
+      make("small", "", "Imagen pendiente")
+    );
+    slot.append(frame, make("span", "trip-poster__caption", caption));
+    return slot;
+  }
+
+  function buildPosters(busSteps, isDemo) {
+    if (busSteps.length === 0) return null;
+    const hasPoster = (step) => typeof step.poster === "string" && step.poster;
+    const realCount = busSteps.filter(hasPoster).length;
+
+    const section = make("section", "trip-posters");
+    section.setAttribute("aria-label", "Cartel del bus para identificarlo");
+    section.append(make(
+      "p",
+      "trip-posters__hint",
+      realCount === 0
+        ? (busSteps.length === 1
+          ? "Cartel para identificar el bus:"
+          : "Carteles para identificar cada bus:")
+        : (busSteps.length === 1
+          ? "Busca este cartel en el parabrisas del bus:"
+          : "Busca estos carteles en el parabrisas de cada bus:")
+    ));
+    const list = make("div", "trip-posters__list");
+    busSteps.forEach((step, index) => {
+      const caption = busSteps.length > 1
+        ? `Bus ${index + 1}: ${step.routeName}`
+        : step.routeName;
+      if (!hasPoster(step)) {
+        list.append(makePosterPlaceholder(caption));
+        return;
+      }
+      const button = make("button", "trip-poster");
+      button.type = "button";
+      button.setAttribute("aria-label", `Ampliar el cartel de ${caption}`);
+      const image = make("img");
+      image.src = step.poster;
+      image.alt = `Cartel del bus ${step.routeName}`;
+      image.loading = "lazy";
+      image.addEventListener("error", () => {
+        button.replaceWith(makePosterPlaceholder(caption));
+        if (!list.querySelector("button.trip-poster")) {
+          section.querySelector(".trip-posters__note")?.remove();
+        }
+      });
+      button.append(image, make("span", "trip-poster__caption", caption));
+      button.addEventListener("click", () => openPosterDialog(step.poster, caption));
+      list.append(button);
+    });
+    section.append(list);
+    if (isDemo && realCount > 0) {
+      section.append(make(
+        "p",
+        "trip-posters__note",
+        "El cartel es de referencia y su correspondencia con esta ruta está pendiente de verificación."
+      ));
+    }
+    return section;
+  }
+
   function render(trip) {
     root.replaceChildren();
     const pageHeader = make("header", "trip-header");
@@ -236,15 +327,9 @@
     const routeCard = make("section", "trip-route-card");
     routeCard.append(make("h2", "", trip.routeNames.join(" → ")));
     routeCard.append(make("p", "", `${trip.buses} bus${trip.buses === 1 ? "" : "es"} · ${trip.transfers} transbordo${trip.transfers === 1 ? "" : "s"}`));
-    const posters = make("div", "trip-route-card__posters");
-    trip.itinerary.filter((step) => step.type === "bus" && step.poster).forEach((step) => {
-      const poster = make("img");
-      poster.src = step.poster;
-      poster.alt = `Cartel de ${step.routeName}`;
-      poster.loading = "lazy";
-      posters.append(poster);
-    });
-    if (posters.childElementCount > 0) routeCard.append(posters);
+      const busSteps = trip.itinerary.filter((step) => step.type === "bus");
+    const postersSection = buildPosters(busSteps, trip.dataMode === "demo");
+    if (postersSection) routeCard.append(postersSection);
     const metrics = make("div", "trip-metrics");
     [
       [formatMinutes(trip.estimatedMinutes), "Tiempo aprox."],

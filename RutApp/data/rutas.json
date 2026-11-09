@@ -1,0 +1,71 @@
+{
+  "schemaVersion": 2,
+  "description": "Catálogo de carteles observados y recorridos de transporte público estructurados. Los carteles no se usan como geometría ni como prueba de sentido.",
+  "signs": [
+    {
+      "id": "cartel-almendro-bonda",
+      "name": "Almendro · Bonda",
+      "image": "../assets/images/cartel_almendro.png",
+      "observedLabels": ["Almendro", "Mercado Playa", "K-5 · Roja", "Av. del Río", "Limón", "Bonda"],
+      "verificationStatus": "pending",
+      "verificationNotes": "La foto muestra destinos o referencias, pero no confirma su orden geográfico, las calles, el sentido ni las paradas."
+    },
+    {
+      "id": "cartel-libertador-rodadero",
+      "name": "Av. Libertador · Rodadero · Cristo Rey",
+      "image": "../assets/images/cartel_cristo_rey.png",
+      "observedLabels": ["Av. Libertador", "Mercado Playa", "Ziruma", "Rodadero", "Zazue", "U. del MAG", "Cristo Rey"],
+      "verificationStatus": "pending",
+      "verificationNotes": "Existe otro cartel con varios nombres parecidos. No se puede confirmar si es el mismo recorrido, un sentido o una variante."
+    },
+    {
+      "id": "cartel-curinca-santa-rita",
+      "name": "Carteles de Curinca y Santa Rita (imagen compuesta)",
+      "image": "../assets/images/cartel_curinca.png",
+      "observedLabels": ["Mercado Playa", "Roja · La 30", "La Lucha", "Curinca", "Santa Cruz", "Concepción", "Av. del Río", "Sta. Rita", "Hospital"],
+      "verificationStatus": "pending",
+      "verificationNotes": "La imagen contiene más de un panel/cartel; no se asume que todos pertenezcan a un solo bus o recorrido."
+    },
+    {
+      "id": "cartel-gaira-salguero",
+      "name": "Gaira · Playa Salguero",
+      "image": "../assets/images/cartel_gaira_salguero.png",
+      "observedLabels": ["Mercado Playa", "Minuto · La 30", "La Lucha", "Gaira", "Rodadero", "Playa Salguero"],
+      "verificationStatus": "pending",
+      "verificationNotes": "El texto no permite confirmar el trazado por calles, el orden del recorrido, el sentido ni las paradas."
+    },
+    {
+      "id": "cartel-k19-ciudad-equidad",
+      "name": "K-19 · Ciudad Equidad",
+      "image": "../assets/images/cartel_k19.png",
+      "observedLabels": ["K-19", "Ciudadela", "La U", "Transporte", "UCC Yucal", "Ciudad Equidad"],
+      "verificationStatus": "pending",
+      "verificationNotes": "El texto no permite confirmar el trazado por calles, el orden del recorrido, el sentido ni las paradas."
+    },
+    {
+      "id": "cartel-libertador-rodadero-variante",
+      "name": "Av. Libertador · Mercado Playa · Rodadero",
+      "image": "../assets/images/cartel_libertador_rodadero.png",
+      "observedLabels": ["Av. Libertador", "Mercado Playa", "Ziruma", "Rodadero", "Zazue", "U. del MAG", "Cristo Rey"],
+      "verificationStatus": "pending",
+      "verificationNotes": "Se conserva como imagen distinta; su relación con el cartel de Cristo Rey requiere confirmar si es variante o duplicado."
+    },
+    {
+      "id": "cartel-santa-rita-mamatoco",
+      "name": "Santa Rita · Mamatoco",
+      "image": "../assets/images/cartel_santa_rita.png",
+      "observedLabels": ["Mercado Playa", "Santa Rita", "Hospital", "Cra. 24", "Mamatoco", "UCC Transporte", "La U"],
+      "verificationStatus": "pending",
+      "verificationNotes": "El texto no permite confirmar el trazado por calles, el orden del recorrido, el sentido ni las paradas."
+    },
+    {
+      "id": "cartel-ucc-almendro",
+      "name": "UCC Buenavista · Almendro",
+      "image": "../assets/images/cartel_ucc_almendro.png",
+      "observedLabels": ["UCC Buenavista Transporte", "La U", "Ciudadela", "K-19", "Almendro"],
+      "verificationStatus": "pending",
+      "verificationNotes": "El texto no permite confirmar el trazado por calles, el orden del recorrido, el sentido ni las paradas."
+    }
+  ],
+  "routes": []
+}

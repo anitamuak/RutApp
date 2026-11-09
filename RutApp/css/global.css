@@ -1,0 +1,345 @@
+:root {
+  color-scheme: light;
+  --color-background: #f3f8fd;
+  --color-panel: #e4f2fd;
+  --color-surface: #fff;
+  --color-surface-soft: #e8f2fd;
+  --color-input-background: #f7fafd;
+  --color-navbar-background: rgb(255 255 255 / 97%);
+  --color-page-frame: #e5ebf1;
+  --color-border: #dce8f2;
+  --color-primary: #0879d1;
+  --color-button-background: #07539b;
+  --color-blue-dark: #06447f;
+  --color-blue: #0879d1;
+  --color-blue-deep: #07539b;
+  --color-text: #073f78;
+  --color-muted: #7892aa;
+  --color-field: #eef5fd;
+  --color-white: #fff;
+  --color-error: #a52e38;
+  --color-success: #16875b;
+  --color-warning: #9a6500;
+  --radius-card: 26px;
+  --radius-control: 16px;
+  --shadow-card: 0 10px 28px rgb(23 65 104 / 8%);
+  --space-page: 18px;
+  --font-family: Arial, Helvetica, sans-serif;
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --color-background: #101c29;
+  --color-panel: #172a3b;
+  --color-surface: #1b2d3e;
+  --color-surface-soft: #24394d;
+  --color-input-background: #172839;
+  --color-navbar-background: rgb(18 32 46 / 97%);
+  --color-page-frame: #0c1722;
+  --color-border: #354d64;
+  --color-primary: #52a9ed;
+  --color-button-background: #07539b;
+  --color-blue-dark: #e4effa;
+  --color-blue: #1769a8;
+  --color-blue-deep: #79bdf2;
+  --color-text: #e5eef7;
+  --color-muted: #afc1d1;
+  --color-field: #1a2c3d;
+  --color-error: #ff9aa2;
+  --color-success: #66d4a9;
+  --color-warning: #ffd166;
+  --shadow-card: 0 10px 28px rgb(0 0 0 / 22%);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  min-width: 320px;
+  min-height: 100%;
+  background: var(--color-background);
+  scroll-behavior: smooth;
+}
+
+body {
+  min-width: 320px;
+  min-height: 100vh;
+  min-height: 100dvh;
+  margin: 0;
+  background: var(--color-background);
+  color: var(--color-text);
+  font-family: var(--font-family);
+}
+
+button,
+input {
+  font: inherit;
+}
+
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+a {
+  color: inherit;
+}
+
+button:focus-visible,
+a:focus-visible,
+input:focus-visible {
+  outline: 3px solid #53a9ec;
+  outline-offset: 3px;
+}
+
+.app-page {
+  width: min(100%, 430px);
+  min-height: 100vh;
+  min-height: 100dvh;
+  margin-inline: auto;
+  padding: 14px var(--space-page) calc(105px + env(safe-area-inset-bottom));
+  overflow: clip;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  clip-path: inset(50%);
+}
+
+.status-message {
+  min-height: 1.4em;
+  margin: 10px 0 0;
+  color: var(--color-muted);
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+.status-message[data-kind="error"] {
+  color: var(--color-error);
+}
+
+.empty-state {
+  grid-column: 1 / -1;
+  padding: 24px;
+  border-radius: var(--radius-card);
+  background: var(--color-surface);
+  color: var(--color-muted);
+  text-align: center;
+}
+
+@media (min-width: 700px) {
+  body {
+    background: var(--color-page-frame);
+  }
+
+  .app-page {
+    background: var(--color-background);
+    box-shadow: 0 0 30px rgb(20 49 75 / 8%);
+  }
+}
+
+:root[data-theme="dark"] body {
+  background: var(--color-background);
+}
+
+:root[data-theme="dark"] .app-page {
+  background: var(--color-background);
+}
+
+:root[data-theme="dark"] rutapp-navbar {
+  background: var(--color-navbar-background);
+  box-shadow: 0 -7px 28px rgb(0 0 0 / 24%);
+}
+
+:root[data-theme="dark"] .app-navbar__link {
+  color: #a7bbce;
+}
+
+:root[data-theme="dark"] .app-navbar__link.is-active,
+:root[data-theme="dark"] .app-header,
+:root[data-theme="dark"] .app-header__tagline {
+  color: var(--color-blue-dark);
+}
+
+:root[data-theme="dark"] .search-card,
+:root[data-theme="dark"] .featured-card,
+:root[data-theme="dark"] .place-card,
+:root[data-theme="dark"] .place-detail,
+:root[data-theme="dark"] .route-search,
+:root[data-theme="dark"] .route-option,
+:root[data-theme="dark"] .map-dialog,
+:root[data-theme="dark"] .trip-route-card,
+:root[data-theme="dark"] .trip-metric,
+:root[data-theme="dark"] .trip-step,
+:root[data-theme="dark"] .trip-error,
+:root[data-theme="dark"] .more-links a,
+:root[data-theme="dark"] .route-search__suggestions,
+:root[data-theme="dark"] .route-search__suggestion {
+  border-color: var(--color-border);
+  background-color: var(--color-surface);
+  color: var(--color-text);
+}
+
+:root[data-theme="dark"] .category-filter:not(.is-active),
+:root[data-theme="dark"] .catalog__count,
+:root[data-theme="dark"] .more-links__icon,
+:root[data-theme="dark"] .more-page__note,
+:root[data-theme="dark"] .place-detail__badge,
+:root[data-theme="dark"] .place-detail__fact,
+:root[data-theme="dark"] .place-detail__action--favorite,
+:root[data-theme="dark"] .trip-step__icon,
+:root[data-theme="dark"] .route-search__minor,
+:root[data-theme="dark"] .route-search__swap,
+:root[data-theme="dark"] .route-search__clear,
+:root[data-theme="dark"] .route-results,
+:root[data-theme="dark"] .route-option__badge,
+:root[data-theme="dark"] .route-option__stat,
+:root[data-theme="dark"] .map-dialog__close,
+:root[data-theme="dark"] .map-dialog__cancel,
+:root[data-theme="dark"] .route-field__locate,
+:root[data-theme="dark"] .route-form__swap {
+  background-color: var(--color-surface-soft);
+  color: var(--color-blue-deep);
+}
+
+:root[data-theme="dark"] .route-field,
+:root[data-theme="dark"] .route-search__origin-field,
+:root[data-theme="dark"] .route-search__destination-field {
+  border-color: var(--color-border);
+  background-color: var(--color-input-background);
+  color: var(--color-blue-deep);
+}
+
+:root[data-theme="dark"] .route-field input,
+:root[data-theme="dark"] .route-search__origin-field input,
+:root[data-theme="dark"] .route-search__destination-field input {
+  color: var(--color-text);
+}
+
+:root[data-theme="dark"] .route-field input::placeholder,
+:root[data-theme="dark"] .route-search__destination-field input::placeholder {
+  color: #afc1d1;
+}
+
+:root[data-theme="dark"] .route-search__suggestion {
+  border-bottom-color: #354d64;
+}
+
+:root[data-theme="dark"] .route-search__suggestion:hover,
+:root[data-theme="dark"] .route-search__suggestion:focus-visible {
+  background-color: #29445c;
+}
+
+:root[data-theme="dark"] .route-option__stops,
+:root[data-theme="dark"] .route-results p,
+:root[data-theme="dark"] .place-detail__description,
+:root[data-theme="dark"] .place-detail__info-row span,
+:root[data-theme="dark"] .place-detail__info-row a,
+:root[data-theme="dark"] .trip-map__legend {
+  color: var(--color-muted);
+}
+
+:root[data-theme="dark"] .place-detail__visit-info {
+  background-color: var(--color-input-background);
+}
+
+:root[data-theme="dark"] .place-detail__info-row {
+  border-top-color: var(--color-border);
+}
+
+:root[data-theme="dark"] .home-hero {
+  background-color: #14577d;
+}
+
+:root[data-theme="dark"] .trip-step[data-kind="walk"] .trip-step__icon {
+  background-color: #1c4438;
+  color: var(--color-success);
+}
+
+:root[data-theme="dark"] .appearance-setting__switch:not([aria-checked="true"]) {
+  border-color: #647f98;
+  background-color: #344a5f;
+}
+
+:root[data-theme="dark"] .appearance-setting__switch > span {
+  background-color: #e5eef7;
+}
+
+:root[data-theme="dark"] .route-form__submit,
+:root[data-theme="dark"] .search-card__quick,
+:root[data-theme="dark"] .route-search__submit,
+:root[data-theme="dark"] .map-dialog__confirm,
+:root[data-theme="dark"] .category-filter.is-active,
+:root[data-theme="dark"] .place-detail__fact-icon,
+:root[data-theme="dark"] .place-detail__action--route {
+  background-color: var(--color-button-background);
+  color: #fff;
+}
+
+:root[data-theme="dark"] .route-search__error,
+:root[data-theme="dark"] .route-search__message[data-kind="error"],
+:root[data-theme="dark"] .place-detail__message[data-kind="error"] {
+  color: var(--color-error);
+}
+
+:root[data-theme="dark"] .route-results__icon {
+  background-color: var(--color-surface);
+  color: var(--color-blue-deep);
+}
+
+:root[data-theme="dark"] .map-dialog__canvas,
+:root[data-theme="dark"] .place-detail__map,
+:root[data-theme="dark"] .place-detail__map-canvas,
+:root[data-theme="dark"] .trip-map {
+  background-color: #24394d;
+}
+
+:root[data-theme="dark"] .place-detail__brand {
+  color: #fff;
+}
+
+:root[data-theme="dark"] .place-detail__brand-copy {
+  text-shadow: 0 1px 5px rgb(0 0 0 / 85%);
+}
+
+:root[data-theme="dark"] .place-detail__hero-label {
+  background: rgb(255 255 255 / 95%);
+  color: #06447f;
+}
+
+:root[data-theme="dark"] .place-card__favorite,
+:root[data-theme="dark"] .place-detail__back,
+:root[data-theme="dark"] .place-detail__icon-button,
+:root[data-theme="dark"] .place-detail__map-button,
+:root[data-theme="dark"] .trip-header__back {
+  background: rgb(255 255 255 / 96%);
+  color: #06447f;
+}
+
+:root[data-theme="dark"] .route-search__submit:disabled,
+:root[data-theme="dark"] .map-dialog__confirm:disabled {
+  opacity: 0.62;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html,
+  body,
+  .app-page,
+  rutapp-navbar,
+  .route-search,
+  .route-results,
+  .place-card,
+  .featured-card,
+  .trip-route-card,
+  .trip-step,
+  .more-links a {
+    transition: background-color 160ms ease, color 160ms ease, border-color 160ms ease;
+  }
+}

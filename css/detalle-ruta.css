@@ -361,3 +361,127 @@
     left: 25px;
   }
 }
+
+/* Carteles del bus para identificarlo */
+.trip-posters {
+  margin: 12px 0 4px;
+}
+
+.trip-posters__hint {
+  margin: 0 0 8px;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.trip-posters__list {
+  display: flex;
+  gap: 10px;
+  overflow-x: auto;
+  padding-bottom: 2px;
+}
+
+.trip-poster {
+  flex: 0 0 auto;
+  display: grid;
+  gap: 4px;
+  width: 132px;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: inherit;
+  font: inherit;
+  text-align: left;
+  cursor: zoom-in;
+}
+
+.trip-poster img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  border: 1px solid var(--color-border);
+  border-radius: 9px;
+  background: var(--color-surface-soft);
+  object-fit: contain;
+}
+
+.trip-poster:focus-visible {
+  outline: 3px solid var(--color-blue-dark);
+  outline-offset: 2px;
+  border-radius: 9px;
+}
+
+.trip-poster__caption {
+  font-size: 0.78rem;
+  line-height: 1.25;
+}
+
+.trip-posters__note {
+  margin: 8px 0 0;
+  font-size: 0.78rem;
+  opacity: 0.8;
+}
+
+.poster-dialog {
+  width: min(92vw, 560px);
+  max-height: 92vh;
+  padding: 12px;
+  border: 1px solid var(--color-border);
+  border-radius: 14px;
+  background: var(--color-surface, #fff);
+  color: inherit;
+  text-align: center;
+}
+
+.poster-dialog::backdrop {
+  background: rgb(0 0 0 / 0.6);
+}
+
+.poster-dialog img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 9px;
+}
+
+.poster-dialog p {
+  margin: 8px 0;
+  font-weight: 600;
+}
+
+.poster-dialog__close {
+  min-height: 44px;
+  padding: 0 22px;
+  border: 0;
+  border-radius: 999px;
+  background: var(--color-blue-dark);
+  color: var(--color-surface);
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+/* Hueco reservado cuando todavía no hay imagen del cartel */
+.trip-poster--empty {
+  cursor: default;
+}
+
+.trip-poster__frame {
+  display: grid;
+  place-content: center;
+  gap: 2px;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  border: 2px dashed var(--color-border);
+  border-radius: 9px;
+  background: var(--color-surface-soft);
+  text-align: center;
+}
+
+.trip-poster__frame strong {
+  font-size: 0.85rem;
+}
+
+.trip-poster__frame small {
+  font-size: 0.72rem;
+  opacity: 0.75;
+}

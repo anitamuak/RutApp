@@ -1,0 +1,283 @@
+.home-page {
+  padding-top: 6px;
+}
+
+.home-page rutapp-header {
+  margin-inline: 8px;
+}
+
+.home-hero {
+  position: relative;
+  display: flex;
+  min-height: clamp(190px, 58vw, 238px);
+  align-items: flex-end;
+  overflow: hidden;
+  border-radius: 28px;
+  background: #167db5;
+  color: #fff;
+}
+
+.home-hero::after {
+  position: absolute;
+  inset: 20% 0 0;
+  background: linear-gradient(180deg, transparent, rgb(0 38 73 / 76%));
+  content: "";
+}
+
+.home-hero__image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.home-hero__copy {
+  position: relative;
+  z-index: 1;
+  padding: 22px 24px;
+}
+
+.home-hero__copy h1 {
+  margin: 0;
+  font-size: clamp(30px, 8vw, 38px);
+  line-height: 1.04;
+}
+
+.home-hero__copy p {
+  margin: 12px 0 0;
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.search-card {
+  margin-top: 24px;
+  padding: 17px;
+  border-radius: 30px;
+  background: var(--color-white);
+  box-shadow: var(--shadow-card);
+}
+
+.search-card__quick,
+.route-form__submit {
+  display: flex;
+  min-height: 62px;
+  align-items: center;
+  justify-content: center;
+  gap: 13px;
+  border: 0;
+  border-radius: 20px;
+  background: var(--color-blue-deep);
+  color: var(--color-white);
+  font-size: 21px;
+  font-weight: 700;
+}
+
+.search-card__quick svg,
+.route-form__submit svg {
+  width: 26px;
+  height: 26px;
+  fill: currentColor;
+}
+
+.route-form__submit svg {
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 2.8;
+}
+
+.route-form {
+  display: grid;
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.route-form__origin-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 52px;
+  align-items: center;
+  gap: 9px;
+}
+
+.route-field {
+  display: flex;
+  min-width: 0;
+  min-height: 62px;
+  align-items: center;
+  gap: 12px;
+  padding: 0 13px;
+  border-radius: 22px;
+  background: var(--color-field);
+  color: var(--color-blue-deep);
+}
+
+.route-field > svg {
+  flex: 0 0 24px;
+  width: 24px;
+  height: 24px;
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 2;
+}
+
+.route-field input {
+  width: 100%;
+  min-width: 0;
+  height: 50px;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  color: var(--color-text);
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.route-field input::placeholder {
+  color: #8299ae;
+  opacity: 1;
+}
+
+.route-field:focus-within {
+  box-shadow: 0 0 0 2px #8ac5f0;
+}
+
+.route-field__locate,
+.route-form__swap {
+  display: grid;
+  flex: 0 0 42px;
+  width: 42px;
+  height: 42px;
+  place-items: center;
+  border: 0;
+  border-radius: 50%;
+  background: #e2edf9;
+  color: var(--color-blue-deep);
+  cursor: pointer;
+}
+
+.route-field__locate svg,
+.route-form__swap svg {
+  width: 24px;
+  height: 24px;
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 2;
+}
+
+.route-form__swap {
+  width: 52px;
+  height: 52px;
+  background: #e8f2fd;
+}
+
+.route-form__status {
+  margin: -4px 3px 0;
+}
+
+.route-form__submit {
+  width: 100%;
+  min-height: 60px;
+  margin-top: 2px;
+  cursor: pointer;
+}
+
+.featured {
+  margin-top: 38px;
+}
+
+.section-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.section-heading h2 {
+  margin: 0;
+  font-size: clamp(20px, 5.3vw, 24px);
+  line-height: 1.2;
+}
+
+.section-heading a {
+  flex: 0 0 auto;
+  color: var(--color-blue-deep);
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.featured__intro {
+  margin: 10px 0 17px;
+  color: var(--color-muted);
+  font-size: 15px;
+}
+
+.featured__list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.featured-card {
+  min-width: 0;
+  overflow: hidden;
+  border-radius: 18px;
+  background: var(--color-white);
+  box-shadow: 0 4px 14px rgb(23 65 104 / 9%);
+}
+
+.featured-card__image-link {
+  display: block;
+  height: 124px;
+  overflow: hidden;
+  background: #dbeaf3;
+}
+
+.featured-card__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.featured-card__name {
+  display: block;
+  min-height: 52px;
+  padding: 12px;
+  color: var(--color-blue-dark);
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.25;
+  text-decoration: none;
+}
+
+@media (max-width: 360px) {
+  .search-card {
+    padding: 13px;
+  }
+
+  .route-field {
+    gap: 8px;
+    padding-inline: 10px;
+  }
+
+  .route-field input {
+    font-size: 14px;
+  }
+
+  .route-form__origin-row {
+    grid-template-columns: minmax(0, 1fr) 46px;
+    gap: 6px;
+  }
+
+  .route-form__swap {
+    width: 46px;
+    height: 46px;
+  }
+}
