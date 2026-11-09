@@ -76,6 +76,52 @@
     mapCanvas.replaceWith(notice);
   }
 
+  // Caminatas por calles y andenes: OSRM con datos de OpenStreetMap (servidor
+  // peatonal público de FOSSGIS). El servidor aloja un perfil por ruta y espera
+  // "driving" en la URL. Si no responde, la línea queda recta y esquemática.
+  const WALK_ROUTING_URL = "https://routing.openstreetmap.de/routed-foot/route/v1/driving";
+  const walkPathCache = new Map();
+
+  async function fetchWalkingPath(from, to) {
+    const key = `${from}|${to}`;
+    if (walkPathCache.has(key)) return walkPathCache.get(key);
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), 8000);
+    try {
+      const url = `${WALK_ROUTING_URL}/${from[1]},${from[0]};${to[1]},${to[0]}?overview=full&geometries=geojson`;
+      const response = await fetch(url, { signal: controller.signal });
+      if (!response.ok) throw new Error(`El servicio peatonal respondió ${response.status}.`);
+      const data = await response.json();
+      const route = data.routes?.[0];
+      const coordinates = route?.geometry?.coordinates;
+      if (data.code !== "Ok" || !Array.isArray(coordinates) || coordinates.length < 2) {
+        throw new Error("El servicio peatonal no devolvió un trazado.");
+      }
+      const result = {
+        distance: route.distance,
+        path: coordinates.map(([lng, lat]) => [lat, lng])
+      };
+      walkPathCache.set(key, result);
+      return result;
+    } finally {
+      clearTimeout(timeout);
+    }
+  }
+
+  function upgradeWalkLine(L, line, from, to) {
+    const straight = L.latLng(from).distanceTo(L.latLng(to));
+    fetchWalkingPath(from, to)
+      .then(({ path, distance }) => {
+        if (!tripMap || !tripMap.hasLayer(line)) return;
+        // Descarta trazados absurdamente largos y deja la línea recta.
+        if (distance > Math.max(straight * 3, straight + 300)) return;
+        line.setLatLngs(path);
+      })
+      .catch((error) => {
+        console.warn("No se pudo trazar la caminata por calles; se deja la línea recta.", error);
+      });
+  }
+
   async function addTripMap(trip) {
     const mapCanvas = document.querySelector("#trip-map-canvas");
     try {
@@ -150,6 +196,7 @@
             dashArray: "2 10",
             lineCap: "round"
           }).addTo(tripMap);
+          upgradeWalkLine(L, line, step.from, step.to);
           layersByStep.set(index, { layer: line });
           bounds.extend(step.from);
           bounds.extend(step.to);
@@ -423,7 +470,7 @@
     map.append(mapSummary);
 
     root.append(pageHeader, heading, routeCard, selectButton, selectionStatus, itineraryTitle, itinerary, mapTitle, map, legend);
-    root.append(make("p", "trip-note", `${trip.estimateNote} ${trip.walkingNote} Los segmentos de bus siguen la geometría registrada; las caminatas se dibujan como conectores esquemáticos y no como calles peatonales.`));
+    root.append(make("p", "trip-note", `${trip.estimateNote} ${trip.walkingNote} Los segmentos de bus siguen la geometría registrada; las caminatas intentan seguir calles y andenes de OpenStreetMap; si el servicio no responde se dibujan como línea recta esquemática. Sus distancias y tiempos son estimaciones en línea recta.`));
     if (trip.dataMode === "demo" &&
         trip.routeIds.includes("demo-unimag-rodadero-a") &&
         trip.routeIds.includes("demo-unimag-rodadero-b")) {
