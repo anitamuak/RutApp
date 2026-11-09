@@ -187,6 +187,7 @@
       }
 
       if (bounds.isValid()) tripMap.fitBounds(bounds, { padding: [28, 28] });
+      window.RutAppNearbyPlaces?.show(L, tripMap, trip);
     } catch (error) {
       console.error("No se pudo cargar el mapa del itinerario.", error);
       showMapUnavailable(mapCanvas, error.message);
