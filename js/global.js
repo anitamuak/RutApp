@@ -38,8 +38,39 @@
     element.dataset.kind = kind;
   }
 
+  function setPlaceImage(image, source, name) {
+    if (!(image instanceof HTMLImageElement)) {
+      throw new TypeError("Se necesita un elemento de imagen válido.");
+    }
+
+    const fallbackSource = new URL(
+      "../assets/images/places/fotografia-no-disponible.svg",
+      document.baseURI
+    ).href;
+    const useFallback = () => {
+      if (image.dataset.placeImageFallback === "true") {
+        image.hidden = true;
+        image.alt = "";
+        return;
+      }
+
+      image.dataset.placeImageFallback = "true";
+      image.alt = `Fotografía no disponible de ${name}`;
+      image.src = fallbackSource;
+    };
+
+    image.alt = source ? name : `Fotografía no disponible de ${name}`;
+    image.addEventListener("error", useFallback);
+    if (source) {
+      image.src = source;
+    } else {
+      image.dataset.placeImageFallback = "true";
+      image.src = fallbackSource;
+    }
+  }
+
   async function loadPlaces() {
-    const response = await fetch("../data/lugares.json");
+    const response = await fetch("../data/lugares.json", { cache: "no-cache" });
     if (!response.ok) {
       throw new Error(`No se pudo cargar el catálogo (${response.status}).`);
     }
@@ -133,6 +164,7 @@
     getFavorites,
     toggleFavorite,
     setStatus,
+    setPlaceImage,
     loadPlaces,
     loadRoutes,
     loadDemoRoutes

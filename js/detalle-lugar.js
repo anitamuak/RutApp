@@ -1,7 +1,7 @@
 (() => {
   const root = document.querySelector("#place-detail");
   const placeId = new URLSearchParams(window.location.search).get("id");
-  const unavailableMessage = "Consultar información oficial";
+  const unavailableMessage = "Sin dato publicado en la fuente consultada.";
   let place = null;
 
   const icons = {
@@ -69,16 +69,9 @@
   function createHero() {
     const hero = make("section", "place-detail__hero");
     hero.setAttribute("aria-label", `Fotografía de ${place.name}`);
-    if (place.image) {
-      const image = make("img", "place-detail__image");
-      image.src = `../${place.image}`;
-      image.alt = place.name;
-      image.addEventListener("error", () => {
-        image.hidden = true;
-        image.alt = "";
-      }, { once: true });
-      hero.append(image);
-    }
+    const image = make("img", "place-detail__image");
+    RutApp.setPlaceImage(image, place.image ? `../${place.image}` : null, place.name);
+    hero.append(image);
 
     const topbar = make("div", "place-detail__topbar");
     const back = make("a", "place-detail__back");
@@ -237,30 +230,46 @@
     const visit = make("section", "place-detail__visit-info");
     visit.append(make("h2", "", "Información para la visita"));
     appendInfoRow(visit, "Tipo de acceso", place.tipoAcceso);
+    appendInfoRow(visit, "Medios de pago", place.mediosPago);
     appendInfoRow(visit, "Costos adicionales", place.costosAdicionales);
     appendInfoRow(visit, "Servicios incluidos", place.incluye || "No hay servicios incluidos confirmados en el catálogo.");
     if (place.costos?.tarifas?.length) {
       appendInfoRow(visit, "Tarifas", place.costos.tarifas.join(" · "));
     }
     const sourceRow = make("div", "place-detail__info-row");
-    sourceRow.append(make("strong", "", "Fuente oficial"));
-    if (place.fuenteOficial) {
-      const source = make("a", "", "Consultar información del responsable");
-      source.href = place.fuenteOficial;
-      source.target = "_blank";
-      source.rel = "noopener noreferrer";
-      sourceRow.append(source);
+    sourceRow.append(make("strong", "", "Fuentes institucionales consultadas"));
+    const sources = Array.isArray(place.fuentesOficiales) && place.fuentesOficiales.length
+      ? place.fuentesOficiales
+      : place.fuenteOficial
+        ? [{ nombre: "Consultar información del responsable", url: place.fuenteOficial }]
+        : [];
+    if (sources.length) {
+      const sourceLinks = make("div", "place-detail__source-links");
+      sources.forEach((item) => {
+        if (typeof item.url !== "string" || !item.url.startsWith("https://")) {
+          console.error("Se omitió una fuente institucional sin URL HTTPS válida.", item);
+          sourceLinks.append(make("span", "", "Enlace de fuente no válido."));
+          return;
+        }
+        const source = make("a", "", item.nombre || "Consultar fuente institucional");
+        source.href = item.url;
+        source.target = "_blank";
+        source.rel = "noopener noreferrer";
+        sourceLinks.append(source);
+        if (item.alcance) sourceLinks.append(make("span", "place-detail__source-scope", item.alcance));
+      });
+      sourceRow.append(sourceLinks);
     } else {
-      sourceRow.append(make("span", "", "No hay una fuente oficial registrada."));
+      sourceRow.append(make("span", "", "No hay una fuente institucional específica registrada."));
     }
     visit.append(sourceRow);
     appendInfoRow(
       visit,
-      "Verificación de tarifas y horarios",
-      place.fechaVerificacion
-        ? `Comprobado el ${place.fechaVerificacion}.`
-        : "Pendiente: no se pudo confirmar información vigente de tarifas y horarios."
+      "Estado de verificación",
+      place.estadoVerificacion || "No se pudo confirmar la vigencia de la información variable."
     );
+    const sourceCheckedDate = place.fechaConsultaFuentes || place.fechaVerificacion;
+    if (sourceCheckedDate) appendInfoRow(visit, "Consulta de fuentes", sourceCheckedDate);
     if (Array.isArray(place.recomendaciones) && place.recomendaciones.length) {
       appendInfoRow(visit, "Recomendaciones", place.recomendaciones.join(" "));
     }
@@ -276,7 +285,7 @@
 
   function appendInfoRow(parent, label, value) {
     const row = make("div", "place-detail__info-row");
-    row.append(make("strong", "", label), make("span", "", value || "Consultar información oficial."));
+    row.append(make("strong", "", label), make("span", "", value || unavailableMessage));
     parent.append(row);
   }
 

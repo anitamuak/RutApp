@@ -15,6 +15,7 @@ Aplicacion web en HTML, CSS y JavaScript nativos. Abre `index.html` para la bien
 - `css/global.css` y `js/global.js`: variables, estilos base y utilidades compartidas.
 - `components/header.*` y `components/navbar.*`: cabecera y barra inferior como Web Components nativos.
 - `data/lugares.json`: catalogo compartido. Las rutas de imagen son locales a `assets/images`.
+- `assets/images/places/`: fotografías añadidas y alternativa ilustrada cuando una foto no está disponible. Las fuentes y licencias documentadas están en `assets/images/places/credits.json`.
 - `data/rutas.json`: recorridos de transporte. Solo se calculan rutas con geometría, paradas ordenadas y estado de verificación explícito.
 - `data/rutas-demo.json`: ejemplos optativos separados de los recorridos verificados, incluidos Universidad–Rodadero, Parque–Taganga, Ocean Mall–Buenavista y Universidad–La 30 → Rodadero · La paz.
 - `js/route-planner.js`: motor de conexiones entre paradas, con recorridos dirigidos, caminatas de acceso/transbordo/salida y un máximo configurable de transbordos.

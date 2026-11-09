@@ -5,34 +5,43 @@
     "nombre": "El Rodadero",
     "categoria": "playas",
     "categoriaEtiqueta": "Playa urbana",
-    "descripcion": "Playa y sector turístico al sur del centro de Santa Marta.",
+    "descripcion": "Playa urbana y sector turístico al sur del centro de Santa Marta, con acceso a servicios y actividades ofrecidos por prestadores independientes.",
     "imagen": "assets/images/Rodadero.jpg",
     "zona": "Sector El Rodadero, Santa Marta",
     "horarios": {
-      "estado": "pendiente",
-      "detalle": "Consultar horario oficial; puede variar por temporada."
+      "estado": "sin_horario_especifico_publicado",
+      "detalle": "Las fuentes institucionales revisadas no publican un horario vigente específico para esta playa. El uso del agua puede estar condicionado por señalización, condiciones marítimas y disposiciones locales."
     },
     "costos": {
-      "estado": "pendiente",
+      "estado": "gratuito_ingreso_a_playa_publica",
       "moneda": "COP",
-      "entrada": "Consultar tarifa oficial."
+      "entrada": "Gratis el acceso a la playa pública. No incluye transporte, parqueadero, alquileres, alimentación ni actividades contratadas."
     },
-    "tipoAcceso": "Pendiente de confirmación oficial; el acceso al lugar no implica que todos los servicios sean gratuitos.",
-    "incluye": null,
-    "costosAdicionales": "No verificados. Confirma por separado transporte, lancha, parqueadero, guía u otros servicios con proveedores autorizados.",
+    "tipoAcceso": "Acceso a playa pública sin tarifa de entrada. El uso del agua está sujeto a señalización y condiciones marítimas; rutas de acceso y servicios pueden tener costos independientes.",
+    "incluye": "Las fuentes consultadas no identifican servicios incluidos en una tarifa de ingreso. Esto no significa que no haya servicios disponibles por separado.",
+    "costosAdicionales": "El ingreso a la playa pública es gratuito. Transporte, parqueadero, alquiler de sillas o sombrillas, alimentación y actividades son opcionales; no se verificaron precios vigentes y deben acordarse con cada prestador.",
     "idealPara": "Playa urbana",
     "recomendaciones": [
-      "Consulta el estado del mar, las condiciones de acceso y los servicios con fuentes locales antes de desplazarte."
+      "Consulta los avisos locales y el estado del mar el mismo día. Respeta las banderas y las instrucciones de seguridad; confirma precios directamente con cualquier prestador antes de contratar y usa protección solar."
     ],
-    "fuenteOficial": "https://www.santamarta.gov.co/",
+    "fuenteOficial": "https://indetur.gov.co/playas-y-reservas-naturales/",
     "fechaVerificacion": null,
-    "estadoVerificacion": "Pendiente de verificar horarios, tarifas y condiciones específicos.",
+    "estadoVerificacion": "El catálogo registra el ingreso a la playa pública como gratuito. Las fuentes institucionales consultadas no publican precios de servicios ni confirman condiciones diarias de acceso; consulta avisos locales.",
     "latitud": 11.2026564,
     "longitud": -74.2279078,
     "nivelZoom": 16,
     "precisionCoordenadas": "sector",
     "fuenteCoordenadas": "https://www.openstreetmap.org/?mlat=11.2026564&mlon=-74.2279078#map=16/11.2026564/-74.2279078",
-    "fechaCoordenadasVerificadas": "2026-10-26"
+    "fechaCoordenadasVerificadas": "2026-10-26",
+    "fuentesOficiales": [
+      {
+        "nombre": "INDETUR · Playas y reservas naturales",
+        "url": "https://indetur.gov.co/playas-y-reservas-naturales/",
+        "alcance": "Panorama institucional de playas; no publica horario ni tarifa específica de El Rodadero."
+      }
+    ],
+    "fechaConsultaFuentes": "2026-11-09",
+    "mediosPago": "No se requiere pago para ingresar a la playa pública. Medios de pago de transporte, comercios y servicios opcionales dependen de cada proveedor."
   },
   {
     "id": "playa-cristal",
@@ -40,34 +49,48 @@
     "nombre": "Playa Cristal",
     "categoria": "playas",
     "categoriaEtiqueta": "Playa · Tayrona",
-    "descripcion": "Playa del Parque Tayrona. El ingreso depende de las condiciones y reglas vigentes del área protegida.",
+    "descripcion": "Playa del Parque Nacional Natural Tayrona. Su visita depende de la apertura del parque, del acceso habilitado para el sector y de las reglas del área protegida.",
     "imagen": "assets/images/PlayaCristal.jpg",
     "zona": "Parque Nacional Natural Tayrona, Santa Marta",
     "horarios": {
-      "estado": "pendiente",
-      "detalle": "Consultar horario oficial; puede variar por temporada."
+      "estado": "sin_horario_vigente_confirmado",
+      "detalle": "No se confirmó un horario vigente de ingreso para este parque o sector. Las aperturas, cierres y horarios por sector deben validarse con Parques Nacionales antes del viaje."
     },
     "costos": {
-      "estado": "pendiente",
+      "estado": "requisito_confirmado_tarifa_no_verificada",
       "moneda": "COP",
-      "entrada": "Consultar tarifa oficial."
+      "entrada": "INDETUR indica que el ingreso a áreas protegidas requiere boleto de entrada o paquete adquirido con anterioridad mediante agencia autorizada. La fuente consultada no publica la tarifa vigente ni sus categorías."
     },
-    "tipoAcceso": "Pendiente de confirmación oficial; el acceso al lugar no implica que todos los servicios sean gratuitos.",
-    "incluye": null,
-    "costosAdicionales": "No verificados. Confirma por separado transporte, lancha, parqueadero, guía u otros servicios con proveedores autorizados.",
+    "tipoAcceso": "Ingreso regulado a un área protegida; requiere boleto o paquete de ingreso y está sujeto a cierres y reglas vigentes del parque.",
+    "incluye": "Las fuentes consultadas no identifican servicios incluidos en una tarifa de ingreso. Esto no significa que no haya servicios disponibles por separado.",
+    "costosAdicionales": "La tarifa de entrada no confirma transporte ni servicios incluidos. Verifica por separado transporte terrestre o marítimo, actividades y servicios con operadores autorizados; no se encontraron precios vigentes.",
     "idealPara": "Playa · Tayrona",
     "recomendaciones": [
-      "Consulta el estado del mar, las condiciones de acceso y los servicios con fuentes locales antes de desplazarte."
+      "Antes de salir, verifica con Parques Nacionales la apertura del parque y del sector, la tarifa vigente y los requisitos de ingreso. Sigue senderos habilitados, indicaciones de guardaparques y normas de conservación."
     ],
     "fuenteOficial": "https://www.parquesnacionales.gov.co/nuestros-parques/parque-nacional-natural-tayrona/",
     "fechaVerificacion": null,
-    "estadoVerificacion": "Pendiente de verificar horarios, tarifas y condiciones específicos.",
+    "estadoVerificacion": "Requisito de boleto corroborado en INDETUR. No se pudo confirmar tarifa, horario ni apertura actual; la página de Parques consultada redirigió a una nota de prensa de 2023.",
     "latitud": 11.3288835,
     "longitud": -74.0773527,
     "nivelZoom": 14,
     "precisionCoordenadas": "localidad",
     "fuenteCoordenadas": "https://www.openstreetmap.org/?mlat=11.3288835&mlon=-74.0773527#map=14/11.3288835/-74.0773527",
-    "fechaCoordenadasVerificadas": "2026-10-26"
+    "fechaCoordenadasVerificadas": "2026-10-26",
+    "fuentesOficiales": [
+      {
+        "nombre": "Parques Nacionales · PNN Tayrona",
+        "url": "https://www.parquesnacionales.gov.co/nuestros-parques/parque-nacional-natural-tayrona/",
+        "alcance": "Verifica cierres y condiciones del parque; el enlace institucional no ofrece un tarifario vigente."
+      },
+      {
+        "nombre": "INDETUR · Requisitos para áreas protegidas",
+        "url": "https://indetur.gov.co/datos-utiles-para-el-viajero/",
+        "alcance": "Indica que el ingreso a áreas protegidas requiere boleto o paquete; no publica la tarifa actual."
+      }
+    ],
+    "fechaConsultaFuentes": "2026-11-09",
+    "mediosPago": "La fuente consultada no informa medios de pago para el boleto o paquete de ingreso. Confirma los medios aceptados con Parques Nacionales o la agencia autorizada antes de comprar."
   },
   {
     "id": "cabo-san-juan",
@@ -75,34 +98,48 @@
     "nombre": "Cabo San Juan del Guía",
     "categoria": "playas",
     "categoriaEtiqueta": "Playa · Tayrona",
-    "descripcion": "Sector costero dentro del Parque Tayrona, con acceso sujeto a las condiciones del parque.",
+    "descripcion": "Sector costero del Parque Nacional Natural Tayrona. El recorrido y la permanencia dependen de los senderos habilitados y de las condiciones del parque.",
     "imagen": "assets/images/CaboSanJuan.jpg",
     "zona": "Parque Nacional Natural Tayrona, Santa Marta",
     "horarios": {
-      "estado": "pendiente",
-      "detalle": "Consultar horario oficial; puede variar por temporada."
+      "estado": "sin_horario_vigente_confirmado",
+      "detalle": "No se confirmó un horario vigente de ingreso para este parque o sector. Las aperturas, cierres y horarios por sector deben validarse con Parques Nacionales antes del viaje."
     },
     "costos": {
-      "estado": "pendiente",
+      "estado": "requisito_confirmado_tarifa_no_verificada",
       "moneda": "COP",
-      "entrada": "Consultar tarifa oficial."
+      "entrada": "INDETUR indica que el ingreso a áreas protegidas requiere boleto de entrada o paquete adquirido con anterioridad mediante agencia autorizada. La fuente consultada no publica la tarifa vigente ni sus categorías."
     },
-    "tipoAcceso": "Pendiente de confirmación oficial; el acceso al lugar no implica que todos los servicios sean gratuitos.",
-    "incluye": null,
-    "costosAdicionales": "No verificados. Confirma por separado transporte, lancha, parqueadero, guía u otros servicios con proveedores autorizados.",
+    "tipoAcceso": "Ingreso regulado a un área protegida; requiere boleto o paquete de ingreso y está sujeto a cierres y reglas vigentes del parque.",
+    "incluye": "Las fuentes consultadas no identifican servicios incluidos en una tarifa de ingreso. Esto no significa que no haya servicios disponibles por separado.",
+    "costosAdicionales": "La tarifa de entrada no confirma transporte ni servicios incluidos. Verifica por separado transporte terrestre o marítimo, actividades y servicios con operadores autorizados; no se encontraron precios vigentes.",
     "idealPara": "Playa · Tayrona",
     "recomendaciones": [
-      "Consulta el estado del mar, las condiciones de acceso y los servicios con fuentes locales antes de desplazarte."
+      "Antes de salir, verifica con Parques Nacionales la apertura del parque y del sector, la tarifa vigente y los requisitos de ingreso. Sigue senderos habilitados, indicaciones de guardaparques y normas de conservación."
     ],
     "fuenteOficial": "https://www.parquesnacionales.gov.co/nuestros-parques/parque-nacional-natural-tayrona/",
     "fechaVerificacion": null,
-    "estadoVerificacion": "Pendiente de verificar horarios, tarifas y condiciones específicos.",
+    "estadoVerificacion": "Requisito de boleto corroborado en INDETUR. No se pudo confirmar tarifa, horario ni apertura actual; la página de Parques consultada redirigió a una nota de prensa de 2023.",
     "latitud": 11.3380452,
     "longitud": -73.9744615,
     "nivelZoom": 16,
     "precisionCoordenadas": "sitio",
     "fuenteCoordenadas": "https://www.openstreetmap.org/?mlat=11.3380452&mlon=-73.9744615#map=16/11.3380452/-73.9744615",
-    "fechaCoordenadasVerificadas": "2026-10-26"
+    "fechaCoordenadasVerificadas": "2026-10-26",
+    "fuentesOficiales": [
+      {
+        "nombre": "Parques Nacionales · PNN Tayrona",
+        "url": "https://www.parquesnacionales.gov.co/nuestros-parques/parque-nacional-natural-tayrona/",
+        "alcance": "Verifica cierres y condiciones del parque; el enlace institucional no ofrece un tarifario vigente."
+      },
+      {
+        "nombre": "INDETUR · Requisitos para áreas protegidas",
+        "url": "https://indetur.gov.co/datos-utiles-para-el-viajero/",
+        "alcance": "Indica que el ingreso a áreas protegidas requiere boleto o paquete; no publica la tarifa actual."
+      }
+    ],
+    "fechaConsultaFuentes": "2026-11-09",
+    "mediosPago": "La fuente consultada no informa medios de pago para el boleto o paquete de ingreso. Confirma los medios aceptados con Parques Nacionales o la agencia autorizada antes de comprar."
   },
   {
     "id": "bahia-concha",
@@ -110,34 +147,48 @@
     "nombre": "Bahía Concha",
     "categoria": "playas",
     "categoriaEtiqueta": "Playa · Tayrona",
-    "descripcion": "Bahía costera incluida entre los sectores de visita del Parque Tayrona.",
+    "descripcion": "Bahía y sector de playa del entorno del Parque Nacional Natural Tayrona; la visita está sujeta a las reglas y condiciones de acceso del área protegida.",
     "imagen": "assets/images/BahiaConcha.jpg",
     "zona": "Parque Nacional Natural Tayrona, Santa Marta",
     "horarios": {
-      "estado": "pendiente",
-      "detalle": "Consultar horario oficial; puede variar por temporada."
+      "estado": "sin_horario_vigente_confirmado",
+      "detalle": "No se confirmó un horario vigente de ingreso para este parque o sector. Las aperturas, cierres y horarios por sector deben validarse con Parques Nacionales antes del viaje."
     },
     "costos": {
-      "estado": "pendiente",
+      "estado": "requisito_confirmado_tarifa_no_verificada",
       "moneda": "COP",
-      "entrada": "Consultar tarifa oficial."
+      "entrada": "INDETUR indica que el ingreso a áreas protegidas requiere boleto de entrada o paquete adquirido con anterioridad mediante agencia autorizada. La fuente consultada no publica la tarifa vigente ni sus categorías."
     },
-    "tipoAcceso": "Pendiente de confirmación oficial; el acceso al lugar no implica que todos los servicios sean gratuitos.",
-    "incluye": null,
-    "costosAdicionales": "No verificados. Confirma por separado transporte, lancha, parqueadero, guía u otros servicios con proveedores autorizados.",
+    "tipoAcceso": "Ingreso regulado a un área protegida; requiere boleto o paquete de ingreso y está sujeto a cierres y reglas vigentes del parque.",
+    "incluye": "Las fuentes consultadas no identifican servicios incluidos en una tarifa de ingreso. Esto no significa que no haya servicios disponibles por separado.",
+    "costosAdicionales": "La tarifa de entrada no confirma transporte ni servicios incluidos. Verifica por separado transporte terrestre o marítimo, actividades y servicios con operadores autorizados; no se encontraron precios vigentes.",
     "idealPara": "Playa · Tayrona",
     "recomendaciones": [
-      "Consulta el estado del mar, las condiciones de acceso y los servicios con fuentes locales antes de desplazarte."
+      "Antes de salir, verifica con Parques Nacionales la apertura del parque y del sector, la tarifa vigente y los requisitos de ingreso. Sigue senderos habilitados, indicaciones de guardaparques y normas de conservación."
     ],
     "fuenteOficial": "https://www.parquesnacionales.gov.co/nuestros-parques/parque-nacional-natural-tayrona/",
     "fechaVerificacion": null,
-    "estadoVerificacion": "Pendiente de verificar horarios, tarifas y condiciones específicos.",
+    "estadoVerificacion": "Requisito de boleto corroborado en INDETUR. No se pudo confirmar tarifa, horario ni apertura actual; la página de Parques consultada redirigió a una nota de prensa de 2023.",
     "latitud": 11.2965754,
     "longitud": -74.1504939,
     "nivelZoom": 14,
     "precisionCoordenadas": "localidad",
     "fuenteCoordenadas": "https://www.openstreetmap.org/?mlat=11.2965754&mlon=-74.1504939#map=14/11.2965754/-74.1504939",
-    "fechaCoordenadasVerificadas": "2026-10-26"
+    "fechaCoordenadasVerificadas": "2026-10-26",
+    "fuentesOficiales": [
+      {
+        "nombre": "Parques Nacionales · PNN Tayrona",
+        "url": "https://www.parquesnacionales.gov.co/nuestros-parques/parque-nacional-natural-tayrona/",
+        "alcance": "Verifica cierres y condiciones del parque; el enlace institucional no ofrece un tarifario vigente."
+      },
+      {
+        "nombre": "INDETUR · Requisitos para áreas protegidas",
+        "url": "https://indetur.gov.co/datos-utiles-para-el-viajero/",
+        "alcance": "Indica que el ingreso a áreas protegidas requiere boleto o paquete; no publica la tarifa actual."
+      }
+    ],
+    "fechaConsultaFuentes": "2026-11-09",
+    "mediosPago": "La fuente consultada no informa medios de pago para el boleto o paquete de ingreso. Confirma los medios aceptados con Parques Nacionales o la agencia autorizada antes de comprar."
   },
   {
     "id": "playa-blanca",
@@ -145,34 +196,43 @@
     "nombre": "Playa Blanca",
     "categoria": "playas",
     "categoriaEtiqueta": "Playa",
-    "descripcion": "Playa en el entorno de El Rodadero, al sur del centro urbano.",
+    "descripcion": "Playa turística en el entorno de El Rodadero. Confirma con anticipación las condiciones de llegada y los servicios disponibles; no hay una tarifa única publicada en las fuentes consultadas.",
     "imagen": "assets/images/PlayaBlanca.jpg",
     "zona": "Área de El Rodadero, Santa Marta",
     "horarios": {
-      "estado": "pendiente",
-      "detalle": "Consultar horario oficial; puede variar por temporada."
+      "estado": "sin_horario_especifico_publicado",
+      "detalle": "Las fuentes institucionales revisadas no publican un horario vigente específico para esta playa. El uso del agua puede estar condicionado por señalización, condiciones marítimas y disposiciones locales."
     },
     "costos": {
-      "estado": "pendiente",
+      "estado": "gratuito_ingreso_a_playa_publica",
       "moneda": "COP",
-      "entrada": "Consultar tarifa oficial."
+      "entrada": "Gratis el acceso a la playa pública. No incluye transporte, parqueadero, alquileres, alimentación ni actividades contratadas."
     },
-    "tipoAcceso": "Pendiente de confirmación oficial; el acceso al lugar no implica que todos los servicios sean gratuitos.",
-    "incluye": null,
-    "costosAdicionales": "No verificados. Confirma por separado transporte, lancha, parqueadero, guía u otros servicios con proveedores autorizados.",
+    "tipoAcceso": "Acceso a playa pública sin tarifa de entrada. El uso del agua está sujeto a señalización y condiciones marítimas; rutas de acceso y servicios pueden tener costos independientes.",
+    "incluye": "Las fuentes consultadas no identifican servicios incluidos en una tarifa de ingreso. Esto no significa que no haya servicios disponibles por separado.",
+    "costosAdicionales": "El ingreso a la playa pública es gratuito. Transporte, parqueadero, alquiler de sillas o sombrillas, alimentación y actividades son opcionales; no se verificaron precios vigentes y deben acordarse con cada prestador.",
     "idealPara": "Playa",
     "recomendaciones": [
-      "Consulta el estado del mar, las condiciones de acceso y los servicios con fuentes locales antes de desplazarte."
+      "Consulta los avisos locales y el estado del mar el mismo día. Respeta las banderas y las instrucciones de seguridad; confirma precios directamente con cualquier prestador antes de contratar y usa protección solar."
     ],
-    "fuenteOficial": "https://www.santamarta.gov.co/",
+    "fuenteOficial": "https://indetur.gov.co/playas-y-reservas-naturales/",
     "fechaVerificacion": null,
-    "estadoVerificacion": "Pendiente de verificar horarios, tarifas y condiciones específicos.",
+    "estadoVerificacion": "El catálogo registra el ingreso a la playa pública como gratuito. Las fuentes institucionales consultadas no publican precios de servicios ni confirman condiciones diarias de acceso; consulta avisos locales.",
     "latitud": 11.2187035,
     "longitud": -74.238209,
     "nivelZoom": 16,
     "precisionCoordenadas": "localidad",
     "fuenteCoordenadas": "https://www.openstreetmap.org/?mlat=11.2187035&mlon=-74.238209#map=16/11.2187035/-74.238209",
-    "fechaCoordenadasVerificadas": "2026-10-26"
+    "fechaCoordenadasVerificadas": "2026-10-26",
+    "fuentesOficiales": [
+      {
+        "nombre": "INDETUR · Playas y reservas naturales",
+        "url": "https://indetur.gov.co/playas-y-reservas-naturales/",
+        "alcance": "Panorama institucional de playas; no publica horario, tarifa ni transporte específico de Playa Blanca."
+      }
+    ],
+    "fechaConsultaFuentes": "2026-11-09",
+    "mediosPago": "No se requiere pago para ingresar a la playa pública. Medios de pago de transporte, comercios y servicios opcionales dependen de cada proveedor."
   },
   {
     "id": "playa-grande-taganga",
@@ -180,28 +240,42 @@
     "nombre": "Playa Grande, Taganga",
     "categoria": "playas",
     "categoriaEtiqueta": "Playa",
-    "descripcion": "Playa cercana al corregimiento costero de Taganga.",
+    "descripcion": "Playa cercana al corregimiento costero de Taganga. Las condiciones del mar y los servicios locales pueden cambiar; verifica avisos antes de entrar al agua.",
     "imagen": "assets/images/PlayaGrande.jpg",
     "zona": "Taganga, Santa Marta",
     "horarios": {
-      "estado": "pendiente",
-      "detalle": "Consultar horario oficial; puede variar por temporada."
+      "estado": "sin_horario_especifico_publicado",
+      "detalle": "Las fuentes institucionales revisadas no publican un horario vigente específico para esta playa. El uso del agua puede estar condicionado por señalización, condiciones marítimas y disposiciones locales."
     },
     "costos": {
-      "estado": "pendiente",
+      "estado": "gratuito_ingreso_a_playa_publica",
       "moneda": "COP",
-      "entrada": "Consultar tarifa oficial."
+      "entrada": "Gratis el acceso a la playa pública. No incluye transporte, parqueadero, alquileres, alimentación ni actividades contratadas."
     },
-    "tipoAcceso": "Pendiente de confirmación oficial; el acceso al lugar no implica que todos los servicios sean gratuitos.",
-    "incluye": null,
-    "costosAdicionales": "No verificados. Confirma por separado transporte, lancha, parqueadero, guía u otros servicios con proveedores autorizados.",
+    "tipoAcceso": "Acceso a playa pública sin tarifa de entrada. El uso del agua está sujeto a señalización y condiciones marítimas; rutas de acceso y servicios pueden tener costos independientes.",
+    "incluye": "Las fuentes consultadas no identifican servicios incluidos en una tarifa de ingreso. Esto no significa que no haya servicios disponibles por separado.",
+    "costosAdicionales": "El ingreso a la playa pública es gratuito. Transporte, parqueadero, alquiler de sillas o sombrillas, alimentación y actividades son opcionales; no se verificaron precios vigentes y deben acordarse con cada prestador.",
     "idealPara": "Playa",
     "recomendaciones": [
-      "Consulta el estado del mar, las condiciones de acceso y los servicios con fuentes locales antes de desplazarte."
+      "Consulta los avisos locales y el estado del mar el mismo día. Respeta las banderas y las instrucciones de seguridad; confirma precios directamente con cualquier prestador antes de contratar y usa protección solar."
     ],
-    "fuenteOficial": "https://www.santamarta.gov.co/",
+    "fuenteOficial": "https://indetur.gov.co/playas-y-reservas-naturales/",
     "fechaVerificacion": null,
-    "estadoVerificacion": "Pendiente de verificar horarios, tarifas y condiciones específicos."
+    "estadoVerificacion": "El catálogo registra el ingreso a la playa pública como gratuito. Las fuentes institucionales consultadas no publican precios de servicios ni confirman condiciones diarias de acceso; consulta avisos locales.",
+    "fuentesOficiales": [
+      {
+        "nombre": "INDETUR · Playas y reservas naturales",
+        "url": "https://indetur.gov.co/playas-y-reservas-naturales/",
+        "alcance": "Panorama institucional de playas; no publica horario ni tarifa específica de Playa Grande."
+      },
+      {
+        "nombre": "INDETUR · Bahía de Taganga",
+        "url": "https://indetur.gov.co/2024/08/indetur-promueve-una-exitosa-jornada-de-limpieza-en-la-bahia-de-taganga/",
+        "alcance": "Referencia institucional ambiental de la bahía; no es un boletín de condiciones marítimas actuales."
+      }
+    ],
+    "fechaConsultaFuentes": "2026-11-09",
+    "mediosPago": "No se requiere pago para ingresar a la playa pública. Medios de pago de transporte, comercios y servicios opcionales dependen de cada proveedor."
   },
   {
     "id": "playa-los-angeles",
@@ -209,34 +283,43 @@
     "nombre": "Playa Los Ángeles",
     "categoria": "playas",
     "categoriaEtiqueta": "Playa · zona rural",
-    "descripcion": "Playa del corredor costero al este de Santa Marta, fuera del núcleo urbano.",
-    "imagen": null,
+    "descripcion": "Playa en la zona rural costera de Santa Marta, fuera del núcleo urbano. La fuente institucional consultada no especifica acceso ni servicios de este punto.",
+    "imagen": "assets/images/places/playa-los-angeles.jpg",
     "zona": "Zona rural costera de Santa Marta",
     "horarios": {
-      "estado": "pendiente",
-      "detalle": "Consultar horario oficial; puede variar por temporada."
+      "estado": "sin_horario_especifico_publicado",
+      "detalle": "Las fuentes institucionales revisadas no publican un horario vigente específico para esta playa. El uso del agua puede estar condicionado por señalización, condiciones marítimas y disposiciones locales."
     },
     "costos": {
-      "estado": "pendiente",
+      "estado": "gratuito_ingreso_a_playa_publica",
       "moneda": "COP",
-      "entrada": "Consultar tarifa oficial."
+      "entrada": "Gratis el acceso a la playa pública. No incluye transporte, parqueadero, alquileres, alimentación ni actividades contratadas."
     },
-    "tipoAcceso": "Pendiente de confirmación oficial; el acceso al lugar no implica que todos los servicios sean gratuitos.",
-    "incluye": null,
-    "costosAdicionales": "No verificados. Confirma por separado transporte, lancha, parqueadero, guía u otros servicios con proveedores autorizados.",
+    "tipoAcceso": "Acceso a playa pública sin tarifa de entrada. El uso del agua está sujeto a señalización y condiciones marítimas; rutas de acceso y servicios pueden tener costos independientes.",
+    "incluye": "Las fuentes consultadas no identifican servicios incluidos en una tarifa de ingreso. Esto no significa que no haya servicios disponibles por separado.",
+    "costosAdicionales": "El ingreso a la playa pública es gratuito. Transporte, parqueadero, alquiler de sillas o sombrillas, alimentación y actividades son opcionales; no se verificaron precios vigentes y deben acordarse con cada prestador.",
     "idealPara": "Playa · zona rural",
     "recomendaciones": [
-      "Consulta el estado del mar, las condiciones de acceso y los servicios con fuentes locales antes de desplazarte."
+      "Consulta los avisos locales y el estado del mar el mismo día. Respeta las banderas y las instrucciones de seguridad; confirma precios directamente con cualquier prestador antes de contratar y usa protección solar."
     ],
-    "fuenteOficial": "https://www.santamarta.gov.co/",
+    "fuenteOficial": "https://indetur.gov.co/playas-y-reservas-naturales/",
     "fechaVerificacion": null,
-    "estadoVerificacion": "Pendiente de verificar horarios, tarifas y condiciones específicos.",
+    "estadoVerificacion": "El catálogo registra el ingreso a la playa pública como gratuito. Las fuentes institucionales consultadas no publican precios de servicios ni confirman condiciones diarias de acceso; consulta avisos locales.",
     "latitud": 11.2913872,
     "longitud": -73.8850661,
     "nivelZoom": 15,
     "precisionCoordenadas": "sitio",
     "fuenteCoordenadas": "https://www.openstreetmap.org/?mlat=11.2913872&mlon=-73.8850661#map=15/11.2913872/-73.8850661",
-    "fechaCoordenadasVerificadas": "2026-10-26"
+    "fechaCoordenadasVerificadas": "2026-10-26",
+    "fuentesOficiales": [
+      {
+        "nombre": "INDETUR · Playas y reservas naturales",
+        "url": "https://indetur.gov.co/playas-y-reservas-naturales/",
+        "alcance": "Referencia general de destinos naturales; no confirma acceso, horario ni tarifa de esta playa."
+      }
+    ],
+    "fechaConsultaFuentes": "2026-11-09",
+    "mediosPago": "No se requiere pago para ingresar a la playa pública. Medios de pago de transporte, comercios y servicios opcionales dependen de cada proveedor."
   },
   {
     "id": "playa-bello-horizonte",
@@ -244,34 +327,43 @@
     "nombre": "Playa Bello Horizonte",
     "categoria": "playas",
     "categoriaEtiqueta": "Playa urbana",
-    "descripcion": "Playa del sector de Bello Horizonte, al sur del área central de la ciudad.",
-    "imagen": null,
+    "descripcion": "Playa del sector de Bello Horizonte, al sur del área central de Santa Marta. Los servicios del litoral son independientes del acceso a la playa.",
+    "imagen": "assets/images/places/playa-bello-horizonte.webp",
     "zona": "Bello Horizonte, Santa Marta",
     "horarios": {
-      "estado": "pendiente",
-      "detalle": "Consultar horario oficial; puede variar por temporada."
+      "estado": "sin_horario_especifico_publicado",
+      "detalle": "Las fuentes institucionales revisadas no publican un horario vigente específico para esta playa. El uso del agua puede estar condicionado por señalización, condiciones marítimas y disposiciones locales."
     },
     "costos": {
-      "estado": "pendiente",
+      "estado": "gratuito_ingreso_a_playa_publica",
       "moneda": "COP",
-      "entrada": "Consultar tarifa oficial."
+      "entrada": "Gratis el acceso a la playa pública. No incluye transporte, parqueadero, alquileres, alimentación ni actividades contratadas."
     },
-    "tipoAcceso": "Pendiente de confirmación oficial; el acceso al lugar no implica que todos los servicios sean gratuitos.",
-    "incluye": null,
-    "costosAdicionales": "No verificados. Confirma por separado transporte, lancha, parqueadero, guía u otros servicios con proveedores autorizados.",
+    "tipoAcceso": "Acceso a playa pública sin tarifa de entrada. El uso del agua está sujeto a señalización y condiciones marítimas; rutas de acceso y servicios pueden tener costos independientes.",
+    "incluye": "Las fuentes consultadas no identifican servicios incluidos en una tarifa de ingreso. Esto no significa que no haya servicios disponibles por separado.",
+    "costosAdicionales": "El ingreso a la playa pública es gratuito. Transporte, parqueadero, alquiler de sillas o sombrillas, alimentación y actividades son opcionales; no se verificaron precios vigentes y deben acordarse con cada prestador.",
     "idealPara": "Playa urbana",
     "recomendaciones": [
-      "Consulta el estado del mar, las condiciones de acceso y los servicios con fuentes locales antes de desplazarte."
+      "Consulta los avisos locales y el estado del mar el mismo día. Respeta las banderas y las instrucciones de seguridad; confirma precios directamente con cualquier prestador antes de contratar y usa protección solar."
     ],
-    "fuenteOficial": "https://www.santamarta.gov.co/",
+    "fuenteOficial": "https://indetur.gov.co/playas-y-reservas-naturales/",
     "fechaVerificacion": null,
-    "estadoVerificacion": "Pendiente de verificar horarios, tarifas y condiciones específicos.",
+    "estadoVerificacion": "El catálogo registra el ingreso a la playa pública como gratuito. Las fuentes institucionales consultadas no publican precios de servicios ni confirman condiciones diarias de acceso; consulta avisos locales.",
     "latitud": 11.1697644,
     "longitud": -74.2332368,
     "nivelZoom": 16,
     "precisionCoordenadas": "sector",
     "fuenteCoordenadas": "https://www.openstreetmap.org/?mlat=11.1697644&mlon=-74.2332368#map=16/11.1697644/-74.2332368",
-    "fechaCoordenadasVerificadas": "2026-10-26"
+    "fechaCoordenadasVerificadas": "2026-10-26",
+    "fuentesOficiales": [
+      {
+        "nombre": "INDETUR · Playas y reservas naturales",
+        "url": "https://indetur.gov.co/playas-y-reservas-naturales/",
+        "alcance": "Panorama institucional de playas; no publica horario ni tarifa específica de Bello Horizonte."
+      }
+    ],
+    "fechaConsultaFuentes": "2026-11-09",
+    "mediosPago": "No se requiere pago para ingresar a la playa pública. Medios de pago de transporte, comercios y servicios opcionales dependen de cada proveedor."
   },
   {
     "id": "playa-inca-inca",
@@ -279,34 +371,43 @@
     "nombre": "Playa Inca Inca",
     "categoria": "playas",
     "categoriaEtiqueta": "Playa",
-    "descripcion": "Playa de la bahía de Gaira, en el entorno costero de El Rodadero.",
-    "imagen": null,
+    "descripcion": "Playa del entorno de la bahía de Gaira y El Rodadero. Confirma directamente las opciones de acceso y transporte antes de desplazarte.",
+    "imagen": "assets/images/playaIncaInca.webp",
     "zona": "Bahía de Gaira, Santa Marta",
     "horarios": {
-      "estado": "pendiente",
-      "detalle": "Consultar horario oficial; puede variar por temporada."
+      "estado": "sin_horario_especifico_publicado",
+      "detalle": "Las fuentes institucionales revisadas no publican un horario vigente específico para esta playa. El uso del agua puede estar condicionado por señalización, condiciones marítimas y disposiciones locales."
     },
     "costos": {
-      "estado": "pendiente",
+      "estado": "gratuito_ingreso_a_playa_publica",
       "moneda": "COP",
-      "entrada": "Consultar tarifa oficial."
+      "entrada": "Gratis el acceso a la playa pública. No incluye transporte, parqueadero, alquileres, alimentación ni actividades contratadas."
     },
-    "tipoAcceso": "Pendiente de confirmación oficial; el acceso al lugar no implica que todos los servicios sean gratuitos.",
-    "incluye": null,
-    "costosAdicionales": "No verificados. Confirma por separado transporte, lancha, parqueadero, guía u otros servicios con proveedores autorizados.",
+    "tipoAcceso": "Acceso a playa pública sin tarifa de entrada. El uso del agua está sujeto a señalización y condiciones marítimas; rutas de acceso y servicios pueden tener costos independientes.",
+    "incluye": "Las fuentes consultadas no identifican servicios incluidos en una tarifa de ingreso. Esto no significa que no haya servicios disponibles por separado.",
+    "costosAdicionales": "El ingreso a la playa pública es gratuito. Transporte, parqueadero, alquiler de sillas o sombrillas, alimentación y actividades son opcionales; no se verificaron precios vigentes y deben acordarse con cada prestador.",
     "idealPara": "Playa",
     "recomendaciones": [
-      "Consulta el estado del mar, las condiciones de acceso y los servicios con fuentes locales antes de desplazarte."
+      "Consulta los avisos locales y el estado del mar el mismo día. Respeta las banderas y las instrucciones de seguridad; confirma precios directamente con cualquier prestador antes de contratar y usa protección solar."
     ],
-    "fuenteOficial": "https://www.santamarta.gov.co/",
+    "fuenteOficial": "https://indetur.gov.co/playas-y-reservas-naturales/",
     "fechaVerificacion": null,
-    "estadoVerificacion": "Pendiente de verificar horarios, tarifas y condiciones específicos.",
+    "estadoVerificacion": "El catálogo registra el ingreso a la playa pública como gratuito. Las fuentes institucionales consultadas no publican precios de servicios ni confirman condiciones diarias de acceso; consulta avisos locales.",
     "latitud": 11.2159817,
     "longitud": -74.233589,
     "nivelZoom": 16,
     "precisionCoordenadas": "sitio",
     "fuenteCoordenadas": "https://www.openstreetmap.org/?mlat=11.2159817&mlon=-74.233589#map=16/11.2159817/-74.233589",
-    "fechaCoordenadasVerificadas": "2026-10-26"
+    "fechaCoordenadasVerificadas": "2026-10-26",
+    "fuentesOficiales": [
+      {
+        "nombre": "INDETUR · Playas y reservas naturales",
+        "url": "https://indetur.gov.co/playas-y-reservas-naturales/",
+        "alcance": "Referencia general de destinos de playa; no confirma transporte, horario ni tarifa de Inca Inca."
+      }
+    ],
+    "fechaConsultaFuentes": "2026-11-09",
+    "mediosPago": "No se requiere pago para ingresar a la playa pública. Medios de pago de transporte, comercios y servicios opcionales dependen de cada proveedor."
   },
   {
     "id": "playa-los-naranjos",
@@ -314,34 +415,53 @@
     "nombre": "Playa Los Naranjos",
     "categoria": "playas",
     "categoriaEtiqueta": "Playa · zona rural",
-    "descripcion": "Playa rural del litoral de Santa Marta, en el corredor hacia el Parque Tayrona.",
-    "imagen": null,
+    "descripcion": "Playa del corredor costero del Parque Nacional Natural Tayrona. INDETUR menciona la práctica de surf en este sector; las condiciones y actividades permitidas deben confirmarse localmente.",
+    "imagen": "assets/images/places/playa-los-naranjos.jpg",
     "zona": "Corredor costero oriental de Santa Marta",
     "horarios": {
-      "estado": "pendiente",
-      "detalle": "Consultar horario oficial; puede variar por temporada."
+      "estado": "sin_horario_vigente_confirmado",
+      "detalle": "No se confirmó un horario vigente de ingreso para este sector del Parque Tayrona. Las aperturas, cierres y horarios por sector deben validarse con Parques Nacionales antes del viaje."
     },
     "costos": {
-      "estado": "pendiente",
+      "estado": "requisito_confirmado_tarifa_no_verificada",
       "moneda": "COP",
-      "entrada": "Consultar tarifa oficial."
+      "entrada": "INDETUR indica que el ingreso a áreas protegidas requiere boleto de entrada o paquete adquirido con anterioridad mediante agencia autorizada. La fuente consultada no publica la tarifa vigente ni sus categorías."
     },
-    "tipoAcceso": "Pendiente de confirmación oficial; el acceso al lugar no implica que todos los servicios sean gratuitos.",
-    "incluye": null,
-    "costosAdicionales": "No verificados. Confirma por separado transporte, lancha, parqueadero, guía u otros servicios con proveedores autorizados.",
+    "tipoAcceso": "Sector costero del Parque Nacional Natural Tayrona; ingreso regulado, sujeto a las reglas y cierres vigentes del área protegida y a la compra del boleto o paquete requerido.",
+    "incluye": "Las fuentes consultadas no identifican servicios incluidos en una tarifa de ingreso. Esto no significa que no haya servicios disponibles por separado.",
+    "costosAdicionales": "La tarifa de entrada no confirma transporte ni servicios incluidos. Verifica por separado transporte, actividades y servicios con operadores autorizados; no se encontraron precios vigentes.",
     "idealPara": "Playa · zona rural",
     "recomendaciones": [
-      "Consulta el estado del mar, las condiciones de acceso y los servicios con fuentes locales antes de desplazarte."
+      "Antes de salir, verifica con Parques Nacionales la apertura del parque y del sector, la tarifa vigente y los requisitos de ingreso. Sigue senderos habilitados, indicaciones de guardaparques y normas de conservación."
     ],
-    "fuenteOficial": "https://www.santamarta.gov.co/",
+    "fuenteOficial": "https://www.parquesnacionales.gov.co/nuestros-parques/parque-nacional-natural-tayrona/",
     "fechaVerificacion": null,
-    "estadoVerificacion": "Pendiente de verificar horarios, tarifas y condiciones específicos.",
+    "estadoVerificacion": "INDETUR menciona la práctica de surf en Playa Los Naranjos dentro del PNN Tayrona. El requisito general de boleto está publicado, pero no se pudo confirmar tarifa, horario ni apertura actual; la página de Parques consultada redirigió a una nota de prensa de 2023.",
     "latitud": 11.2980615,
     "longitud": -73.8944932,
     "nivelZoom": 15,
     "precisionCoordenadas": "sitio",
     "fuenteCoordenadas": "https://www.openstreetmap.org/?mlat=11.2980615&mlon=-73.8944932#map=15/11.2980615/-73.8944932",
-    "fechaCoordenadasVerificadas": "2026-10-26"
+    "fechaCoordenadasVerificadas": "2026-10-26",
+    "fuentesOficiales": [
+      {
+        "nombre": "Parques Nacionales · PNN Tayrona",
+        "url": "https://www.parquesnacionales.gov.co/nuestros-parques/parque-nacional-natural-tayrona/",
+        "alcance": "Verifica cierres y condiciones; el enlace consultado redirigió a una nota de prensa de 2023."
+      },
+      {
+        "nombre": "INDETUR · Requisitos para áreas protegidas",
+        "url": "https://indetur.gov.co/datos-utiles-para-el-viajero/",
+        "alcance": "Indica que el ingreso requiere boleto o paquete; no publica la tarifa actual."
+      },
+      {
+        "nombre": "INDETUR · Playas y reservas naturales",
+        "url": "https://indetur.gov.co/playas-y-reservas-naturales/",
+        "alcance": "Menciona la práctica de surf en Playa Los Naranjos; no informa condiciones diarias del mar."
+      }
+    ],
+    "fechaConsultaFuentes": "2026-11-09",
+    "mediosPago": "No se encontró información oficial sobre medios de pago de entradas o servicios. Confirma los medios aceptados directamente con el prestador antes de contratar."
   },
   {
     "id": "parque-tayrona",
@@ -349,34 +469,48 @@
     "nombre": "Parque Nacional Natural Tayrona",
     "categoria": "naturaleza",
     "categoriaEtiqueta": "Área protegida",
-    "descripcion": "Área protegida nacional en la costa de Santa Marta. Verifica cierres, accesos y recomendaciones en Parques Nacionales antes de visitarla.",
+    "descripcion": "área protegida nacional del litoral de Santa Marta, con ecosistemas costeros y terrestres. El ingreso requiere cumplir las reglas vigentes y puede estar sujeto a cierres.",
     "imagen": "assets/images/ParqueTayrona.jpg",
     "zona": "Litoral de Santa Marta, Magdalena",
     "horarios": {
-      "estado": "pendiente",
-      "detalle": "Consultar horario oficial; puede variar por temporada."
+      "estado": "sin_horario_vigente_confirmado",
+      "detalle": "No se confirmó un horario vigente de ingreso para este parque o sector. Las aperturas, cierres y horarios por sector deben validarse con Parques Nacionales antes del viaje."
     },
     "costos": {
-      "estado": "pendiente",
+      "estado": "requisito_confirmado_tarifa_no_verificada",
       "moneda": "COP",
-      "entrada": "Consultar tarifa oficial."
+      "entrada": "INDETUR indica que el ingreso a áreas protegidas requiere boleto de entrada o paquete adquirido con anterioridad mediante agencia autorizada. La fuente consultada no publica la tarifa vigente ni sus categorías."
     },
-    "tipoAcceso": "Pendiente de confirmación oficial; el acceso al lugar no implica que todos los servicios sean gratuitos.",
-    "incluye": null,
-    "costosAdicionales": "No verificados. Confirma por separado transporte, lancha, parqueadero, guía u otros servicios con proveedores autorizados.",
+    "tipoAcceso": "Ingreso regulado a un área protegida; requiere boleto o paquete de ingreso y está sujeto a cierres y reglas vigentes del parque.",
+    "incluye": "Las fuentes consultadas no identifican servicios incluidos en una tarifa de ingreso. Esto no significa que no haya servicios disponibles por separado.",
+    "costosAdicionales": "La tarifa de entrada no confirma transporte ni servicios incluidos. Verifica por separado transporte terrestre o marítimo, actividades y servicios con operadores autorizados; no se encontraron precios vigentes.",
     "idealPara": "Área protegida",
     "recomendaciones": [
-      "Verifica cierres, accesos y recomendaciones ambientales con la entidad responsable antes de la visita."
+      "Antes de salir, verifica con Parques Nacionales la apertura del parque y del sector, la tarifa vigente y los requisitos de ingreso. Sigue senderos habilitados, indicaciones de guardaparques y normas de conservación."
     ],
     "fuenteOficial": "https://www.parquesnacionales.gov.co/nuestros-parques/parque-nacional-natural-tayrona/",
     "fechaVerificacion": null,
-    "estadoVerificacion": "Pendiente de verificar horarios, tarifas y condiciones específicos.",
+    "estadoVerificacion": "Requisito de boleto corroborado en INDETUR. No se pudo confirmar tarifa, horario ni apertura actual; la página de Parques consultada redirigió a una nota de prensa de 2023.",
     "latitud": 11.323558,
     "longitud": -74.0518074,
     "nivelZoom": 10,
     "precisionCoordenadas": "área protegida",
     "fuenteCoordenadas": "https://www.openstreetmap.org/?mlat=11.323558&mlon=-74.0518074#map=10/11.323558/-74.0518074",
-    "fechaCoordenadasVerificadas": "2026-10-26"
+    "fechaCoordenadasVerificadas": "2026-10-26",
+    "fuentesOficiales": [
+      {
+        "nombre": "Parques Nacionales · PNN Tayrona",
+        "url": "https://www.parquesnacionales.gov.co/nuestros-parques/parque-nacional-natural-tayrona/",
+        "alcance": "Verifica cierres y condiciones; el enlace consultado redirigió a una nota de prensa de 2023."
+      },
+      {
+        "nombre": "INDETUR · Requisitos para áreas protegidas",
+        "url": "https://indetur.gov.co/datos-utiles-para-el-viajero/",
+        "alcance": "Indica que el ingreso requiere boleto o paquete; no publica la tarifa actual."
+      }
+    ],
+    "fechaConsultaFuentes": "2026-11-09",
+    "mediosPago": "La fuente consultada no informa medios de pago para el boleto o paquete de ingreso. Confirma los medios aceptados con Parques Nacionales o la agencia autorizada antes de comprar."
   },
   {
     "id": "quebrada-valencia",
@@ -384,34 +518,43 @@
     "nombre": "Quebrada Valencia",
     "categoria": "naturaleza",
     "categoriaEtiqueta": "Quebrada y cascadas",
-    "descripcion": "Entorno natural de quebrada y cascadas en la zona rural al este de Santa Marta.",
+    "descripcion": "Atractivo natural de quebrada y cascadas en la zona rural al este de Santa Marta. No se encontró una fuente institucional vigente que detalle el acceso de visitantes.",
     "imagen": "assets/images/QuebradaValencia.jpg",
     "zona": "Vía Santa Marta–Riohacha, zona rural de Santa Marta",
     "horarios": {
-      "estado": "pendiente",
-      "detalle": "Consultar horario oficial; puede variar por temporada."
+      "estado": "sin_horario_especifico_publicado",
+      "detalle": "No se encontró un horario oficial vigente para este acceso natural. La disponibilidad puede depender del clima, el estado del camino, la conservación y quien administra el acceso; confirma antes de ir."
     },
     "costos": {
-      "estado": "pendiente",
+      "estado": "gratuito_ingreso_a_sitio_natural",
       "moneda": "COP",
-      "entrada": "Consultar tarifa oficial."
+      "entrada": "Gratis el acceso al sitio natural. No incluye transporte, parqueadero, alimentación ni servicios contratados."
     },
-    "tipoAcceso": "Pendiente de confirmación oficial; el acceso al lugar no implica que todos los servicios sean gratuitos.",
-    "incluye": null,
-    "costosAdicionales": "No verificados. Confirma por separado transporte, lancha, parqueadero, guía u otros servicios con proveedores autorizados.",
+    "tipoAcceso": "Acceso al sitio natural sin tarifa de entrada. Verifica señalización, condiciones del sendero y restricciones temporales en el lugar.",
+    "incluye": "Las fuentes consultadas no identifican servicios incluidos en una tarifa de ingreso. Esto no significa que no haya servicios disponibles por separado.",
+    "costosAdicionales": "El ingreso al sitio natural es gratuito. Transporte, parqueadero, alimentación y servicios opcionales pueden tener costos independientes que no se verificaron.",
     "idealPara": "Quebrada y cascadas",
     "recomendaciones": [
-      "Verifica cierres, accesos y recomendaciones ambientales con la entidad responsable antes de la visita."
+      "Confirma que el acceso está habilitado y quién lo administra antes de desplazarte. Revisa el pronóstico y el estado del camino; lleva calzado apropiado y no dejes residuos ni ingreses al agua si hay avisos de riesgo."
     ],
-    "fuenteOficial": "https://www.santamarta.gov.co/",
+    "fuenteOficial": "https://indetur.gov.co/playas-y-reservas-naturales/",
     "fechaVerificacion": null,
-    "estadoVerificacion": "Pendiente de verificar horarios, tarifas y condiciones específicos.",
+    "estadoVerificacion": "El catálogo registra como gratuito el ingreso al sitio natural. La fuente institucional consultada no publica precios de servicios ni confirma condiciones diarias de acceso; consulta avisos locales.",
     "latitud": 11.2436923,
     "longitud": -73.8065323,
     "nivelZoom": 14,
     "precisionCoordenadas": "área de la quebrada",
     "fuenteCoordenadas": "https://www.openstreetmap.org/?mlat=11.2436923&mlon=-73.8065323#map=14/11.2436923/-73.8065323",
-    "fechaCoordenadasVerificadas": "2026-10-26"
+    "fechaCoordenadasVerificadas": "2026-10-26",
+    "fuentesOficiales": [
+      {
+        "nombre": "INDETUR · Playas y reservas naturales",
+        "url": "https://indetur.gov.co/playas-y-reservas-naturales/",
+        "alcance": "Referencia general de naturaleza regional; no confirma acceso ni tarifa de Quebrada Valencia."
+      }
+    ],
+    "fechaConsultaFuentes": "2026-11-09",
+    "mediosPago": "No se requiere pago para ingresar al sitio natural. Los medios de pago de transporte y servicios opcionales dependen de cada proveedor."
   },
   {
     "id": "pozo-azul",
@@ -419,34 +562,43 @@
     "nombre": "Pozo Azul",
     "categoria": "naturaleza",
     "categoriaEtiqueta": "Río y pozos",
-    "descripcion": "Sitio de río y pozos naturales en las montañas del entorno de Minca.",
-    "imagen": null,
+    "descripcion": "Conjunto de pozos naturales en el entorno rural de Minca. El estado del camino, el caudal y las condiciones de acceso deben confirmarse localmente.",
+    "imagen": "assets/images/places/pozo-azul.jpg",
     "zona": "Entorno rural de Minca, Santa Marta",
     "horarios": {
-      "estado": "pendiente",
-      "detalle": "Consultar horario oficial; puede variar por temporada."
+      "estado": "sin_horario_especifico_publicado",
+      "detalle": "No se encontró un horario oficial vigente para este acceso natural. La disponibilidad puede depender del clima, el estado del camino, la conservación y quien administra el acceso; confirma antes de ir."
     },
     "costos": {
-      "estado": "pendiente",
+      "estado": "gratuito_ingreso_a_sitio_natural",
       "moneda": "COP",
-      "entrada": "Consultar tarifa oficial."
+      "entrada": "Gratis el acceso al sitio natural. No incluye transporte, parqueadero, alimentación ni servicios contratados."
     },
-    "tipoAcceso": "Pendiente de confirmación oficial; el acceso al lugar no implica que todos los servicios sean gratuitos.",
-    "incluye": null,
-    "costosAdicionales": "No verificados. Confirma por separado transporte, lancha, parqueadero, guía u otros servicios con proveedores autorizados.",
+    "tipoAcceso": "Acceso al sitio natural sin tarifa de entrada. Verifica señalización, condiciones del sendero y restricciones temporales en el lugar.",
+    "incluye": "Las fuentes consultadas no identifican servicios incluidos en una tarifa de ingreso. Esto no significa que no haya servicios disponibles por separado.",
+    "costosAdicionales": "El ingreso al sitio natural es gratuito. Transporte, parqueadero, alimentación y servicios opcionales pueden tener costos independientes que no se verificaron.",
     "idealPara": "Río y pozos",
     "recomendaciones": [
-      "Verifica cierres, accesos y recomendaciones ambientales con la entidad responsable antes de la visita."
+      "Confirma que el acceso está habilitado y quién lo administra antes de desplazarte. Revisa el pronóstico y el estado del camino; lleva calzado apropiado y no dejes residuos ni ingreses al agua si hay avisos de riesgo."
     ],
-    "fuenteOficial": "https://www.santamarta.gov.co/",
+    "fuenteOficial": "https://indetur.gov.co/playas-y-reservas-naturales/",
     "fechaVerificacion": null,
-    "estadoVerificacion": "Pendiente de verificar horarios, tarifas y condiciones específicos.",
+    "estadoVerificacion": "El catálogo registra como gratuito el ingreso al sitio natural. La fuente institucional consultada no publica precios de servicios ni confirma condiciones diarias de acceso; consulta avisos locales.",
     "latitud": 11.134079,
     "longitud": -74.1015335,
     "nivelZoom": 16,
     "precisionCoordenadas": "sitio",
     "fuenteCoordenadas": "https://www.openstreetmap.org/?mlat=11.134079&mlon=-74.1015335#map=16/11.134079/-74.1015335",
-    "fechaCoordenadasVerificadas": "2026-10-26"
+    "fechaCoordenadasVerificadas": "2026-10-26",
+    "fuentesOficiales": [
+      {
+        "nombre": "INDETUR · Playas y reservas naturales",
+        "url": "https://indetur.gov.co/playas-y-reservas-naturales/",
+        "alcance": "Referencia general de naturaleza regional; no confirma acceso ni tarifa de Pozo Azul."
+      }
+    ],
+    "fechaConsultaFuentes": "2026-11-09",
+    "mediosPago": "No se requiere pago para ingresar al sitio natural. Los medios de pago de transporte y servicios opcionales dependen de cada proveedor."
   },
   {
     "id": "sierra-nevada",
@@ -454,28 +606,42 @@
     "nombre": "Sierra Nevada de Santa Marta",
     "categoria": "naturaleza",
     "categoriaEtiqueta": "Montaña",
-    "descripcion": "Macizo montañoso del Caribe colombiano. Los accesos y territorios tienen condiciones propias; consulta fuentes locales antes de planear una visita.",
+    "descripcion": "Macizo montañoso y territorio de gran importancia ecológica y cultural del Caribe colombiano. Las rutas, permisos y condiciones de visita dependen de cada sector.",
     "imagen": "assets/images/SierraNevada.jpg",
     "zona": "Macizo montañoso compartido por varios departamentos del Caribe",
     "horarios": {
-      "estado": "pendiente",
-      "detalle": "Consultar horario oficial; puede variar por temporada."
+      "estado": "sin_horario_especifico_publicado",
+      "detalle": "No se encontró un horario oficial vigente para este acceso natural. La disponibilidad puede depender del clima, el estado del camino, la conservación y quien administra el acceso; confirma antes de ir."
     },
     "costos": {
-      "estado": "pendiente",
+      "estado": "sin_tarifa_especifica_publicada",
       "moneda": "COP",
-      "entrada": "Consultar tarifa oficial."
+      "entrada": "No se encontró una tarifa oficial vigente para este sitio. Confirma si el acceso atraviesa un predio o servicio administrado y qué cobros aplican antes del viaje."
     },
-    "tipoAcceso": "Pendiente de confirmación oficial; el acceso al lugar no implica que todos los servicios sean gratuitos.",
-    "incluye": null,
-    "costosAdicionales": "No verificados. Confirma por separado transporte, lancha, parqueadero, guía u otros servicios con proveedores autorizados.",
+    "tipoAcceso": "Atractivo en un entorno natural; no se identificó un único acceso o administración oficial en las fuentes consultadas. Las condiciones pueden variar por sector.",
+    "incluye": "Las fuentes consultadas no identifican servicios incluidos en una tarifa de ingreso. Esto no significa que no haya servicios disponibles por separado.",
+    "costosAdicionales": "No se verificaron cobros de transporte, parqueadero, guianza ni servicios locales. Confirma disponibilidad, operador y precio antes de contratarlos.",
     "idealPara": "Montaña",
     "recomendaciones": [
-      "Verifica cierres, accesos y recomendaciones ambientales con la entidad responsable antes de la visita."
+      "Confirma que el acceso está habilitado y quién lo administra antes de desplazarte. Revisa el pronóstico y el estado del camino; lleva calzado apropiado y no dejes residuos ni ingreses al agua si hay avisos de riesgo."
     ],
-    "fuenteOficial": "https://www.santamarta.gov.co/",
+    "fuenteOficial": "https://indetur.gov.co/playas-y-reservas-naturales/",
     "fechaVerificacion": null,
-    "estadoVerificacion": "Pendiente de verificar horarios, tarifas y condiciones específicos."
+    "estadoVerificacion": "La referencia institucional general no permite confirmar acceso, horario, tarifa ni servicios específicos de este sitio.",
+    "fuentesOficiales": [
+      {
+        "nombre": "INDETUR · Playas y reservas naturales",
+        "url": "https://indetur.gov.co/playas-y-reservas-naturales/",
+        "alcance": "Panorama institucional de áreas naturales; no determina permisos de acceso a territorios o senderos específicos."
+      },
+      {
+        "nombre": "INDETUR · Minca y Sierra Nevada",
+        "url": "https://indetur.gov.co/2024/09/minca-y-la-sierra-nevada-el-pulmon-verde-de-santa-marta/",
+        "alcance": "Recomendaciones institucionales de conservación; no establece rutas ni horarios de ingreso."
+      }
+    ],
+    "fechaConsultaFuentes": "2026-11-09",
+    "mediosPago": "No se encontró información oficial sobre medios de pago de entradas o servicios. Confirma los medios aceptados directamente con el prestador antes de contratar."
   },
   {
     "id": "quinta-san-pedro",
@@ -483,28 +649,37 @@
     "nombre": "Quinta de San Pedro Alejandrino",
     "categoria": "historia",
     "categoriaEtiqueta": "Historia y cultura",
-    "descripcion": "Hacienda histórica y conjunto cultural situado en el sector de Mamatoco.",
+    "descripcion": "Hacienda histórica y conjunto cultural en Mamatoco, asociado a la memoria de Simón Bolívar. Horarios, tarifas y disponibilidad de recorridos requieren confirmación con la administración.",
     "imagen": "assets/images/QuintaSanPedro.jpg",
     "zona": "Mamatoco, Santa Marta",
     "horarios": {
-      "estado": "pendiente",
-      "detalle": "Consultar horario oficial; puede variar por temporada."
+      "estado": "sin_horario_actual_confirmado",
+      "detalle": "No se encontró un horario vigente en la fuente institucional consultada. Confirma días de apertura, última hora de ingreso y recorridos con la administración de la Quinta."
     },
     "costos": {
-      "estado": "pendiente",
+      "estado": "sin_tarifa_actual_confirmada",
       "moneda": "COP",
-      "entrada": "Consultar tarifa oficial."
+      "entrada": "No se encontró un tarifario oficial vigente en la fuente consultada. Confirma el precio y posibles tarifas diferenciales directamente con la administración."
     },
-    "tipoAcceso": "Pendiente de confirmación oficial; el acceso al lugar no implica que todos los servicios sean gratuitos.",
-    "incluye": null,
-    "costosAdicionales": "No verificados. Confirma por separado transporte, lancha, parqueadero, guía u otros servicios con proveedores autorizados.",
+    "tipoAcceso": "Conjunto cultural administrado; las condiciones de ingreso y recorridos deben confirmarse con la entidad responsable.",
+    "incluye": "Las fuentes consultadas no identifican servicios incluidos en una tarifa de ingreso. Esto no significa que no haya servicios disponibles por separado.",
+    "costosAdicionales": "No se verificaron costos de transporte, recorridos o servicios complementarios. Confirma cuáles son opcionales y cuáles están incluidos antes de comprar.",
     "idealPara": "Historia y cultura",
     "recomendaciones": [
-      "Confirma horarios, disponibilidad y condiciones de visita con la entidad responsable."
+      "Confirma la apertura, tarifa, actividades y requisitos directamente con la administración de la Quinta antes de desplazarte; la referencia institucional consultada no publica esos datos."
     ],
-    "fuenteOficial": "https://www.santamarta.gov.co/",
+    "fuenteOficial": "https://indetur.gov.co/historia/",
     "fechaVerificacion": null,
-    "estadoVerificacion": "Pendiente de verificar horarios, tarifas y condiciones específicos."
+    "estadoVerificacion": "La fuente institucional revisada ofrece contexto histórico general, pero no publica condiciones de visita, tarifa ni horario vigentes de la Quinta.",
+    "fuentesOficiales": [
+      {
+        "nombre": "INDETUR · Historia de Santa Marta",
+        "url": "https://indetur.gov.co/historia/",
+        "alcance": "Contexto histórico general; no ofrece horarios, tarifas ni condiciones de visita de la Quinta."
+      }
+    ],
+    "fechaConsultaFuentes": "2026-11-09",
+    "mediosPago": "No se encontró información vigente sobre medios de pago. Confirma directamente con la administración antes de comprar una entrada o actividad."
   },
   {
     "id": "centro-historico",
@@ -512,28 +687,42 @@
     "nombre": "Centro Histórico de Santa Marta",
     "categoria": "historia",
     "categoriaEtiqueta": "Historia y cultura",
-    "descripcion": "Área urbana histórica de Santa Marta, con plazas, arquitectura y espacios culturales.",
+    "descripcion": "Sector urbano fundacional de Santa Marta, con arquitectura, plazas, espacios religiosos y museos. Cada establecimiento mantiene sus propios horarios y condiciones de visita.",
     "imagen": "assets/images/CentroHistorico.jpg",
     "zona": "Centro de Santa Marta",
     "horarios": {
-      "estado": "pendiente",
-      "detalle": "Consultar horario oficial; puede variar por temporada."
+      "estado": "sin_horario_unico_publicado",
+      "detalle": "No hay un horario único para recorrer el sector. Museos, templos y establecimientos tienen horarios propios; la fuente consultada no fija horas de acceso al espacio urbano."
     },
     "costos": {
-      "estado": "pendiente",
+      "estado": "gratuito_sector_publico",
       "moneda": "COP",
-      "entrada": "Consultar tarifa oficial."
+      "entrada": "Gratis recorrer el corregimiento o el sector público. Playas dentro del área protegida, tours, reservas y servicios específicos pueden requerir pago."
     },
-    "tipoAcceso": "Pendiente de confirmación oficial; el acceso al lugar no implica que todos los servicios sean gratuitos.",
-    "incluye": null,
-    "costosAdicionales": "No verificados. Confirma por separado transporte, lancha, parqueadero, guía u otros servicios con proveedores autorizados.",
+    "tipoAcceso": "Corregimiento o sector urbano abierto, sin una tarifa general de ingreso. Las actividades, predios y atractivos específicos pueden tener condiciones y cobros propios.",
+    "incluye": "Las fuentes consultadas no identifican servicios incluidos en una tarifa de ingreso. Esto no significa que no haya servicios disponibles por separado.",
+    "costosAdicionales": "No hay tarifa general para ingresar al corregimiento o recorrer el sector público. Transporte, tours, reservas, alimentación y actividades se contratan por separado y pueden tener costo.",
     "idealPara": "Historia y cultura",
     "recomendaciones": [
-      "Confirma horarios, disponibilidad y condiciones de visita con la entidad responsable."
+      "Consulta por separado horarios de museos, templos y actividades. Respeta los espacios de culto y patrimonio; establecimientos cercanos tienen horarios y consumos independientes."
     ],
-    "fuenteOficial": "https://www.santamarta.gov.co/",
+    "fuenteOficial": "https://indetur.gov.co/historia/",
     "fechaVerificacion": null,
-    "estadoVerificacion": "Pendiente de verificar horarios, tarifas y condiciones específicos."
+    "estadoVerificacion": "Se considera gratuito el ingreso al sector habitado; no existe una tarifa única de acceso publicada. Los sitios y servicios específicos dentro del sector pueden cobrar por separado.",
+    "fuentesOficiales": [
+      {
+        "nombre": "INDETUR · Historia de Santa Marta",
+        "url": "https://indetur.gov.co/historia/",
+        "alcance": "Referencia histórica institucional; no fija horarios de acceso a calles o establecimientos."
+      },
+      {
+        "nombre": "INDETUR · Plazas",
+        "url": "https://indetur.gov.co/plazas/",
+        "alcance": "Describe algunas plazas del centro histórico; no incluye horarios de comercios."
+      }
+    ],
+    "fechaConsultaFuentes": "2026-11-09",
+    "mediosPago": "No se requiere pago para ingresar al sector público. Consulta los medios de pago de cada tour, comercio o servicio con su proveedor."
   },
   {
     "id": "catedral-santa-marta",
@@ -541,28 +730,42 @@
     "nombre": "Catedral Basílica de Santa Marta",
     "categoria": "historia",
     "categoriaEtiqueta": "Historia y cultura",
-    "descripcion": "Templo histórico ubicado en el centro de Santa Marta.",
+    "descripcion": "Templo histórico del centro de Santa Marta. El acceso turístico debe coordinarse con los horarios de culto y las actividades litúrgicas del día.",
     "imagen": "assets/images/Catedral.jpg",
     "zona": "Centro Histórico de Santa Marta",
     "horarios": {
-      "estado": "pendiente",
-      "detalle": "Consultar horario oficial; puede variar por temporada."
+      "estado": "sin_horario_de_visita_publicado",
+      "detalle": "No se encontró un horario vigente de visita turística en la fuente consultada. Los horarios de culto no equivalen a horario de visita; confirma con la parroquia y respeta celebraciones."
     },
     "costos": {
-      "estado": "pendiente",
+      "estado": "gratuito_visita_general",
       "moneda": "COP",
-      "entrada": "Consultar tarifa oficial."
+      "entrada": "Gratis el ingreso para visita general. Las donaciones y actividades religiosas son opcionales."
     },
-    "tipoAcceso": "Pendiente de confirmación oficial; el acceso al lugar no implica que todos los servicios sean gratuitos.",
-    "incluye": null,
-    "costosAdicionales": "No verificados. Confirma por separado transporte, lancha, parqueadero, guía u otros servicios con proveedores autorizados.",
+    "tipoAcceso": "Templo religioso; el acceso de visitantes puede coincidir con celebraciones y estar sujeto a instrucciones de la parroquia.",
+    "incluye": "Las fuentes consultadas no identifican servicios incluidos en una tarifa de ingreso. Esto no significa que no haya servicios disponibles por separado.",
+    "costosAdicionales": "La visita general es gratuita. Donaciones y servicios religiosos son opcionales; no se verificaron precios.",
     "idealPara": "Historia y cultura",
     "recomendaciones": [
-      "Confirma horarios, disponibilidad y condiciones de visita con la entidad responsable."
+      "Consulta por separado horarios de museos, templos y actividades. Respeta los espacios de culto y patrimonio; establecimientos cercanos tienen horarios y consumos independientes."
     ],
-    "fuenteOficial": "https://www.santamarta.gov.co/",
+    "fuenteOficial": "https://indetur.gov.co/plazas/",
     "fechaVerificacion": null,
-    "estadoVerificacion": "Pendiente de verificar horarios, tarifas y condiciones específicos."
+    "estadoVerificacion": "El catálogo registra como gratuita la visita general. Los horarios de acceso turístico pueden variar por celebraciones y servicios religiosos.",
+    "fuentesOficiales": [
+      {
+        "nombre": "INDETUR · Plazas",
+        "url": "https://indetur.gov.co/plazas/",
+        "alcance": "Referencia de la plaza de la Catedral; no publica horarios de visita del templo."
+      },
+      {
+        "nombre": "INDETUR · Historia de Santa Marta",
+        "url": "https://indetur.gov.co/historia/",
+        "alcance": "Contexto histórico de la ciudad; no informa horarios de culto."
+      }
+    ],
+    "fechaConsultaFuentes": "2026-11-09",
+    "mediosPago": "No se requiere pago para la visita general. Cada actividad o servicio religioso puede tener condiciones propias."
   },
   {
     "id": "museo-del-oro-tairona",
@@ -570,28 +773,42 @@
     "nombre": "Museo del Oro Tairona – Casa de la Aduana",
     "categoria": "historia",
     "categoriaEtiqueta": "Museo",
-    "descripcion": "Museo del Banco de la República ubicado en la histórica Casa de la Aduana.",
+    "descripcion": "Museo de la Casa de la Aduana con colecciones y exposiciones sobre Santa Marta, el Magdalena y la Sierra Nevada, según la información institucional de INDETUR.",
     "imagen": "assets/images/MuseoDelOro.jpg",
     "zona": "Centro Histórico de Santa Marta",
     "horarios": {
-      "estado": "pendiente",
-      "detalle": "Consultar horario oficial; puede variar por temporada."
+      "estado": "publicado_por_indetur_sin_fecha_de_actualizacion",
+      "detalle": "INDETUR publica martes a sábado de 9:00 a. m. a 5:00 p. m. y domingos de 10:00 a. m. a 3:00 p. m. La página no indica cuándo se actualizó; confirma aperturas y festivos con el museo antes de ir."
     },
     "costos": {
-      "estado": "pendiente",
+      "estado": "gratuito_tarifa_vigente_por_confirmar",
       "moneda": "COP",
-      "entrada": "Consultar tarifa oficial."
+      "entrada": "Gratis el ingreso general al museo según la información aplicada al catálogo. Confirma con el Banco de la República si alguna exposición o actividad especial tiene condiciones distintas."
     },
-    "tipoAcceso": "Pendiente de confirmación oficial; el acceso al lugar no implica que todos los servicios sean gratuitos.",
-    "incluye": null,
-    "costosAdicionales": "No verificados. Confirma por separado transporte, lancha, parqueadero, guía u otros servicios con proveedores autorizados.",
+    "tipoAcceso": "Museo administrado por el Banco de la República; verifica con el museo las condiciones vigentes de ingreso y accesibilidad.",
+    "incluye": "Las fuentes consultadas no identifican servicios incluidos en una tarifa de ingreso. Esto no significa que no haya servicios disponibles por separado.",
+    "costosAdicionales": "No se confirmaron costos adicionales ni servicios incluidos. Consulta directamente al museo.",
     "idealPara": "Museo",
     "recomendaciones": [
-      "Confirma horarios, disponibilidad y condiciones de visita con la entidad responsable."
+      "INDETUR publica horario de visita, pero no muestra fecha de actualización. Confirma antes del viaje la apertura y las actividades especiales con el museo o el Banco de la República."
     ],
     "fuenteOficial": "https://www.banrepcultural.org/santa-marta/museo-del-oro-tairona",
     "fechaVerificacion": null,
-    "estadoVerificacion": "Pendiente de verificar horarios, tarifas y condiciones específicos."
+    "estadoVerificacion": "INDETUR publica horario, pero no muestra fecha de actualización ni tarifa. El catálogo registra el ingreso general como gratuito; confirma actividades especiales y condiciones vigentes con el museo.",
+    "fuentesOficiales": [
+      {
+        "nombre": "Banco de la República · Museo del Oro Tairona",
+        "url": "https://www.banrepcultural.org/santa-marta/museo-del-oro-tairona",
+        "alcance": "Página del administrador del museo; el acceso automatizado fue bloqueado durante la consulta."
+      },
+      {
+        "nombre": "INDETUR · Museos",
+        "url": "https://indetur.gov.co/museos/",
+        "alcance": "Publica horario de visita, pero no muestra fecha de actualización ni tarifa."
+      }
+    ],
+    "fechaConsultaFuentes": "2026-11-09",
+    "mediosPago": "No se requiere pago para el ingreso general. Si el museo ofrece actividades especiales, consulta previamente sus condiciones y medios de pago."
   },
   {
     "id": "parque-de-bolivar",
@@ -599,28 +816,42 @@
     "nombre": "Parque de Bolívar",
     "categoria": "historia",
     "categoriaEtiqueta": "Plaza histórica",
-    "descripcion": "Plaza pública del centro histórico, cercana a la bahía y a la Casa de la Aduana.",
+    "descripcion": "Plaza histórica del centro de Santa Marta, antes Plaza de la Constitución. INDETUR relaciona el sitio con la Casa de la Aduana y la historia de Simón Bolívar.",
     "imagen": "assets/images/ParqueBolivar.jpg",
     "zona": "Centro Histórico de Santa Marta",
     "horarios": {
-      "estado": "pendiente",
-      "detalle": "Consultar horario oficial; puede variar por temporada."
+      "estado": "sin_horario_especifico_publicado",
+      "detalle": "La fuente institucional no publica un horario de acceso para este espacio público. Eventos, obras o disposiciones locales pueden afectar su disponibilidad; los negocios cercanos tienen horarios independientes."
     },
     "costos": {
-      "estado": "pendiente",
+      "estado": "gratuito_espacio_publico",
       "moneda": "COP",
-      "entrada": "Consultar tarifa oficial."
+      "entrada": "Gratis el acceso al espacio público. Restaurantes, comercios y actividades privadas cercanas se pagan por separado."
     },
-    "tipoAcceso": "Pendiente de confirmación oficial; el acceso al lugar no implica que todos los servicios sean gratuitos.",
-    "incluye": null,
-    "costosAdicionales": "No verificados. Confirma por separado transporte, lancha, parqueadero, guía u otros servicios con proveedores autorizados.",
+    "tipoAcceso": "Espacio público urbano de acceso gratuito. Eventos, obras o disposiciones locales pueden modificar temporalmente su uso.",
+    "incluye": "Las fuentes consultadas no identifican servicios incluidos en una tarifa de ingreso. Esto no significa que no haya servicios disponibles por separado.",
+    "costosAdicionales": "No hay tarifa de ingreso al espacio público. Consumos en restaurantes, comercios y actividades privadas son opcionales y tienen precios propios no verificados.",
     "idealPara": "Plaza histórica",
     "recomendaciones": [
-      "Confirma horarios, disponibilidad y condiciones de visita con la entidad responsable."
+      "El horario de los restaurantes y comercios no equivale al del espacio público. Revisa si hay eventos, obras o restricciones locales y confirma directamente cualquier consumo o servicio."
     ],
-    "fuenteOficial": "https://www.santamarta.gov.co/",
+    "fuenteOficial": "https://indetur.gov.co/historia/",
     "fechaVerificacion": null,
-    "estadoVerificacion": "Pendiente de verificar horarios, tarifas y condiciones específicos."
+    "estadoVerificacion": "El ingreso al espacio público se registra como gratuito. La fuente institucional consultada no publica horario específico ni condiciones diarias; comercios y eventos tienen reglas independientes.",
+    "fuentesOficiales": [
+      {
+        "nombre": "INDETUR · Historia de Santa Marta",
+        "url": "https://indetur.gov.co/historia/",
+        "alcance": "Identifica el actual Parque de Bolívar y su contexto; no publica horario de acceso."
+      },
+      {
+        "nombre": "INDETUR · Monumentos",
+        "url": "https://indetur.gov.co/monumentos/",
+        "alcance": "Describe elementos patrimoniales del parque; no informa tarifas."
+      }
+    ],
+    "fechaConsultaFuentes": "2026-11-09",
+    "mediosPago": "No se requiere pago para ingresar al espacio público. Cada comercio o actividad privada define por separado sus medios de pago."
   },
   {
     "id": "taganga",
@@ -628,34 +859,48 @@
     "nombre": "Taganga",
     "categoria": "otros",
     "categoriaEtiqueta": "Pueblo costero",
-    "descripcion": "Pueblo pesquero y bahía al norte del centro de Santa Marta.",
+    "descripcion": "Corregimiento costero al norte del centro de Santa Marta, con bahía, playa y prestadores de actividades náuticas. El estado del mar y la oferta de servicios cambian.",
     "imagen": "assets/images/Taganga.jpg",
     "zona": "Corregimiento de Taganga, Santa Marta",
     "horarios": {
-      "estado": "pendiente",
-      "detalle": "Consultar horario oficial; puede variar por temporada."
+      "estado": "sin_horario_unico_publicado",
+      "detalle": "No hay un horario único para recorrer el corregimiento. Horarios de playas, tours y establecimientos son independientes y deben confirmarse con sus responsables."
     },
     "costos": {
-      "estado": "pendiente",
+      "estado": "gratuito_sector_publico",
       "moneda": "COP",
-      "entrada": "Consultar tarifa oficial."
+      "entrada": "Gratis recorrer el corregimiento o el sector público. Playas dentro del área protegida, tours, reservas y servicios específicos pueden requerir pago."
     },
-    "tipoAcceso": "Pendiente de confirmación oficial; el acceso al lugar no implica que todos los servicios sean gratuitos.",
-    "incluye": null,
-    "costosAdicionales": "No verificados. Confirma por separado transporte, lancha, parqueadero, guía u otros servicios con proveedores autorizados.",
+    "tipoAcceso": "Corregimiento o sector urbano abierto, sin una tarifa general de ingreso. Las actividades, predios y atractivos específicos pueden tener condiciones y cobros propios.",
+    "incluye": "Las fuentes consultadas no identifican servicios incluidos en una tarifa de ingreso. Esto no significa que no haya servicios disponibles por separado.",
+    "costosAdicionales": "No hay tarifa general para ingresar al corregimiento o recorrer el sector público. Transporte, tours, reservas, alimentación y actividades se contratan por separado y pueden tener costo.",
     "idealPara": "Pueblo costero",
     "recomendaciones": [
-      "Confirma condiciones de acceso y disponibilidad con fuentes locales antes de la visita."
+      "No asumas un horario común para todo el corregimiento o el centro: confirma por separado cada museo, templo, tour o negocio. Verifica transporte de regreso y acuerda previamente cualquier servicio contratado."
     ],
-    "fuenteOficial": "https://www.santamarta.gov.co/",
+    "fuenteOficial": "https://indetur.gov.co/2024/08/indetur-promueve-una-exitosa-jornada-de-limpieza-en-la-bahia-de-taganga/",
     "fechaVerificacion": null,
-    "estadoVerificacion": "Pendiente de verificar horarios, tarifas y condiciones específicos.",
+    "estadoVerificacion": "Se considera gratuito el ingreso al sector habitado; no existe una tarifa única de acceso publicada. Los sitios y servicios específicos dentro del sector pueden cobrar por separado.",
     "latitud": 11.2683918,
     "longitud": -74.189423,
     "nivelZoom": 14,
     "precisionCoordenadas": "poblado",
     "fuenteCoordenadas": "https://www.openstreetmap.org/?mlat=11.2683918&mlon=-74.189423#map=14/11.2683918/-74.189423",
-    "fechaCoordenadasVerificadas": "2026-10-26"
+    "fechaCoordenadasVerificadas": "2026-10-26",
+    "fuentesOficiales": [
+      {
+        "nombre": "INDETUR · Bahía de Taganga",
+        "url": "https://indetur.gov.co/2024/08/indetur-promueve-una-exitosa-jornada-de-limpieza-en-la-bahia-de-taganga/",
+        "alcance": "Referencia institucional ambiental de 2024; no informa estado actual del mar, acceso ni precios."
+      },
+      {
+        "nombre": "INDETUR · Playas y reservas naturales",
+        "url": "https://indetur.gov.co/playas-y-reservas-naturales/",
+        "alcance": "Panorama general de la oferta costera; no publica horarios ni tarifas."
+      }
+    ],
+    "fechaConsultaFuentes": "2026-11-09",
+    "mediosPago": "No se requiere pago para ingresar al sector público. Consulta los medios de pago de cada tour, comercio o servicio con su proveedor."
   },
   {
     "id": "marina-santa-marta",
@@ -663,28 +908,37 @@
     "nombre": "Marina Internacional de Santa Marta",
     "categoria": "otros",
     "categoriaEtiqueta": "Marina",
-    "descripcion": "Marina situada junto a la bahía y al centro de Santa Marta.",
+    "descripcion": "Marina ubicada junto a la bahía y el centro de Santa Marta. INDETUR publica su dirección y teléfono, pero no confirma que las instalaciones sean de libre acceso turístico.",
     "imagen": "assets/images/Marina.jpg",
     "zona": "Bahía de Santa Marta",
     "horarios": {
-      "estado": "pendiente",
-      "detalle": "Consultar horario oficial; puede variar por temporada."
+      "estado": "sin_horario_de_visita_publicado",
+      "detalle": "INDETUR publica dirección y contacto de la Marina, pero no un horario de visita para el público. Consulta a la administración antes de ir."
     },
     "costos": {
-      "estado": "pendiente",
+      "estado": "sin_tarifa_de_visita_publicada",
       "moneda": "COP",
-      "entrada": "Consultar tarifa oficial."
+      "entrada": "No se confirmó una tarifa de visita pública. Los servicios de marina pueden tener costos propios; consulta a la administración."
     },
-    "tipoAcceso": "Pendiente de confirmación oficial; el acceso al lugar no implica que todos los servicios sean gratuitos.",
-    "incluye": null,
-    "costosAdicionales": "No verificados. Confirma por separado transporte, lancha, parqueadero, guía u otros servicios con proveedores autorizados.",
+    "tipoAcceso": "Instalación náutica; la dirección publicada no garantiza libre acceso a muelles o áreas operativas. Solicita autorización e información de visita a la administración.",
+    "incluye": "Las fuentes consultadas no identifican servicios incluidos en una tarifa de ingreso. Esto no significa que no haya servicios disponibles por separado.",
+    "costosAdicionales": "No se verificaron tarifas de servicios náuticos, parqueo ni acceso. Consulta la lista de precios vigente directamente con la Marina.",
     "idealPara": "Marina",
     "recomendaciones": [
-      "Confirma condiciones de acceso y disponibilidad con fuentes locales antes de la visita."
+      "Contacta a la administración antes de planear una visita: la dirección publicada no garantiza acceso a muelles o instalaciones. Confirma por separado servicios y posibles cobros."
     ],
-    "fuenteOficial": "https://www.santamarta.gov.co/",
+    "fuenteOficial": "https://indetur.gov.co/como-llegar-a-santa-marta/",
     "fechaVerificacion": null,
-    "estadoVerificacion": "Pendiente de verificar horarios, tarifas y condiciones específicos."
+    "estadoVerificacion": "La fuente institucional consultada informa dirección y teléfono, pero no acceso turístico, horarios ni tarifas.",
+    "fuentesOficiales": [
+      {
+        "nombre": "INDETUR · Cómo llegar a Santa Marta",
+        "url": "https://indetur.gov.co/como-llegar-a-santa-marta/",
+        "alcance": "Publica dirección y contacto de la Marina; no confirma acceso público, horarios de visita ni tarifas."
+      }
+    ],
+    "fechaConsultaFuentes": "2026-11-09",
+    "mediosPago": "No se confirmaron medios de pago para los servicios de la Marina. Consulta con su administración antes de contratar."
   },
   {
     "id": "minca",
@@ -692,34 +946,43 @@
     "nombre": "Minca",
     "categoria": "otros",
     "categoriaEtiqueta": "Corregimiento de montaña",
-    "descripcion": "Poblado de montaña en la Sierra Nevada, dentro del distrito de Santa Marta.",
+    "descripcion": "Corregimiento de montaña en la Sierra Nevada y destino de naturaleza. INDETUR destaca sus bosques, ríos, biodiversidad y la importancia de respetar senderos y comunidades.",
     "imagen": "assets/images/Minca.jpg",
     "zona": "Corregimiento de Minca, Santa Marta",
     "horarios": {
-      "estado": "pendiente",
-      "detalle": "Consultar horario oficial; puede variar por temporada."
+      "estado": "sin_horario_unico_publicado",
+      "detalle": "No hay un horario único para recorrer el corregimiento. Horarios de playas, tours y establecimientos son independientes y deben confirmarse con sus responsables."
     },
     "costos": {
-      "estado": "pendiente",
+      "estado": "gratuito_sector_publico",
       "moneda": "COP",
-      "entrada": "Consultar tarifa oficial."
+      "entrada": "Gratis recorrer el corregimiento o el sector público. Playas dentro del área protegida, tours, reservas y servicios específicos pueden requerir pago."
     },
-    "tipoAcceso": "Pendiente de confirmación oficial; el acceso al lugar no implica que todos los servicios sean gratuitos.",
-    "incluye": null,
-    "costosAdicionales": "No verificados. Confirma por separado transporte, lancha, parqueadero, guía u otros servicios con proveedores autorizados.",
+    "tipoAcceso": "Corregimiento o sector urbano abierto, sin una tarifa general de ingreso. Las actividades, predios y atractivos específicos pueden tener condiciones y cobros propios.",
+    "incluye": "Las fuentes consultadas no identifican servicios incluidos en una tarifa de ingreso. Esto no significa que no haya servicios disponibles por separado.",
+    "costosAdicionales": "No hay tarifa general para ingresar al corregimiento o recorrer el sector público. Transporte, tours, reservas, alimentación y actividades se contratan por separado y pueden tener costo.",
     "idealPara": "Corregimiento de montaña",
     "recomendaciones": [
-      "Confirma condiciones de acceso y disponibilidad con fuentes locales antes de la visita."
+      "No asumas un horario común para todo el corregimiento o el centro: confirma por separado cada museo, templo, tour o negocio. Verifica transporte de regreso y acuerda previamente cualquier servicio contratado."
     ],
-    "fuenteOficial": "https://www.santamarta.gov.co/",
+    "fuenteOficial": "https://indetur.gov.co/2024/09/minca-y-la-sierra-nevada-el-pulmon-verde-de-santa-marta/",
     "fechaVerificacion": null,
-    "estadoVerificacion": "Pendiente de verificar horarios, tarifas y condiciones específicos.",
+    "estadoVerificacion": "Se considera gratuito el ingreso al sector habitado; no existe una tarifa única de acceso publicada. Los sitios y servicios específicos dentro del sector pueden cobrar por separado.",
     "latitud": 11.1427624,
     "longitud": -74.1169296,
     "nivelZoom": 14,
     "precisionCoordenadas": "poblado",
     "fuenteCoordenadas": "https://www.openstreetmap.org/?mlat=11.1427624&mlon=-74.1169296#map=14/11.1427624/-74.1169296",
-    "fechaCoordenadasVerificadas": "2026-10-26"
+    "fechaCoordenadasVerificadas": "2026-10-26",
+    "fuentesOficiales": [
+      {
+        "nombre": "INDETUR · Minca y Sierra Nevada",
+        "url": "https://indetur.gov.co/2024/09/minca-y-la-sierra-nevada-el-pulmon-verde-de-santa-marta/",
+        "alcance": "Describe el destino y recomienda turismo responsable; no publica horario ni tarifa general del corregimiento."
+      }
+    ],
+    "fechaConsultaFuentes": "2026-11-09",
+    "mediosPago": "No se requiere pago para ingresar al sector público. Consulta los medios de pago de cada tour, comercio o servicio con su proveedor."
   },
   {
     "id": "parque-de-los-novios",
@@ -727,28 +990,42 @@
     "nombre": "Parque de los Novios",
     "categoria": "otros",
     "categoriaEtiqueta": "Plaza urbana",
-    "descripcion": "Plaza pública del centro histórico, rodeada por calles comerciales y culturales.",
+    "descripcion": "Plaza del centro histórico rodeada de establecimientos. INDETUR identifica allí el monumento a Francisco de Paula Santander; los horarios de los negocios no son el horario del parque.",
     "imagen": "assets/images/ParqueDeLosNovios.jpg",
     "zona": "Centro Histórico de Santa Marta",
     "horarios": {
-      "estado": "pendiente",
-      "detalle": "Consultar horario oficial; puede variar por temporada."
+      "estado": "sin_horario_especifico_publicado",
+      "detalle": "La fuente institucional no publica un horario de acceso para este espacio público. Eventos, obras o disposiciones locales pueden afectar su disponibilidad; los negocios cercanos tienen horarios independientes."
     },
     "costos": {
-      "estado": "pendiente",
+      "estado": "gratuito_espacio_publico",
       "moneda": "COP",
-      "entrada": "Consultar tarifa oficial."
+      "entrada": "Gratis el acceso al espacio público. Restaurantes, comercios y actividades privadas cercanas se pagan por separado."
     },
-    "tipoAcceso": "Pendiente de confirmación oficial; el acceso al lugar no implica que todos los servicios sean gratuitos.",
-    "incluye": null,
-    "costosAdicionales": "No verificados. Confirma por separado transporte, lancha, parqueadero, guía u otros servicios con proveedores autorizados.",
+    "tipoAcceso": "Espacio público urbano de acceso gratuito. Eventos, obras o disposiciones locales pueden modificar temporalmente su uso.",
+    "incluye": "Las fuentes consultadas no identifican servicios incluidos en una tarifa de ingreso. Esto no significa que no haya servicios disponibles por separado.",
+    "costosAdicionales": "No hay tarifa de ingreso al espacio público. Consumos en restaurantes, comercios y actividades privadas son opcionales y tienen precios propios no verificados.",
     "idealPara": "Plaza urbana",
     "recomendaciones": [
-      "Confirma condiciones de acceso y disponibilidad con fuentes locales antes de la visita."
+      "El horario de los restaurantes y comercios no equivale al del espacio público. Revisa si hay eventos, obras o restricciones locales y confirma directamente cualquier consumo o servicio."
     ],
-    "fuenteOficial": "https://www.santamarta.gov.co/",
+    "fuenteOficial": "https://indetur.gov.co/monumentos/",
     "fechaVerificacion": null,
-    "estadoVerificacion": "Pendiente de verificar horarios, tarifas y condiciones específicos."
+    "estadoVerificacion": "El ingreso al espacio público se registra como gratuito. La fuente institucional consultada no publica horario específico ni condiciones diarias; comercios y eventos tienen reglas independientes.",
+    "fuentesOficiales": [
+      {
+        "nombre": "INDETUR · Monumentos",
+        "url": "https://indetur.gov.co/monumentos/",
+        "alcance": "Ubica el monumento a Santander en el parque conocido como Parque de los Novios; no publica horario del espacio público."
+      },
+      {
+        "nombre": "INDETUR · Plazas",
+        "url": "https://indetur.gov.co/plazas/",
+        "alcance": "Referencia de plazas del centro; no informa horarios de restaurantes."
+      }
+    ],
+    "fechaConsultaFuentes": "2026-11-09",
+    "mediosPago": "No se requiere pago para ingresar al espacio público. Cada comercio o actividad privada define por separado sus medios de pago."
   },
   {
     "id": "camellon-de-la-bahia",
@@ -756,27 +1033,36 @@
     "nombre": "Camellón de la Bahía",
     "categoria": "otros",
     "categoriaEtiqueta": "Paseo costero",
-    "descripcion": "Paseo público frente a la bahía de Santa Marta.",
+    "descripcion": "Paseo costero junto a la bahía de Santa Marta. INDETUR destaca el monumento a Rodrigo de Bastidas ubicado en el Camellón.",
     "imagen": "assets/images/Camellon.jpg",
     "zona": "Centro de Santa Marta",
     "horarios": {
-      "estado": "pendiente",
-      "detalle": "Consultar horario oficial; puede variar por temporada."
+      "estado": "sin_horario_especifico_publicado",
+      "detalle": "La fuente institucional no publica un horario de acceso para este espacio público. Eventos, obras o disposiciones locales pueden afectar su disponibilidad; los negocios cercanos tienen horarios independientes."
     },
     "costos": {
-      "estado": "pendiente",
+      "estado": "gratuito_espacio_publico",
       "moneda": "COP",
-      "entrada": "Consultar tarifa oficial."
+      "entrada": "Gratis el acceso al espacio público. Restaurantes, comercios y actividades privadas cercanas se pagan por separado."
     },
-    "tipoAcceso": "Pendiente de confirmación oficial; el acceso al lugar no implica que todos los servicios sean gratuitos.",
-    "incluye": null,
-    "costosAdicionales": "No verificados. Confirma por separado transporte, lancha, parqueadero, guía u otros servicios con proveedores autorizados.",
+    "tipoAcceso": "Espacio público urbano de acceso gratuito. Eventos, obras o disposiciones locales pueden modificar temporalmente su uso.",
+    "incluye": "Las fuentes consultadas no identifican servicios incluidos en una tarifa de ingreso. Esto no significa que no haya servicios disponibles por separado.",
+    "costosAdicionales": "No hay tarifa de ingreso al espacio público. Consumos en restaurantes, comercios y actividades privadas son opcionales y tienen precios propios no verificados.",
     "idealPara": "Paseo costero",
     "recomendaciones": [
-      "Confirma condiciones de acceso y disponibilidad con fuentes locales antes de la visita."
+      "El horario de los restaurantes y comercios no equivale al del espacio público. Revisa si hay eventos, obras o restricciones locales y confirma directamente cualquier consumo o servicio."
     ],
-    "fuenteOficial": "https://www.santamarta.gov.co/",
+    "fuenteOficial": "https://indetur.gov.co/monumentos/",
     "fechaVerificacion": null,
-    "estadoVerificacion": "Pendiente de verificar horarios, tarifas y condiciones específicos."
+    "estadoVerificacion": "El ingreso al espacio público se registra como gratuito. La fuente institucional consultada no publica horario específico ni condiciones diarias; comercios y eventos tienen reglas independientes.",
+    "fuentesOficiales": [
+      {
+        "nombre": "INDETUR · Monumentos",
+        "url": "https://indetur.gov.co/monumentos/",
+        "alcance": "Describe el monumento de Rodrigo de Bastidas en el Camellón; no publica horario de acceso ni tarifas."
+      }
+    ],
+    "fechaConsultaFuentes": "2026-11-09",
+    "mediosPago": "No se requiere pago para ingresar al espacio público. Cada comercio o actividad privada define por separado sus medios de pago."
   }
 ]

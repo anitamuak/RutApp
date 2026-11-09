@@ -1,0 +1,36 @@
+[
+  {
+    "placeId": "playa-los-angeles",
+    "file": "playa-los-angeles.jpg",
+    "source": "https://a.cdn-hotels.com/gdcs/production119/d853/e2fd2681-f71b-4a3a-a81f-092ef57d9c23.jpg",
+    "creator": "No indicado en la fuente directa",
+    "license": "Permiso de reutilización confirmado por el usuario; licencia original no especificada",
+    "authorization": "El usuario confirmó autorización para copiar y publicar esta imagen en RutApp el 2026-11-09."
+  },
+  {
+    "placeId": "playa-bello-horizonte",
+    "file": "playa-bello-horizonte.webp",
+    "source": "https://tse3.mm.bing.net/th/id/OIP.JCP990bL43uDVC4ZC8GoAQHaFj?r=0&rs=1&pid=ImgDetMain&o=7&rm=3",
+    "creator": "No indicado por la miniatura de Bing",
+    "license": "Permiso de reutilización confirmado por el usuario; licencia original no especificada",
+    "authorization": "El usuario confirmó autorización para copiar y publicar esta imagen en RutApp el 2026-11-09."
+  },
+  {
+    "placeId": "playa-los-naranjos",
+    "file": "playa-los-naranjos.jpg",
+    "source": "https://static.wixstatic.com/media/c40ccb_1879cc3e72ab4f7aa259995b7a32c65f~mv2_d_4000_2250_s_2.jpg/v1/fill/w_881,h_499,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/DJI_0463_JPG.jpg",
+    "creator": "No indicado en la fuente directa",
+    "license": "Permiso de reutilización confirmado por el usuario; licencia original no especificada",
+    "authorization": "El usuario confirmó autorización para copiar y publicar esta imagen en RutApp el 2026-11-09."
+  },
+  {
+    "placeId": "pozo-azul",
+    "file": "pozo-azul.jpg",
+    "source": "https://www.flickr.com/photos/80547277@N00/6844479621",
+    "creator": "eliduke",
+    "title": "Colombia: Hike to Pozo Azul Waterfall near Minca",
+    "license": "CC BY-SA 2.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.0/",
+    "modification": "Archivo JPEG local descargado desde Flickr; sin recorte ni retoque."
+  }
+]

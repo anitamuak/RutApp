@@ -33,19 +33,11 @@
     visual.className = "place-card__visual";
     if (!place.image) visual.classList.add("place-card__visual--empty");
 
-    if (place.image) {
-      const image = document.createElement("img");
-      image.className = "place-card__image";
-      image.src = `../${place.image}`;
-      image.alt = place.name;
-      image.loading = "lazy";
-      image.addEventListener("error", () => {
-        image.hidden = true;
-        visual.classList.add("place-card__visual--empty");
-        RutApp.setStatus(status, `No se pudo cargar la imagen de ${place.name}. Se muestra una alternativa neutra.`, "error");
-      }, { once: true });
-      visual.append(image);
-    }
+    const image = document.createElement("img");
+    image.className = "place-card__image";
+    image.loading = "lazy";
+    RutApp.setPlaceImage(image, place.image ? `../${place.image}` : null, place.name);
+    visual.append(image);
 
     const favorite = document.createElement("button");
     favorite.className = "place-card__favorite";

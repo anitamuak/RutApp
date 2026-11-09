@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" role="img" aria-labelledby="title description">
+  <title id="title">Fotografía no disponible</title>
+  <desc id="description">Ilustración temporal con olas, montañas y un indicador de imagen no disponible.</desc>
+  <defs>
+    <linearGradient id="sky" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#d9eff8"/>
+      <stop offset="1" stop-color="#9fcfe3"/>
+    </linearGradient>
+    <linearGradient id="sea" x1="0" x2="0" y1="0" y2="1">
+      <stop offset="0" stop-color="#68b5d1"/>
+      <stop offset="1" stop-color="#247ca5"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="675" fill="url(#sky)"/>
+  <path d="m0 390 176-151 139 111 185-180 191 206 130-104 166 142 213-170v142H0Z" fill="#7aaebc" opacity=".72"/>
+  <path d="M0 416c94-31 171-31 258 0s174 31 261 0 174-31 261 0 174 31 261 0 93-31 159 0v259H0Z" fill="url(#sea)"/>
+  <path d="M0 475c96-28 173-28 260 0s173 28 260 0 174-28 261 0 173 28 260 0 92-28 159 0" fill="none" stroke="#eaf8fc" stroke-linecap="round" stroke-width="12" opacity=".8"/>
+  <g fill="#fff" font-family="Arial, sans-serif" text-anchor="middle">
+    <rect x="510" y="500" width="180" height="112" rx="18" fill="#174e70" opacity=".92"/>
+    <path d="M559 541h82l13 17v33h-108v-33Zm16-12h43l10 12h-63Z" fill="none" stroke="#fff" stroke-linejoin="round" stroke-width="7"/>
+    <circle cx="602" cy="573" r="13" fill="none" stroke="#fff" stroke-width="7"/>
+    <text x="600" y="643" font-size="27" font-weight="700">Fotografía no disponible</text>
+  </g>
+</svg>
