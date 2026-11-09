@@ -682,7 +682,7 @@
 }
 
 .trip-nearby-popup__link {
-  color: #0879d1;
+  color: var(--color-primary);
   font-size: 13px;
   font-weight: 700;
   text-decoration: underline;
@@ -722,6 +722,13 @@
   background: #e54869;
 }
 
+.trip-nearby-marker.is-route-waypoint {
+  background: #e88b24;
+}
+
+.trip-nearby-marker.is-route-waypoint.is-favorite {
+  background: #e54869;
+}
 
 /* ===== Pantalla de ruta seleccionada ===== */
 

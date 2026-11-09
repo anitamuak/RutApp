@@ -1,8 +1,8 @@
 body {
   margin: 0;
-  background: #eef4f9;
+  background: var(--color-background);
   font-family: inherit;
-  color: #17324d;
+  color: var(--color-text);
 }
 
 .confirm-route-page {
@@ -23,7 +23,8 @@ body {
   height: 44px;
   border-radius: 50%;
   border: none;
-  background: #fff;
+  background: var(--color-surface);
+  color: var(--color-blue-dark);
   font-size: 22px;
   cursor: pointer;
 }
@@ -41,12 +42,12 @@ body {
 
 .confirm-route-brand strong {
   font-size: 18px;
-  color: #0d4d91;
+  color: var(--color-blue-dark);
 }
 
 .confirm-route-card {
-  background: #fff;
-  border: 1px solid #dbe7f2;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
   border-radius: 24px;
   padding: 20px;
   box-shadow: 0 8px 24px rgba(16, 48, 84, 0.06);
@@ -55,12 +56,12 @@ body {
 .confirm-route-card h1 {
   margin: 0 0 8px;
   font-size: 20px;
-  color: #0b4d91;
+  color: var(--color-blue-dark);
 }
 
 .confirm-route-subtitle {
   margin: 0 0 16px;
-  color: #69839d;
+  color: var(--color-muted);
   line-height: 1.5;
 }
 
@@ -71,7 +72,7 @@ body {
 .confirm-route-section h2 {
   margin: 0 0 12px;
   font-size: 18px;
-  color: #0b4d91;
+  color: var(--color-blue-dark);
 }
 
 .confirm-route-actions {
@@ -95,9 +96,9 @@ body {
 }
 
 .confirm-route-actions .secondary {
-  background: #fff;
-  color: #0b4d91;
-  border: 1px solid #cfe0ee;
+  background: var(--color-surface);
+  color: var(--color-blue-dark);
+  border: 1px solid var(--color-border);
 }
 
 .confirm-route-actions .primary {
@@ -110,7 +111,7 @@ body {
   margin-top: 14px;
   font-size: 12px;
   line-height: 1.5;
-  color: #6f879f;
+  color: var(--color-muted);
 }
 
 
@@ -153,14 +154,14 @@ body {
 .confirm-route-bus {
   min-width: 0;
   padding: 16px;
-  background: #f7faff;
-  border: 1px solid #dce8f5;
+  background: var(--color-surface-soft);
+  border: 1px solid var(--color-border);
   border-radius: 18px;
 }
 
 .confirm-route-bus__title {
   margin: 0 0 16px;
-  color: #074b90;
+  color: var(--color-blue-dark);
   font-size: 17px;
   line-height: 1.4;
 }
@@ -176,7 +177,7 @@ body {
 
 .confirm-route-media h4 {
   margin: 0 0 10px;
-  color: #526f8c;
+  color: var(--color-muted);
   font-size: 13px;
   font-weight: 600;
 }
@@ -191,8 +192,8 @@ body {
   object-position: center;
   margin: 0 auto;
   padding: 10px;
-  background: #ffffff;
-  border: 1px solid #dce8f5;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
   border-radius: 14px;
 }
 
@@ -205,11 +206,11 @@ body {
   min-height: 120px;
   padding: 16px;
   margin: 0;
-  color: #6684a1;
+  color: var(--color-muted);
   text-align: center;
   font-size: 13px;
-  background: #eaf2fa;
-  border: 1px dashed #c7d9ea;
+  background: var(--color-surface-soft);
+  border: 1px dashed var(--color-border);
   border-radius: 14px;
 }
 
@@ -227,8 +228,8 @@ body {
   flex-direction: column;
   gap: 6px;
   padding: 12px 14px;
-  background: #ffffff;
-  border: 1px solid #e0eaf4;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
   border-left: 4px solid #0879d1;
   border-radius: 12px;
 }
@@ -238,12 +239,12 @@ body {
 }
 
 .confirm-route-stop strong {
-  color: #0b4d91;
+  color: var(--color-blue-dark);
   font-size: 13px;
 }
 
 .confirm-route-stop span {
-  color: #526b84;
+  color: var(--color-muted);
   font-size: 13px;
   line-height: 1.5;
 }
@@ -280,8 +281,8 @@ body {
   align-items: stretch;
   gap: 12px;
   padding: 10px;
-  background: #f7faff;
-  border: 1px solid #dce8f5;
+  background: var(--color-surface-soft);
+  border: 1px solid var(--color-border);
   border-radius: 16px;
   min-width: 0;
 }
@@ -305,17 +306,17 @@ body {
 .confirm-route-place__info h3 {
   margin: 0;
   font-size: 15px;
-  color: #0b4d91;
+  color: var(--color-blue-dark);
 }
 
 .confirm-route-place__info p {
   margin: 0;
   font-size: 12px;
-  color: #71879e;
+  color: var(--color-muted);
 }
 
 .confirm-route-place__distance {
-  color: #385d7e;
+  color: var(--color-muted);
   font-size: 12px;
   line-height: 1.4;
 }
@@ -329,7 +330,7 @@ body {
 .confirm-route-place__link {
   margin-top: auto;
   padding-top: 7px;
-  color: #0869ba;
+  color: var(--color-blue-deep);
   font-size: 13px;
   font-weight: 700;
   text-decoration: none;

@@ -21,7 +21,7 @@
   const mapHint = document.querySelector("#map-hint");
   const clearDestination = document.querySelector("#clear-destination");
   const demoExamples = [
-    { id: "unimagRodadero", label: "Universidad–Rodadero" },
+    { id: "unimagRodadero", label: "Universidad–Playa El Rodadero" },
     { id: "parqueTaganga", label: "Parque de los Novios–Playa de Taganga" },
     { id: "oceanBuenavista", label: "Ocean Mall → Buenavista" }
   ];
