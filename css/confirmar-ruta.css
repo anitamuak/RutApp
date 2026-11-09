@@ -1,0 +1,344 @@
+body {
+  margin: 0;
+  background: #eef4f9;
+  font-family: inherit;
+  color: #17324d;
+}
+
+.confirm-route-page {
+  max-width: 430px;
+  margin: 0 auto;
+  padding: 18px 16px 32px;
+}
+
+.confirm-route-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 18px;
+}
+
+.confirm-route-back {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: none;
+  background: #fff;
+  font-size: 22px;
+  cursor: pointer;
+}
+
+.confirm-route-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.confirm-route-brand img {
+  width: 38px;
+  height: 38px;
+}
+
+.confirm-route-brand strong {
+  font-size: 18px;
+  color: #0d4d91;
+}
+
+.confirm-route-card {
+  background: #fff;
+  border: 1px solid #dbe7f2;
+  border-radius: 24px;
+  padding: 20px;
+  box-shadow: 0 8px 24px rgba(16, 48, 84, 0.06);
+}
+
+.confirm-route-card h1 {
+  margin: 0 0 8px;
+  font-size: 20px;
+  color: #0b4d91;
+}
+
+.confirm-route-subtitle {
+  margin: 0 0 16px;
+  color: #69839d;
+  line-height: 1.5;
+}
+
+.confirm-route-section {
+  margin-top: 20px;
+}
+
+.confirm-route-section h2 {
+  margin: 0 0 12px;
+  font-size: 18px;
+  color: #0b4d91;
+}
+
+.confirm-route-actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-top: 24px;
+}
+
+.confirm-route-actions a,
+.confirm-route-actions button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 52px;
+  border-radius: 14px;
+  font-weight: 700;
+  text-decoration: none;
+  cursor: pointer;
+  font-size: 15px;
+}
+
+.confirm-route-actions .secondary {
+  background: #fff;
+  color: #0b4d91;
+  border: 1px solid #cfe0ee;
+}
+
+.confirm-route-actions .primary {
+  background: #0b5cab;
+  color: #fff;
+  border: none;
+}
+
+.confirm-route-note {
+  margin-top: 14px;
+  font-size: 12px;
+  line-height: 1.5;
+  color: #6f879f;
+}
+
+
+/* ===== Ajustes generales ===== */
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  overflow-x: hidden;
+}
+
+#confirm-route-root {
+  width: 100%;
+  max-width: 480px;
+  margin: 0 auto;
+}
+
+.confirm-route-page {
+  width: 100%;
+  max-width: 480px;
+  margin: 0 auto;
+}
+
+.confirm-route-card {
+  width: 100%;
+  min-width: 0;
+}
+
+/* ===== Tarjetas de cada bus ===== */
+
+.confirm-route-buses {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.confirm-route-bus {
+  min-width: 0;
+  padding: 16px;
+  background: #f7faff;
+  border: 1px solid #dce8f5;
+  border-radius: 18px;
+}
+
+.confirm-route-bus__title {
+  margin: 0 0 16px;
+  color: #074b90;
+  font-size: 17px;
+  line-height: 1.4;
+}
+
+/* ===== Carteles y fotografías ===== */
+
+.confirm-route-media {
+  width: 100%;
+  min-width: 0;
+  margin-bottom: 16px;
+  overflow: hidden;
+}
+
+.confirm-route-media h4 {
+  margin: 0 0 10px;
+  color: #526f8c;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.confirm-route-poster,
+.confirm-route-vehicle {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  height: 180px;
+  object-fit: contain;
+  object-position: center;
+  margin: 0 auto;
+  padding: 10px;
+  background: #ffffff;
+  border: 1px solid #dce8f5;
+  border-radius: 14px;
+}
+
+/* Mensaje cuando falta una imagen */
+
+.confirm-route-placeholder {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 120px;
+  padding: 16px;
+  margin: 0;
+  color: #6684a1;
+  text-align: center;
+  font-size: 13px;
+  background: #eaf2fa;
+  border: 1px dashed #c7d9ea;
+  border-radius: 14px;
+}
+
+/* ===== Puntos del recorrido ===== */
+
+.confirm-route-stops {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 16px;
+}
+
+.confirm-route-stop {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 12px 14px;
+  background: #ffffff;
+  border: 1px solid #e0eaf4;
+  border-left: 4px solid #0879d1;
+  border-radius: 12px;
+}
+
+.confirm-route-stop--alighting {
+  border-left-color: #eb8c22;
+}
+
+.confirm-route-stop strong {
+  color: #0b4d91;
+  font-size: 13px;
+}
+
+.confirm-route-stop span {
+  color: #526b84;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+/* ===== Adaptación a pantallas pequeñas ===== */
+
+@media (max-width: 380px) {
+  .confirm-route-card {
+    padding: 15px;
+  }
+
+  .confirm-route-bus {
+    padding: 12px;
+  }
+
+  .confirm-route-poster,
+  .confirm-route-vehicle {
+    height: 150px;
+  }
+}
+
+
+/* ===== Lugares cercanos ===== */
+
+.confirm-route-places {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 14px;
+}
+
+.confirm-route-place {
+  display: flex;
+  align-items: stretch;
+  gap: 12px;
+  padding: 10px;
+  background: #f7faff;
+  border: 1px solid #dce8f5;
+  border-radius: 16px;
+  min-width: 0;
+}
+
+.confirm-route-place__image {
+  width: 105px;
+  min-width: 105px;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 11px;
+}
+
+.confirm-route-place__info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 5px;
+  min-width: 0;
+}
+
+.confirm-route-place__info h3 {
+  margin: 0;
+  font-size: 15px;
+  color: #0b4d91;
+}
+
+.confirm-route-place__info p {
+  margin: 0;
+  font-size: 12px;
+  color: #71879e;
+}
+
+.confirm-route-place__distance {
+  color: #385d7e;
+  font-size: 12px;
+  line-height: 1.4;
+}
+
+.confirm-route-place__favorite {
+  color: #d34865;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.confirm-route-place__link {
+  margin-top: auto;
+  padding-top: 7px;
+  color: #0869ba;
+  font-size: 13px;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+@media (max-width: 380px) {
+  .confirm-route-place__image {
+    width: 85px;
+    min-width: 85px;
+    height: 110px;
+  }
+}

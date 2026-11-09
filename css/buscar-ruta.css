@@ -684,3 +684,197 @@
     padding-top: 10px;
   }
 }
+
+
+/* HU03 y HU06 - Puntos de abordaje cercanos */
+
+.nearby-boardings {
+  margin: 20px 0;
+  padding: 16px;
+  background: var(--color-white);
+  border: 1px solid #dce8f2;
+  border-radius: 18px;
+}
+
+.nearby-boardings h2 {
+  margin: 0 0 12px;
+  color: var(--color-blue-dark);
+  font-size: 20px;
+  line-height: 1.3;
+}
+
+#nearby-boardings-status {
+  color: var(--color-muted);
+  font-size: 13px;
+  line-height: 1.5;
+  margin: 0 0 14px;
+}
+
+.nearby-boardings__map {
+  width: 100%;
+  min-height: 270px;
+  border-radius: 14px;
+  overflow: hidden;
+}
+
+.nearby-boardings__list {
+  list-style: none;
+  padding: 0;
+  margin: 14px 0;
+  display: grid;
+  gap: 10px;
+}
+
+.nearby-boardings__list li {
+  padding: 0;
+  margin: 0;
+}
+
+.nearby-boardings__list button {
+  width: 100%;
+  padding: 14px;
+  background: #eef6fd;
+  border: 1px solid #d6e6f5;
+  border-left: 4px solid #e88b24;
+  border-radius: 12px;
+  color: #17476f;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.5;
+  text-align: left;
+  cursor: pointer;
+  white-space: normal;
+}
+
+.nearby-boardings__list button:hover {
+  background: #e0effb;
+}
+
+.nearby-boardings__list button:focus-visible {
+  outline: 3px solid #0879d1;
+  outline-offset: 2px;
+}
+
+.nearby-boardings__notice {
+  margin: 12px 0 0;
+  padding: 10px;
+  background: #fff7e8;
+  border-radius: 10px;
+  color: #80551b;
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+[data-theme="dark"] .nearby-boardings__list button {
+  background: #1c3046;
+  color: #f1f6fc;
+  border-color: #456078;
+  border-left-color: #e88b24;
+}
+
+[data-theme="dark"] .nearby-boardings__notice {
+  background: #45351e;
+  color: #ffe0a3;
+}
+
+
+/* ===== Tarjetas compactas de rutas disponibles ===== */
+
+.route-results[data-state="results"] {
+  padding: 16px;
+}
+
+.route-results__list {
+  gap: 12px;
+}
+
+.route-option {
+  padding: 16px;
+  border-radius: 19px;
+  border: 1px solid #dce8f2;
+  background: #ffffff;
+  box-shadow: 0 4px 14px rgba(20, 65, 105, 0.05);
+}
+
+.route-option__heading {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.route-option__heading h3 {
+  min-width: 0;
+  font-size: 16px;
+  line-height: 1.35;
+}
+
+.route-option__badge {
+  white-space: nowrap;
+  font-size: 10px;
+}
+
+.route-option__summary {
+  margin: 8px 0 15px;
+  color: #6b849c;
+  font-size: 13px;
+}
+
+/* Dos métricas grandes */
+.route-option__stats {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.route-option__stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 77px;
+  padding: 12px 8px;
+  border-radius: 14px;
+  background: #f1f7fd;
+}
+
+.route-option__stat strong {
+  color: #0b4d91;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.route-option__stat span {
+  margin-top: 5px;
+  font-size: 11px;
+  color: #69849c;
+}
+
+/* Botón de detalles */
+.route-option__details {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 46px;
+  margin-top: 15px;
+  padding: 10px;
+  border-radius: 13px;
+  background: #e7f2fd;
+  color: #07539b;
+  font-size: 13px;
+  font-weight: 700;
+  text-align: center;
+  text-decoration: none;
+  transition: background 0.2s ease;
+}
+
+.route-option__details:hover {
+  background: #d5e9fb;
+}
+
+.route-option__details:focus-visible {
+  outline: 3px solid #0879d1;
+  outline-offset: 3px;
+}

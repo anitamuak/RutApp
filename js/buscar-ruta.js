@@ -157,6 +157,156 @@
       setInputError(originError, "No fue posible obtener la ubicación. Elige el origen en el mapa.");
     }
   }
+  // HU03 y HU06: puntos de abordaje cercanos a la ubicación GPS.
+  // Los puntos actuales son ilustrativos, no paraderos verificados.
+  let nearbyBoardingsMap = null;
+
+  async function showNearbyBoardings(latitude, longitude) {
+    const section = document.querySelector("#nearby-boardings");
+    const status = document.querySelector("#nearby-boardings-status");
+    const mapCanvas = document.querySelector("#nearby-boardings-map");
+    const list = document.querySelector("#nearby-boardings-list");
+
+    section.hidden = false;
+    status.textContent = "Buscando puntos de abordaje de ejemplo…";
+    list.replaceChildren();
+    mapCanvas.style.height = "270px";
+
+    try {
+      // Esperamos a que el catálogo de demostración esté cargado.
+      await demoRoutePromise;
+      if (!demoRouteCatalog) {
+        throw new Error("No se cargaron los recorridos de ejemplo.");
+      }
+
+      const L = await window.RutAppMaps.load();
+      const userPosition = L.latLng(latitude, longitude);
+      const uniquePoints = new Map();
+
+      // Cada ruta de ejemplo tiene un punto inicial de abordaje.
+      demoRouteCatalog.routes.forEach((route) => {
+        const stop = route.stops?.[0];
+
+        if (!Number.isFinite(stop?.latitude) ||
+            !Number.isFinite(stop?.longitude)) return;
+
+        const key = `${stop.latitude.toFixed(6)},${stop.longitude.toFixed(6)}`;
+
+        if (!uniquePoints.has(key)) {
+          uniquePoints.set(key, {
+            name: stop.name,
+            latitude: stop.latitude,
+            longitude: stop.longitude,
+            routes: []
+          });
+        }
+
+        uniquePoints.get(key).routes.push(route.name);
+      });
+
+      const points = [...uniquePoints.values()]
+        .map((point) => ({
+          ...point,
+          distance: userPosition.distanceTo(
+            L.latLng(point.latitude, point.longitude)
+          )
+        }))
+        .sort((a, b) => a.distance - b.distance);
+
+      const nearby = points.filter((point) => point.distance <= 1500);
+
+      // Si no hay puntos a 1,5 km, mostramos el más cercano
+      // del catálogo, sin afirmar que esté cerca del usuario.
+      const displayed = nearby.length > 0
+        ? nearby
+        : points.slice(0, 1);
+
+      if (nearbyBoardingsMap) {
+        nearbyBoardingsMap.remove();
+      }
+
+      nearbyBoardingsMap = window.RutAppMaps.createMap(
+        L,
+        mapCanvas,
+        { center: [latitude, longitude], zoom: 15 }
+      );
+
+      const bounds = L.latLngBounds([[latitude, longitude]]);
+
+      L.circleMarker([latitude, longitude], {
+        radius: 9,
+        color: "#ffffff",
+        weight: 3,
+        fillColor: "#0879d1",
+        fillOpacity: 1
+      })
+        .addTo(nearbyBoardingsMap)
+        .bindPopup("Tu ubicación actual");
+
+      displayed.forEach((point, index) => {
+        const position = [point.latitude, point.longitude];
+
+        const marker = L.circleMarker(position, {
+          radius: 9,
+          color: "#ffffff",
+          weight: 2,
+          fillColor: "#e88b24",
+          fillOpacity: 1
+        }).addTo(nearbyBoardingsMap);
+
+        const popup = document.createElement("div");
+        const title = document.createElement("strong");
+        const description = document.createElement("p");
+
+        title.textContent = point.name;
+        description.textContent =
+          `${Math.round(point.distance)} m en línea recta. ` +
+          `Recorridos de ejemplo: ${point.routes.join(", ")}`;
+
+        popup.append(title, description);
+        marker.bindPopup(popup);
+
+        const item = document.createElement("li");
+        const button = document.createElement("button");
+
+        button.type = "button";
+        button.textContent =
+          `${index === 0 ? "Más cercano: " : ""}${point.name} ` +
+          `· ${Math.round(point.distance)} m`;
+
+        button.addEventListener("click", () => {
+          nearbyBoardingsMap.setView(position, 16);
+          marker.openPopup();
+        });
+
+        item.append(button);
+        list.append(item);
+        bounds.extend(position);
+      });
+
+      if (displayed.length > 0) {
+        nearbyBoardingsMap.fitBounds(bounds, {
+          padding: [35, 35],
+          maxZoom: 16
+        });
+      }
+
+      status.textContent = nearby.length > 0
+        ? `${nearby.length} punto(s) de ejemplo a 1,5 km o menos. ` +
+          "El primero de la lista es el más cercano."
+        : displayed.length > 0
+          ? "No hay puntos de ejemplo a 1,5 km. " +
+            "Se muestra el más cercano del catálogo, aunque esté más lejos."
+          : "No hay puntos de abordaje registrados en el catálogo de ejemplo.";
+
+      setTimeout(() => nearbyBoardingsMap?.invalidateSize(), 100);
+    } catch (error) {
+      console.error("Error al mostrar puntos de abordaje:", error);
+      status.textContent =
+        "No se pudieron mostrar los puntos de abordaje de ejemplo.";
+    }
+  }
+
 
   function requestLocation() {
     if (locationRequestPending) return;
@@ -194,6 +344,10 @@
           };
           originDisplay.value = state.origin.label;
           persistOrigin();
+          showNearbyBoardings(
+  position.coords.latitude,
+  position.coords.longitude
+);
           setMessage("Ubicación obtenida. Las coordenadas se guardan solo en esta pestaña.");
           locationRequestPending = false;
           locateButton.disabled = false;
@@ -362,7 +516,7 @@
   function saveAndOpenTrip(trip) {
     try {
       sessionStorage.setItem(`rutapp.trip.${trip.id}`, JSON.stringify(trip));
-      window.location.href = `detalle-ruta.html?id=${encodeURIComponent(trip.id)}`;
+      window.location.href = `confirmar-ruta.html?id=${encodeURIComponent(trip.id)}`;
     } catch (error) {
       console.error("No se pudo conservar el itinerario seleccionado.", error);
       setMessage("No se pudo guardar el itinerario en esta pestaña. Revisa la configuración del navegador e inténtalo de nuevo.", "error");
@@ -380,88 +534,93 @@
 
   function renderAlternative(trip, originLabel, destinationLabel) {
     const card = document.createElement("article");
-    card.className = "route-option";
-    const heading = document.createElement("div");
-    heading.className = "route-option__heading";
-    const title = document.createElement("h3");
-    title.textContent = trip.routeNames.join(" → ");
-    const badge = document.createElement("span");
-    badge.className = "route-option__badge";
-    badge.textContent = trip.transfers === 0 ? "Directa" : `${trip.transfers} transbordo${trip.transfers === 1 ? "" : "s"}`;
-    if (trip.dataMode === "demo") {
-      badge.classList.add("route-option__badge--demo");
-      badge.textContent = "Aproximada";
-    }
-    if (getSelectedTripId() === trip.id) {
-      badge.classList.add("route-option__badge--selected");
-      badge.textContent = trip.dataMode === "demo"
-        ? "Demo · seleccionada"
-        : "Seleccionada";
-    }
-    heading.append(title, badge);
+    card.className = "route-option";git diff --check
 
-    const summary = document.createElement("p");
-    summary.className = "route-option__summary";
-    summary.textContent = `${originLabel} → ${destinationLabel} · ${trip.buses} bus${trip.buses === 1 ? "" : "es"} · ${trip.transfers} transbordo${trip.transfers === 1 ? "" : "s"}`;
+  // Nombre y estado de la alternativa
+  const heading = document.createElement("div");
+  heading.className = "route-option__heading";
 
-    const posters = document.createElement("div");
-    posters.className = "route-option__posters";
-    trip.itinerary.filter((step) => step.type === "bus" && step.poster).forEach((step) => {
-      const image = document.createElement("img");
-      image.src = step.poster;
-      image.alt = `Cartel de ${step.routeName}`;
-      image.loading = "lazy";
-      posters.append(image);
-    });
+  const title = document.createElement("h3");
+  title.textContent = trip.routeNames.join(" → ");
 
-    const stats = document.createElement("div");
-    stats.className = "route-option__stats";
-    const walkingMinutes = trip.itinerary
-      .filter((step) => step.type === "walk")
-      .reduce((total, step) => total + (step.durationMinutes || 0), 0);
-    [
-      [`${trip.estimatedMinutes} min`, "Tiempo aprox."],
-      [formatDistance(trip.totalDistanceMeters), "Distancia total aprox."],
-      [
-        formatDistance(trip.walkingDistanceMeters),
-        trip.dataMode === "demo"
-          ? `A pie · ${Math.ceil(walkingMinutes)} min aprox.`
-          : "Caminando aprox."
-      ],
-      [formatDistance(trip.busDistanceMeters), "En bus"]
-    ].forEach(([value, label]) => {
-      const stat = document.createElement("div");
-      stat.className = "route-option__stat";
-      stat.append(Object.assign(document.createElement("strong"), { textContent: value }));
-      stat.append(Object.assign(document.createElement("span"), { textContent: label }));
-      stats.append(stat);
-    });
+  const badge = document.createElement("span");
+  badge.className = "route-option__badge";
 
-    const stops = document.createElement("div");
-    stops.className = "route-option__stops";
-    trip.itinerary.filter((step) => step.type === "bus").forEach((step) => {
-      const line = document.createElement("span");
-      line.textContent = `${step.routeName}: aborda en ${step.board.name} · desciende en ${step.alight.name}`;
-      stops.append(line);
-    });
-
-    const details = document.createElement("a");
-    details.className = "route-option__details";
-    details.href = `detalle-ruta.html?id=${encodeURIComponent(trip.id)}`;
-    details.textContent = "Ver detalles del recorrido →";
-    details.addEventListener("click", (event) => {
-      event.preventDefault();
-      saveAndOpenTrip(trip);
-    });
-
-    const note = document.createElement("p");
-    note.className = "route-option__notice";
-    note.textContent = [trip.estimateNote, ...(trip.reviewWarnings || [])].join(" ");
-    card.append(heading, summary);
-    if (posters.childElementCount > 0) card.append(posters);
-    card.append(stats, stops, details, note);
-    return card;
+  if (trip.dataMode === "demo") {
+    badge.classList.add("route-option__badge--demo");
+    badge.textContent = "Demo";
+  } else {
+    badge.textContent = trip.transfers === 0
+      ? "Directa"
+      : `${trip.transfers} transbordo${trip.transfers === 1 ? "" : "s"}`;
   }
+
+  if (getSelectedTripId() === trip.id) {
+    badge.classList.add("route-option__badge--selected");
+    badge.textContent = "Seleccionada";
+  }
+
+  heading.append(title, badge);
+
+  // Información básica para comparar rutas
+  const summary = document.createElement("p");
+  summary.className = "route-option__summary";
+
+  const busesText =
+    `${trip.buses} bus${trip.buses === 1 ? "" : "es"}`;
+
+  const transfersText = trip.transfers === 0
+    ? "Sin transbordos"
+    : `${trip.transfers} transbordo${trip.transfers === 1 ? "" : "s"}`;
+
+  summary.textContent = `${busesText} · ${transfersText}`;
+
+  // Solo dos métricas principales
+  const stats = document.createElement("div");
+  stats.className = "route-option__stats";
+
+  [
+    [`${trip.estimatedMinutes} min`, "Tiempo aprox."],
+    [formatDistance(trip.totalDistanceMeters), "Distancia aprox."]
+  ].forEach(([value, label]) => {
+    const stat = document.createElement("div");
+    stat.className = "route-option__stat";
+
+    const strong = document.createElement("strong");
+    strong.textContent = value;
+
+    const span = document.createElement("span");
+    span.textContent = label;
+
+    stat.append(strong, span);
+    stats.append(stat);
+  });
+
+  // Ir a la pantalla intermedia, sin seleccionar aún la ruta
+  const details = document.createElement("a");
+  details.className = "route-option__details";
+
+  details.href =
+    `confirmar-ruta.html?id=${encodeURIComponent(trip.id)}`;
+
+  details.textContent = "Ver detalles del recorrido →";
+
+  details.addEventListener("click", (event) => {
+    event.preventDefault();
+    saveAndOpenTrip(trip);
+  });
+
+  // Construir tarjeta
+  card.append(
+    heading,
+    summary,
+    stats,
+    details
+  );
+
+  return card;
+}
+
 
   function renderAlternatives(alternatives, dataMode = "verified") {
     results.dataset.state = "results";

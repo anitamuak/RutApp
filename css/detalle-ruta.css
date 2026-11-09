@@ -485,3 +485,386 @@
   font-size: 0.72rem;
   opacity: 0.75;
 }
+
+
+/* Lugares turísticos cercanos al recorrido */
+
+.trip-nearby {
+  margin-top: 24px;
+  margin-bottom: 24px;
+}
+
+.trip-nearby .trip-section-title {
+  margin-bottom: 12px;
+}
+
+.trip-nearby__list {
+  list-style: none;
+  padding: 0;
+  margin: 16px 0 0;
+  display: grid;
+  gap: 12px;
+}
+
+.trip-nearby__item {
+  margin: 0;
+  padding: 0;
+}
+
+.trip-nearby__item button {
+  width: 100%;
+  padding: 15px 18px;
+  border: 1px solid #d7e4ef;
+  border-left: 4px solid #e88b24;
+  border-radius: 12px;
+  background: #ffffff;
+  color: #17476f;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  text-align: left;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.2s;
+}
+
+.trip-nearby__item button:hover {
+  background: #eef6fd;
+  transform: translateY(-2px);
+}
+
+.trip-nearby__item button:focus-visible {
+  outline: 3px solid #0879d1;
+  outline-offset: 3px;
+}
+
+[data-theme="dark"] .trip-nearby__item button {
+  background: #1c3046;
+  color: #f1f6fc;
+  border-color: #456078;
+  border-left-color: #e88b24;
+}
+
+
+/* HU05 - Fotografía de referencia del bus */
+
+.trip-vehicle-reference {
+  width: 100%;
+  max-width: 100%;
+  margin: 18px 0 8px;
+  padding: 0;
+}
+
+.trip-vehicle-reference__image {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  max-height: 250px;
+  object-fit: contain;
+  border-radius: 14px;
+  background: #f2f6fa;
+}
+
+.trip-vehicle-reference__caption {
+  margin-top: 10px;
+  color: var(--color-muted);
+  font-size: 12px;
+  line-height: 1.5;
+  text-align: center;
+}
+
+
+/* HU07 - Puntos de abordaje y descenso */
+
+.trip-stops {
+  margin-top: 22px;
+  padding: 16px;
+  background: var(--color-white);
+  border: 1px solid #dce8f2;
+  border-radius: 16px;
+}
+
+.trip-stops__title {
+  margin: 0 0 16px;
+  color: var(--color-blue-dark);
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.trip-stops__list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 12px;
+}
+
+.trip-stops__item {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding: 13px 14px 13px 18px;
+  background: #f0f6fc;
+  border-left: 4px solid #0879d1;
+  border-radius: 10px;
+}
+
+.trip-stops__item:nth-child(even) {
+  border-left-color: #e88b24;
+}
+
+.trip-stops__item strong {
+  color: #17476f;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.trip-stops__item span {
+  color: #53718c;
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.trip-stops .trip-note {
+  margin: 14px 0 0;
+  font-size: 11px;
+  line-height: 1.5;
+}
+
+[data-theme="dark"] .trip-stops {
+  background: #1c3046;
+  border-color: #456078;
+}
+
+[data-theme="dark"] .trip-stops__item {
+  background: #253e57;
+}
+
+[data-theme="dark"] .trip-stops__item strong,
+[data-theme="dark"] .trip-stops__item span {
+  color: #e5eef8;
+}
+
+/* HU07 - Popup visual de lugares cercanos */
+
+.trip-nearby-popup {
+  width: 250px;
+  overflow: hidden;
+}
+
+.trip-nearby-popup__image {
+  display: block;
+  width: 100%;
+  height: 130px;
+  object-fit: cover;
+  border-radius: 14px;
+  margin-bottom: 10px;
+}
+
+.trip-nearby-popup__body {
+  padding: 0 2px 2px;
+}
+
+.trip-nearby-popup__title {
+  display: block;
+  margin-bottom: 6px;
+  color: var(--color-blue-dark);
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+.trip-nearby-popup__meta {
+  margin: 0 0 10px;
+  color: var(--color-muted);
+  font-size: 13px;
+  line-height: 1.45;
+}
+
+.trip-nearby-popup__link {
+  color: #0879d1;
+  font-size: 13px;
+  font-weight: 700;
+  text-decoration: underline;
+}
+
+/* Icono tipo pin de ubicación */
+
+.trip-nearby-marker-wrapper {
+  background: transparent !important;
+  border: none !important;
+}
+
+.trip-nearby-marker {
+  position: relative;
+  display: block;
+  width: 24px;
+  height: 24px;
+  background: #1f86f2;
+  border: 3px solid #ffffff;
+  border-radius: 50% 50% 50% 0;
+  transform: rotate(-45deg);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.18);
+}
+
+.trip-nearby-marker::after {
+  content: "";
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  width: 8px;
+  height: 8px;
+  background: #ffffff;
+  border-radius: 50%;
+}
+
+.trip-nearby-marker.is-favorite {
+  background: #e54869;
+}
+
+
+/* ===== Pantalla de ruta seleccionada ===== */
+
+/* Encabezado más compacto */
+.trip-header {
+  margin-bottom: 12px;
+}
+
+.trip-heading h1 {
+  font-size: 23px;
+}
+
+.trip-heading p {
+  margin: 5px 0 12px;
+  font-size: 13px;
+}
+
+/* Resumen superior del recorrido */
+.trip-route-card {
+  padding: 14px;
+  border-radius: 17px;
+  box-shadow: 0 3px 12px rgba(11, 77, 145, 0.06);
+}
+
+.trip-route-card h2 {
+  font-size: 16px;
+  line-height: 1.35;
+}
+
+.trip-route-card > p {
+  font-size: 12px;
+}
+
+/* Carteles pequeños */
+.trip-posters {
+  margin: 10px 0 0;
+}
+
+.trip-posters__hint {
+  margin-bottom: 7px;
+  font-size: 11px;
+}
+
+.trip-posters__list {
+  gap: 8px;
+}
+
+.trip-poster {
+  width: 94px;
+  gap: 4px;
+}
+
+.trip-poster img {
+  width: 100%;
+  height: 66px;
+  aspect-ratio: auto;
+  object-fit: contain;
+  background: #f7faff;
+  border-radius: 10px;
+}
+
+.trip-poster__frame {
+  height: 66px;
+  aspect-ratio: auto;
+}
+
+.trip-poster__frame strong {
+  font-size: 10px;
+}
+
+.trip-poster__frame small {
+  font-size: 9px;
+}
+
+.trip-poster__caption {
+  font-size: 10px;
+  line-height: 1.3;
+}
+
+.trip-posters__note {
+  margin-top: 7px;
+  font-size: 10px;
+  line-height: 1.4;
+}
+
+/* El mapa ahora ocupa más espacio */
+.trip-map {
+  height: clamp(390px, 58svh, 510px);
+  border: 1px solid #d7e5f2;
+  border-radius: 19px;
+  box-shadow: 0 6px 18px rgba(11, 77, 145, 0.08);
+}
+
+.trip-map__canvas {
+  width: 100%;
+  height: 100%;
+}
+
+.trip-section-title {
+  margin: 20px 0 10px;
+  font-size: 19px;
+}
+
+/* Panel de información adicional */
+.trip-extra-info {
+  margin-top: 20px;
+  padding: 14px;
+  background: #fff;
+  border: 1px solid #dce8f2;
+  border-radius: 16px;
+}
+
+.trip-extra-info > summary {
+  color: #0b4d91;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  list-style-position: inside;
+}
+
+.trip-extra-info[open] > summary {
+  margin-bottom: 14px;
+}
+
+.trip-extra-info .trip-metrics {
+  margin: 12px 0;
+}
+
+.trip-extra-info .trip-stops {
+  margin-top: 14px;
+}
+
+/* Adaptación móvil */
+@media (max-width: 380px) {
+  .trip-map {
+    height: 390px;
+  }
+
+  .trip-route-card {
+    padding: 12px;
+  }
+
+  .trip-poster {
+    width: 82px;
+  }
+}

@@ -311,13 +311,15 @@
     section.append(make(
       "p",
       "trip-posters__hint",
-      realCount === 0
-        ? (busSteps.length === 1
-          ? "Cartel para identificar el bus:"
-          : "Carteles para identificar cada bus:")
-        : (busSteps.length === 1
-          ? "Busca este cartel en el parabrisas del bus:"
-          : "Busca estos carteles en el parabrisas de cada bus:")
+      isDemo && realCount > 0
+  ? "Cartel ilustrativo del catálogo. Su correspondencia con este recorrido no está verificada:"
+  : realCount === 0
+    ? (busSteps.length === 1
+      ? "Cartel para identificar el bus:"
+      : "Carteles para identificar cada bus:")
+    : (busSteps.length === 1
+      ? "Busca este cartel en el parabrisas del bus:"
+      : "Busca estos carteles en el parabrisas de cada bus:")
     ));
     const list = make("div", "trip-posters__list");
     busSteps.forEach((step, index) => {
@@ -360,7 +362,8 @@
     root.replaceChildren();
     const pageHeader = make("header", "trip-header");
     const back = make("a", "trip-header__back");
-    back.href = "buscar-ruta.html?restaurar=1";
+    back.href = `confirmar-ruta.html?id=${encodeURIComponent(trip.id)}`;
+    back.setAttribute("aria-label", "Volver a confirmar la ruta");
     back.setAttribute("aria-label", "Volver a los resultados");
     back.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg>';
     const brand = make("a", "trip-header__brand");
@@ -378,6 +381,36 @@
       const busSteps = trip.itinerary.filter((step) => step.type === "bus");
     const postersSection = buildPosters(busSteps, trip.dataMode === "demo");
     if (postersSection) routeCard.append(postersSection);
+    
+    // HU05: imagen de referencia del vehículo.
+    // Por ahora se muestra en el recorrido Universidad–Rodadero.
+    if (
+      trip.dataMode === "demo" &&
+      trip.routeIds.includes("demo-unimag-rodadero")
+    ) {
+      const busSection = make("figure", "trip-vehicle-reference");
+
+      const busImage = make("img", "trip-vehicle-reference__image");
+      busImage.src = "../assets/images/bus.jpg";
+      busImage.alt = "Fotografía ilustrativa de un bus de transporte público";
+      busImage.loading = "lazy";
+
+      const busCaption = make(
+        "figcaption",
+        "trip-vehicle-reference__caption",
+        "Imagen de referencia del vehículo. Su correspondencia con este recorrido todavía no está verificada."
+      );
+
+      busImage.addEventListener("error", () => {
+        busSection.replaceChildren(
+          make("p", "trip-note", "No se pudo cargar la fotografía del bus.")
+        );
+      });
+
+      busSection.append(busImage, busCaption);
+      routeCard.append(busSection);
+    }
+
     const metrics = make("div", "trip-metrics");
     [
       [formatMinutes(trip.estimatedMinutes), "Tiempo aprox."],
@@ -391,6 +424,47 @@
       metrics.append(metric);
     });
     routeCard.append(metrics);
+
+    
+    // HU07: Puntos de abordaje y descenso registrados.
+    const stopsSection = make("section", "trip-stops");
+
+    stopsSection.append(
+      make("h3", "trip-stops__title", "Puntos del recorrido")
+    );
+
+    const stopsList = make("ol", "trip-stops__list");
+
+    busSteps.forEach((step, index) => {
+      const boardItem = make("li", "trip-stops__item");
+
+      boardItem.append(
+        make("strong", "", `Bus ${index + 1} · Abordaje`),
+        make("span", "", step.board.name)
+      );
+
+      const alightItem = make("li", "trip-stops__item");
+
+      alightItem.append(
+        make("strong", "", `Bus ${index + 1} · Descenso`),
+        make("span", "", step.alight.name)
+      );
+
+      stopsList.append(boardItem, alightItem);
+    });
+
+    stopsSection.append(stopsList);
+
+    stopsSection.append(
+      make(
+        "p",
+        "trip-note",
+        "Se muestran los puntos registrados para este recorrido de demostración. Las paradas intermedias aún no están verificadas."
+      )
+    );
+
+    routeCard.append(stopsSection);
+
 
     const selectButton = make("button", "trip-select-button");
     const selectionStatus = make("p", "trip-selection-status");
@@ -469,7 +543,48 @@
     mapSummary.append(make("span", "", `${formatDistance(trip.busDistanceMeters)} en bus`));
     map.append(mapSummary);
 
-    root.append(pageHeader, heading, routeCard, selectButton, selectionStatus, itineraryTitle, itinerary, mapTitle, map, legend);
+
+// Agrupar la información secundaria de la ruta.
+const extraDetails = make("details", "trip-extra-info");
+
+const extraSummary = make(
+  "summary",
+  "",
+  "Ver más información de esta ruta"
+);
+
+extraDetails.append(extraSummary);
+
+// Pasamos los datos detallados a un panel desplegable.
+[
+  ".trip-metrics",
+  ".trip-stops",
+  ".trip-vehicle-reference"
+].forEach((selector) => {
+  const element = routeCard.querySelector(selector);
+
+  if (element) {
+    extraDetails.append(element);
+  }
+});
+
+// Pantalla centrada en el mapa y el viaje.
+root.append(
+  pageHeader,
+  heading,
+  routeCard,
+  mapTitle,
+  map,
+  legend,
+  itineraryTitle,
+  itinerary
+);
+
+// La información ampliada estará disponible,
+// pero no ocupará toda la pantalla inicialmente.
+if (extraDetails.children.length > 1) {
+  root.append(extraDetails);
+}
     root.append(make("p", "trip-note", `${trip.estimateNote} ${trip.walkingNote} Los segmentos de bus siguen la geometría registrada; las caminatas intentan seguir calles y andenes de OpenStreetMap; si el servicio no responde se dibujan como línea recta esquemática. Sus distancias y tiempos son estimaciones en línea recta.`));
     if (trip.dataMode === "demo" &&
         trip.routeIds.includes("demo-unimag-rodadero-a") &&

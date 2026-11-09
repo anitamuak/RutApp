@@ -54,7 +54,7 @@
     {
       "id": "demo-unimag-rodadero",
       "name": "Universidad–Rodadero",
-      "poster": null,
+      "poster": "../assets/images/cartel_libertador_rodadero.png",
       "direction": "Sentido ilustrativo Universidad del Magdalena → Playa El Rodadero",
       "dataMode": "demo",
       "verificationStatus": "pending",
@@ -290,7 +290,7 @@
             {
       "id": "demo-unimag-rodadero-a",
       "name": "Universidad–La 30",
-      "poster": null,
+      "poster": "../assets/images/cartel_libertador_rodadero.png",
       "direction": "Universidad–La 30 → Conexión Rodadero · demostración",
       "dataMode": "demo",
       "verificationStatus": "pending",
@@ -1406,7 +1406,7 @@
             {
       "id": "demo-unimag-rodadero-b",
       "name": "Rodadero · La paz",
-      "poster": null,
+      "poster": "../assets/images/cartel_gaira_salguero.png",
       "direction": "Conexión Rodadero · demostración → Rodadero · La paz",
       "dataMode": "demo",
       "verificationStatus": "pending",
