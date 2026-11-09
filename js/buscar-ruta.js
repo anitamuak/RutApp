@@ -534,7 +534,7 @@
 
   function renderAlternative(trip, originLabel, destinationLabel) {
     const card = document.createElement("article");
-    card.className = "route-option";git diff --check
+    card.className = "route-option";
 
   // Nombre y estado de la alternativa
   const heading = document.createElement("div");
