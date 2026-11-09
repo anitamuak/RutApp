@@ -20,7 +20,7 @@ test("la comparación local conserva las dos candidatas y marca los desvíos", (
   assert.equal(integratedDirect.geometry.length, 198);
   assert.equal(integratedDirect.routing.distanceMeters, 8810.5);
   assert.notDeepEqual(integratedLineA.geometry, lineA.candidate.geometryLeaflet);
-  assert.equal(integratedLineA.geometry.length, 259);
+  assert.equal(integratedLineA.geometry.length, 241);
   assert.equal(integratedLineA.routing.distanceMeters, 8014);
 
   assert.equal(direct.candidate.pointCount, 324);

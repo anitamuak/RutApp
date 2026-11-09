@@ -54,7 +54,7 @@
     {
       "id": "demo-unimag-rodadero",
       "name": "Universidad–Rodadero",
-      "poster": "../assets/images/cartel_libertador_rodadero.png",
+      "poster": "../assets/images/cartel_cristo_rey.png",
       "direction": "Sentido ilustrativo Universidad del Magdalena → Playa El Rodadero",
       "dataMode": "demo",
       "verificationStatus": "pending",
@@ -290,14 +290,14 @@
             {
       "id": "demo-unimag-rodadero-a",
       "name": "Universidad–La 30",
-      "poster": "../assets/images/cartel_libertador_rodadero.png",
+      "poster": "../assets/images/cartel_gaira_salguero.png",
       "direction": "Universidad–La 30 → Conexión Rodadero · demostración",
       "dataMode": "demo",
       "verificationStatus": "pending",
       "demoJourneyId": "unimag-rodadero-demo-connection",
       "demoJourneyLeg": 1,
       "demoJourneyLegCount": 2,
-      "source": "Geometría de conducción calculada mediante OSRM demo server el 2026-11-07T15:38:19.356Z con perfil driving, overview=full, geometries=geojson, steps=false y radios de 100 m. Coordenadas candidatas proporcionadas para demostración; no representa una línea de bus ni un servicio verificado.",
+      "source": "Geometría de conducción calculada mediante OSRM demo server el 2026-11-07T15:38:19.356Z con perfil driving, overview=full, geometries=geojson, steps=false y radios de 100 m. Coordenadas candidatas proporcionadas para demostración; no representa una línea de bus ni un servicio verificado. El punto de transbordo se adelantó 1007 m sobre el trazado de la línea A; el tramo movido conserva la geometría OSRM original.",
       "attribution": "Routing by OSRM; map data © OpenStreetMap contributors. Datos disponibles bajo ODbL.",
       "generatedAt": "2026-11-07T15:38:19.356Z",
       "profile": "driving",
@@ -1268,6 +1268,92 @@
         [
           11.211129,
           -74.21992
+        ]
+      ],
+      "stops": [
+        {
+          "id": "demo-unimag-rodadero-a-boarding",
+          "name": "Universidad del Magdalena · abordaje confirmado para la demostración",
+          "sequence": 1,
+          "latitude": 11.226444,
+          "longitude": -74.187304
+        },
+        {
+          "id": "demo-unimag-rodadero-a-alighting",
+          "name": "Conexión Rodadero · demostración",
+          "sequence": 2,
+          "latitude": 11.211129,
+          "longitude": -74.21992
+        }
+      ],
+      "routing": {
+        "provider": "OSRM demo server",
+        "profile": "driving",
+        "requestUrl": "https://router.project-osrm.org/route/v1/driving/-74.187304,11.226444;-74.2260969,11.2067699?overview=full&geometries=geojson&steps=false&radiuses=100;100",
+        "generatedAt": "2026-11-07T15:38:19.356Z",
+        "distanceMeters": 8014,
+        "durationSeconds": 656,
+        "pointCount": 259,
+        "attribution": "Routing by OSRM; map data © OpenStreetMap contributors. Datos disponibles bajo ODbL.",
+        "legs": [
+          {
+            "fromWaypoint": 1,
+            "toWaypoint": 2,
+            "distanceMeters": 8014,
+            "durationSeconds": 656
+          }
+        ],
+        "waypoints": [
+          {
+            "requestedLatitudeLongitude": [
+              11.226444,
+              -74.187304
+            ],
+            "snappedLatitudeLongitude": [
+              11.226444,
+              -74.187304
+            ],
+            "snapDistanceMeters": 0,
+            "name": ""
+          },
+          {
+            "requestedLatitudeLongitude": [
+              11.2067699,
+              -74.2260969
+            ],
+            "snappedLatitudeLongitude": [
+              11.206649,
+              -74.226054
+            ],
+            "snapDistanceMeters": 14.18439954,
+            "name": "Calle 6"
+          }
+        ]
+      }
+    },
+            {
+      "id": "demo-unimag-rodadero-b",
+      "name": "Rodadero · La paz",
+      "poster": "../assets/images/cartel_libertador_rodadero.png",
+      "direction": "Conexión Rodadero · demostración → Rodadero · La paz",
+      "dataMode": "demo",
+      "verificationStatus": "pending",
+      "demoJourneyId": "unimag-rodadero-demo-connection",
+      "demoJourneyLeg": 2,
+      "demoJourneyLegCount": 2,
+      "source": "Geometría de conducción calculada mediante OSRM demo server el 2026-11-07T15:48:35.094Z con perfil driving, overview=full, geometries=geojson, steps=false y radios de 100 m. Coordenadas candidatas proporcionadas para demostración; no representa una línea de bus ni un servicio verificado. El punto de transbordo se adelantó 1007 m sobre el trazado de la línea A; el tramo movido conserva la geometría OSRM original.",
+      "attribution": "Routing by OSRM; map data © OpenStreetMap contributors. Datos disponibles bajo ODbL.",
+      "generatedAt": "2026-11-07T15:48:35.094Z",
+      "profile": "driving",
+      "preserveSourceGeometry": true,
+      "reviewWarnings": [
+        "El punto de paso propuesto se ajustó 80,6 m respecto de la coordenada solicitada; el nombre vial de OSRM es orientativo y no confirma una intersección o parada."
+      ],
+      "estimatedSpeedKmh": 18,
+      "geometry": [
+        [
+          11.211129,
+          -74.21992
         ],
         [
           11.210487,
@@ -1340,92 +1426,6 @@
         [
           11.206649,
           -74.226054
-        ]
-      ],
-      "stops": [
-        {
-          "id": "demo-unimag-rodadero-a-boarding",
-          "name": "Universidad del Magdalena · abordaje confirmado para la demostración",
-          "sequence": 1,
-          "latitude": 11.226444,
-          "longitude": -74.187304
-        },
-        {
-          "id": "demo-unimag-rodadero-a-alighting",
-          "name": "Conexión Rodadero · demostración",
-          "sequence": 2,
-          "latitude": 11.206649,
-          "longitude": -74.226054
-        }
-      ],
-      "routing": {
-        "provider": "OSRM demo server",
-        "profile": "driving",
-        "requestUrl": "https://router.project-osrm.org/route/v1/driving/-74.187304,11.226444;-74.2260969,11.2067699?overview=full&geometries=geojson&steps=false&radiuses=100;100",
-        "generatedAt": "2026-11-07T15:38:19.356Z",
-        "distanceMeters": 8014,
-        "durationSeconds": 656,
-        "pointCount": 259,
-        "attribution": "Routing by OSRM; map data © OpenStreetMap contributors. Datos disponibles bajo ODbL.",
-        "legs": [
-          {
-            "fromWaypoint": 1,
-            "toWaypoint": 2,
-            "distanceMeters": 8014,
-            "durationSeconds": 656
-          }
-        ],
-        "waypoints": [
-          {
-            "requestedLatitudeLongitude": [
-              11.226444,
-              -74.187304
-            ],
-            "snappedLatitudeLongitude": [
-              11.226444,
-              -74.187304
-            ],
-            "snapDistanceMeters": 0,
-            "name": ""
-          },
-          {
-            "requestedLatitudeLongitude": [
-              11.2067699,
-              -74.2260969
-            ],
-            "snappedLatitudeLongitude": [
-              11.206649,
-              -74.226054
-            ],
-            "snapDistanceMeters": 14.18439954,
-            "name": "Calle 6"
-          }
-        ]
-      }
-    },
-            {
-      "id": "demo-unimag-rodadero-b",
-      "name": "Rodadero · La paz",
-      "poster": "../assets/images/cartel_gaira_salguero.png",
-      "direction": "Conexión Rodadero · demostración → Rodadero · La paz",
-      "dataMode": "demo",
-      "verificationStatus": "pending",
-      "demoJourneyId": "unimag-rodadero-demo-connection",
-      "demoJourneyLeg": 2,
-      "demoJourneyLegCount": 2,
-      "source": "Geometría de conducción calculada mediante OSRM demo server el 2026-11-07T15:48:35.094Z con perfil driving, overview=full, geometries=geojson, steps=false y radios de 100 m. Coordenadas candidatas proporcionadas para demostración; no representa una línea de bus ni un servicio verificado.",
-      "attribution": "Routing by OSRM; map data © OpenStreetMap contributors. Datos disponibles bajo ODbL.",
-      "generatedAt": "2026-11-07T15:48:35.094Z",
-      "profile": "driving",
-      "preserveSourceGeometry": true,
-      "reviewWarnings": [
-        "El punto de paso propuesto se ajustó 80,6 m respecto de la coordenada solicitada; el nombre vial de OSRM es orientativo y no confirma una intersección o parada."
-      ],
-      "estimatedSpeedKmh": 18,
-      "geometry": [
-        [
-          11.206649,
-          -74.226054
         ],
         [
           11.206585,
@@ -1473,8 +1473,8 @@
           "id": "demo-unimag-rodadero-b-boarding",
           "name": "Conexión Rodadero · demostración",
           "sequence": 1,
-          "latitude": 11.206649,
-          "longitude": -74.226054
+          "latitude": 11.211129,
+          "longitude": -74.21992
         },
         {
           "id": "demo-unimag-rodadero-b-alighting",
@@ -1550,7 +1550,7 @@
     {
       "id": "demo-parque-taganga",
       "name": "Kra 11 Taganga",
-      "poster": null,
+      "poster": "../assets/images/cartel_taganga.png",
       "direction": "Sentido aproximado hacia Playa de Taganga",
       "dataMode": "demo",
       "verificationStatus": "pending",
@@ -1779,7 +1779,7 @@
     {
       "id": "demo-ocean-buenavista-osrm",
       "name": "Ocean Mall–Buenavista · calles 29 y 24",
-      "poster": null,
+      "poster": "../assets/images/cartel_santa_rita.png",
       "direction": "Sentido de conducción calculado entre CC Ocean Mall y CC Buenavista",
       "dataMode": "demo",
       "verificationStatus": "pending",
@@ -1922,7 +1922,7 @@
     {
       "id": "demo-ocean-buenavista-libertador",
       "name": "Ocean Mall–Buenavista · Avenida El Libertador",
-      "poster": null,
+      "poster": "../assets/images/cartel_buenavista_libertador.png",
       "direction": "Sentido ilustrativo de CC Ocean Mall hacia CC Buenavista",
       "dataMode": "demo",
       "verificationStatus": "pending",
